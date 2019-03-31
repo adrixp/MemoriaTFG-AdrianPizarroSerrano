@@ -220,80 +220,38 @@ just before submitting.
 \label{sec:intro} % etiqueta para poder referenciar luego en el texto con ~\ref{sec:intro}
 \pagenumbering{arabic} % para empezar la numeración de página con números
 
-El concepto de realidad virtual lleva presente en nuestra sociedad desde hace décadas.
-Mi proyecto va de cuando se genera una grafica y se ve en realidad virtual en el navegador
-En este capítulo se introduce el proyeto. Debería tener información general sobre el mismo, dando la información sobre el contexto en el que se ha desarrollado.
+Este proyecto trata sobre la representación de datos en 3D en un navegador web utilizando como base el {\textit{framework}} A-Frame\footnote{\url{https://aframe.io/}}. Este {\textit{framework}} nace a su vez a partir de la librería Three.js\footnote{\url{https://threejs.org/}} utilizada para mostrar gráficos animados en 3D.
 
-No te olvides de echarle un ojo a la página con los cinco errores de escritura más frecuentes\footnote{\url{http://www.tallerdeescritores.com/errores-de-escritura-frecuentes}}.
+El objetivo principal es crear una librería capaz de visualizar datos con distintos tipos de gráficos, fácilmente escalable, mantenible y sencilla de utilizar.
 
-Aconsejo a todo el mundo que mire y se inspire en memorias pasadas. Las mías están todas almacenadas en mi web del GSyC\footnote{\url{https://gsyc.urjc.es/~grex/pfcs/}}.
+A continuación describiremos el contexto, motivación y la estructura de esta memoria.
 
-\section{Sección}
+\section{Contexto}
 \label{sec:seccion}
 
-Esto es una sección, que es una estructura menor que un capítulo. 
+Hoy en día, los mayores negocios a nivel empresarial se realizan a través de Internet. El desarrollo web es uno de los mayores creadores de nuevos puestos de trabajo. 
 
-Por cierto, a veces me comentáis que no os compila por las tildes.
-Eso es un problema de codificación.
-Cambiad de ``UTF-8'' a ``ISO-Latin-1'' (o vicecersa) y funcionará.
+Comunicación, rentabilidad empresarial. Visualización y explotación de datos.
+Para todo este paradigma surgen casi a diaro nuevos frameworks para conseguir una eficiencia y estandarización a la hora de crear webs. 
+Gracias al nacimiento de Internet, el modelo de trabajo convencional ha cambiado. Miles de negocios han surgido gracias al paradigma de  
 
-\subsection{Estilo}
+Mucha mencion al 3D, como nace el mundo 3D en la web, negocios futuro, framworks
+
+Y despues de enfocarlo al 3D se debe ver la necesidad de explotación de datos y visualización para sacar rendimiento. Analisis de datos etc.
+
+\section{Motivación}
 \label{subsec:estilo}
 
-Recomiendo leer los consejos prácticos sobre LaTeX de Diomidos 
-Spinellis\footnote{\url{https://github.com/dspinellis/latex-advice}}.
-
-Sobre el uso de las comas\footnote{\url{http://narrativabreve.com/2015/02/opiniones-de-un-corrector-de-estilo-11-recetas-para-escribir-correctamente-la-coma.html}}
-
-A continuación, viene una figura, la Figura~\ref{figura:foro_hilos}. 
 Observarás que el texto dentro del a referencia es el identificador de la figura (que se corresponden con el ``label'' dentro de la misma). 
 También habrás tomado nota de cómo se ponen las ``comillas dobles'' para que se muestren correctamente. 
 Volviendo a las referencias, nota que al compilar, la primera vez se crea un diccionario con las referencias, y en la segunda compilación se ``rellenan'' estas referencias. 
 Por eso hay que compilar dos veces.
 
- \begin{figure}
-    \centering
-    \includegraphics[bb=0 0 800 600, width=12cm, keepaspectratio]{img/foro1}
-    \caption{Página con enlaces a hilos}
-    \label{figura:foro_hilos}
- \end{figure}
-
-{\footnotesize
-\begin{verbatim}
-    From gaurav at gold-solutions.co.uk  Fri Jan 14 14:51:11 2005
-    From: gaurav at gold-solutions.co.uk (gaurav_gold)
-    Date: Fri Jan 14 19:25:51 2005
-    Subject: [Mailman-Users] mailman issues
-    Message-ID: <003c01c4fa40$1d99b4c0$94592252@gaurav7klgnyif>
-
-    Dear Sir/Madam,
-    How can people reply to the mailing list?  How do i turn off
-    this feature? How can i also enable a feature where if someone
-    replies the newsletter the email gets deleted?
-    Thanks
-
-    From msapiro at value.net  Fri Jan 14 19:48:51 2005
-    From: msapiro at value.net (Mark Sapiro)
-    Date: Fri Jan 14 19:49:04 2005
-    Subject: [Mailman-Users] mailman issues
-    In-Reply-To: <003c01c4fa40$1d99b4c0$94592252@gaurav7klgnyif>
-    Message-ID: <PC173020050114104851057801b04d55@msapiro>
-
-    gaurav_gold wrote:
-    >How can people reply to the mailing list?  How do i turn off
-    this feature? How can i also enable a feature where if someone
-    replies the newsletter the email gets deleted?
-
-    See the FAQ
-    >Mailman FAQ: http://www.python.org/cgi-bin/faqw-mm.py
-    article 3.11
-\end{verbatim}
-}
 
 \section{Estructura de la memoria}
 \label{sec:estructura}
 
-En esta sección se debería introducir la esctura de la memoria. Así:
+En esta sección se describe la estructura de la memoria para una mejor compresión de la misma:
 
 \begin{itemize}
   \item En el primer capítulo se hace una intro al proyecto.
