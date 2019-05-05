@@ -227,27 +227,35 @@ El objetivo principal es crear una librería capaz de visualizar datos con distin
 A continuación describiremos el contexto, motivación y la estructura de esta memoria.
 
 \section{Contexto}
-\label{sec:seccion}
+\label{sec:contexto}
 
 Hoy en día, prácticamente todo negocio se lleva a cabo o se promociona a través de Internet. La comunicación y la rentabilidad empresarial han mejorado enormemente gracias a la llegada de este fenómeno y de su mano surge el desarrollo web, el cual es uno de los mayores creadores de nuevos puestos de trabajo. 
 
-Para todo este paradigma surgen, casi a diario,  nuevos frameworks para conseguir una mayor eficiencia y estandarización a la hora de crear webs.
+Para todo este paradigma surgen, casi a diario, nuevos {\textit{frameworks}} para conseguir una mayor eficiencia y estandarización a la hora de crear páginas webs.
 
-Cabe destacar que, a nivel empresarial, es necesario un estudio exhaustivo así como una mejor visualización, tratamiento y explotación de datos tenemos infinidad de librerías a nuestra disposición
+Cabe destacar que, a nivel empresarial, es necesario un estudio exhaustivo así como una mejor visualización, tratamiento y explotación de los datos. Para ello han surgido infinidad de librerías a nuestra disposición tales como D3.js\footnote{\url{https://d3js.org/}}, amcharts\footnote{\url{https://www.amcharts.com/}}, highcharts\footnote{\url{https://www.highcharts.com/}}, etc. 
 
-Por otro lado tenemos el nacimiento del 3D. Mención a Unity? Mencion a webgl? Threejs? Aframe?Mucha mencion al 3D, como nace el mundo 3D en la web, negocios futuro, frameworks
+Por otro lado, con el nacimiento de Canvas 3D en 2006 y su posterior evolución en WebGL se abre la puerta a la implementación de visualizaciones 3D en páginas webs. Como veremos más adelante, WebGL nos proporciona un API en javascript para renderizar visualizaciones 2D y 3D sobre HTML.
 
-Y despues de enfocarlo al 3D se debe ver la necesidad de explotación de datos y visualización para sacar rendimiento. Analisis de datos etc.
+Paralelamente, nace el motor gráfico Unity el cual también ha ayudado a impulsar la fama y utilización de componentes 3D en múltiples plataformas. Ha sentado varias bases y conceptos reutilizados en muchas otras plataformas tales como el concepto de escena, cámaras, materiales, luces, sombras, formas geométricas y parámetros para cada componente.
 
-Sin olvidar la gran comunidad que hay detrás.
+Más tarde, y concerniente a este proyecto, nace Three.js como librería javascript basada en WebGL para crear y mostrar visualizaciones 3D. Esta librería ya nos proporciona todas las especificaciones necesarias para trabajar con escenas, efectos, animaciones, cámaras, etc. Para un uso más sencillo y estándar de esta librería y para su adaptación a la realidad Virtual nace A-frame en 2015. Gracias a esta última librería podemos utilizar todos nuestras escenas 3D y representarlas en lo que conocemos como WebVR, la cual es una interfaz que nos provee del soporte necesario para visualizar todo este contenido HTML 3D en un aparato de realidad virtual (Oculus Rift, HTC Vive y Google Cardboard) o un navegador.
+
+Finalmente me gustaría hacer una mención especial a toda la comunidad que hay detrás de todas estas plataformas. Sin su aportación diaria, intercambio de conocimiento y ayuda nada de esto sería posible.
+
+La unión de estos dos mundos, representación de datos y la llegada de visualizaciones 3D en navegadores web, nos lleva a nuestro siguiente apartado la motivación.
 
 \section{Motivación}
-\label{subsec:estilo}
+\label{sec:motivacion}
 
-Observarás que el texto dentro del a referencia es el identificador de la figura (que se corresponden con el ``label'' dentro de la misma). 
-También habrás tomado nota de cómo se ponen las ``comillas dobles'' para que se muestren correctamente. 
-Volviendo a las referencias, nota que al compilar, la primera vez se crea un diccionario con las referencias, y en la segunda compilación se ``rellenan'' estas referencias. 
-Por eso hay que compilar dos veces.
+La visualización y explotación de datos como motivación
+
+Hasta ahora no hay un uso extendido de librerias en 3D tanto en aframe como fuera de ello. Un nicho por explotar
+
+Me dedico a la parte de explotación y visualización de datos.
+
+despues de un intento fallido pude volver a retomar mi trabajo y terminar esta libreria
+
 
 
 \section{Estructura de la memoria}
@@ -279,11 +287,7 @@ En esta sección se describe la estructura de la memoria para una mejor compresió
 \section{Objetivo general} % título de sección (se muestra)
 \label{sec:objetivo-general} % identificador de sección (no se muestra, es para poder referenciarla)
 
-Aquí vendría el objetivo general en una frase:
-Mi trabajo fin de grado consiste en crear de una herramienta de análisis de los comentarios jocosos en repositorios de software libre alojados en la plataforma GitHub.
-
-Recuerda que los objetivos siempre vienen en infinitivo.
-
+Mi trabajo fin de grado consiste en crear una librería para la visualización de datos en 3D compatible con cualquier navegador. La cual además pueda ser usada en un dispositivo de realidad virtual.
 
 \section{Objetivos específicos}
 \label{sec:objetivos-especificos}
