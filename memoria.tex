@@ -220,11 +220,11 @@ just before submitting.
 \label{sec:intro} % etiqueta para poder referenciar luego en el texto con ~\ref{sec:intro}
 \pagenumbering{arabic} % para empezar la numeración de página con números
 
-Este proyecto trata sobre la representación de datos en 3D en un navegador web utilizando como base el {\textit{framework}} A-Frame\footnote{\url{https://aframe.io/}}. Este {\textit{framework}} nace a su vez a partir de la librería Three.js\footnote{\url{https://threejs.org/}} utilizada para mostrar gráficos animados en 3D.
+Este proyecto trata sobre la representación de datos en tres dimensiones (a partir de ahora 3D) en un navegador web utilizando como base el {\textit{framework}} A-Frame\footnote{\url{https://aframe.io/}}. Este {\textit{framework}} nace a su vez a partir de la librería Three.js\footnote{\url{https://threejs.org/}} utilizada para mostrar gráficos animados en 3D.
 
-El objetivo principal es crear una librería capaz de visualizar datos con distintos tipos de gráficos, fácilmente escalable, mantenible y sencilla de utilizar.
+El objetivo principal es crear una librería capaz de visualizar datos con distintos tipos de gráficos, fácilmente escalable, mantenible y sencilla de utilizar. Además, como objetivos más específicos, podrá ser usada en cualquier navegador y dispositivo de realidad virtual.
 
-A continuación describiremos el contexto, motivación y la estructura de esta memoria.
+A continuación se describe el contexto, motivación y la estructura de esta memoria.
 
 \section{Contexto}
 \label{sec:contexto}
@@ -248,15 +248,15 @@ La unión de estos dos mundos, representación de datos y la llegada de visualizac
 \section{Motivación}
 \label{sec:motivacion}
 
-La visualización y explotación de datos como motivación
+Muchas veces se escucha la frase atribuida al filósofo inglés Francis Bacon ``La información es poder'', la cual es cierta, pero sin una correcta interpretación de la misma podemos caer en el caso de la desinformación. Como se menciona en el apartado anterior la visualización y explotación de datos es un campo en auge del cual se requiere mucha ingeniería para poder sacarle partido. Es un campo apasionante, lleno de retos, con muchas salidas laborales y en constante evolución.
 
-Hasta ahora no hay un uso extendido de librerias en 3D tanto en aframe como fuera de ello. Un nicho por explotar
+Hasta ahora, tenemos infinidad de librerías para representar datos en 2D pero ¿Qué ocurre con la llegada del 3D a nuestros navegadores? ¿Existen librerías para visualizar datos utilizando realidad virtual o realidad aumentada? Lo cierto es que estas preguntas nos llevan a una de las motivaciones principales de este proyecto. Este mundo es relativamente nuevo y hasta ahora se ha apostado más por realizar visualizaciones complejas en 3D o videojuegos. Por lo que la representación de datos en 3D es un nicho aun por explotar.
 
-Me dedico a la parte de explotación y visualización de datos.
+Este último punto ha sido muy motivador para realizar una de las primeras librerías capaz de visualizar datos en 3D tanto en un navegador como en un dispositivo de realidad virtual. Además, la intención de este proyecto es que sea escalable, mantenible y el resto de la comunidad pueda contribuir a su uso y desarrollo.
 
-despues de un intento fallido pude volver a retomar mi trabajo y terminar esta libreria
+Respecto a la motivación personal podemos decir que se ha pasado por distintas fases. En primer lugar, hubo un intento fallido de realizar una aplicación de posible utilidad médica. Siempre se puede interpretar como poner excusas, pero el tiempo, obligaciones y el querer dedicar tu tiempo libre a otros menesteres son factores que impidieron la consecución de este primer proyecto el cual, a pesar de todo, era muy interesante. Todo esto llevó a volver a comenzar con una búsqueda exhaustiva y motivadora donde por suerte pude contactar con Jesús, tutor del proyecto, el cual me ofreció toda la ayuda y un trabajo de fin de grado por el cual no me importara dedicar todo el tiempo libre posible.
 
-
+Es así como gracias a todos estos factores se ha podido finalizar este proyecto y escritura de esta memoria. De la cual procedemos a describir su estructura en la siguiente sección.
 
 \section{Estructura de la memoria}
 \label{sec:estructura}
@@ -264,15 +264,18 @@ despues de un intento fallido pude volver a retomar mi trabajo y terminar esta l
 En esta sección se describe la estructura de la memoria para una mejor compresión de la misma:
 
 \begin{itemize}
-  \item En el primer capítulo se hace una intro al proyecto.
+  \item En el primer capítulo se hace una breve introducción al proyecto. Describiremos el marco y contexto del trabajo para un mejor aterrizaje del lector. Acto seguido se habla de la motivación del proyecto tanto a nivel personal como profesional. Por último se describe brevemente la estructura de la memoria.
   
-  \item En el capítulo~\ref{chap:objetivos} (ojo, otra referencia automática) se muestran los objetivos del proyecto.
+  \item En el capítulo 2 se muestran los objetivos del proyecto. Se comienza hablando del objetivo principal que perseguimos con este trabajo. Acto seguido, pasaremos a los específicos donde se profundizará y se ampliará los conceptos tratados en el objetivo principal. Además en este apartado se hará una descripción de la planificación temporal que se ha seguido para llevar a cabo este proyecto 
   
-  \item A continuación se presenta el estado del arte.
+  \item A continuación se presenta el estado del arte. Aquí haremos un repaso así como una breve descripción de todas las tecnologías que se han utilizado.
   
-  \item \ldots
+  \item En el cuarto capítulo se desarrolla el diseño e implementación. Se entrará al detalle de como está construida la aplicación, su arquitectura y sus distintos componentes.
+  
+  \item En este quinto capítulo, Resultados, se realiza un análisis del funcionamiento y rendimiento de esta aplicación. Además se podrá ver un amplio abanico de casos de uso donde se verán los resultados y capacidades del proyecto.
+   
+  \item Por último, tendremos las conclusiones. Aquí se presentará un resumen de los distintos conceptos aprendidos y aplicados. Podremos ver si se han alcanzado los objetivos propuestos. Además se expondrán líneas futuras de investigación y mejora de esta aplicación.
 \end{itemize}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -292,9 +295,42 @@ Mi trabajo fin de grado consiste en crear una librería para la visualización de 
 \section{Objetivos específicos}
 \label{sec:objetivos-especificos}
 
-Los objetivos específicos se pueden entender como las tareas en las que se ha desglosado el objetivo general.
-Y, sí, también vienen en infinitivo.
+Aqui hacemos una breve intro a los especificos
 
+\begin{enumerate}
+		
+	\item Varios tipos de visualizaciones (burbujas, barras, tarta, donut)
+	
+	\item Leyendas
+	
+	\item Gráfico que pueda ser refrescable
+	
+	\item Infinidad de parametrización
+	
+	\item Datos en JSON o diversas fuentes
+	
+	\item gran rendimiento
+	
+	\item utilizada en varios dispositivos y realidad virtual
+	
+	\item Distribuida y usada por la comunidad
+	
+	\item escalable
+	
+	\item mantenible
+	
+	\item Componentes, Aframe y mundo geometrico 3D, documentación Aframe. Three.js, crear una web en github
+	
+	\item seguir los estandares de Aframe y crear el proyecto con Angle	y hacer un pull request al Registry de Aframe y a Week of a- Frame 
+	
+	\item Publicar el proyecto a la comunidad y darle bombo
+	
+	\item resolucion de incidencias y pull requests
+	
+	\item depuración y refactor del código.
+	
+	
+\end{enumerate}
 
 \section{Planificación temporal}
 \label{sec:planificacion-temporal}
