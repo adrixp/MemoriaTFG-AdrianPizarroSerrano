@@ -301,25 +301,23 @@ En este apartado se realiza una breve descripción de los objetivos específicos.
 		
 	\item La librería debe proporcionar varios tipos de visualizaciones. Deberá implementar al menos cinco tipos de visualización tales como gráfico de burbujas, de tarta, de barras, de cilindros o tarta en forma de rosquilla.
 	
-	\item Se debe permitir una gran cantidad de parámetrización. Por ejemplo la posición, color, longitud y separación entre las marcas de medición de los ejes. Permitir que los ejes puedan ser negativos o estén en forma de rejilla para 2 o más dimensiones. Poder añadir una legenda, un pop-up o ambas para obtener una mayor información del gráfico.
+	\item Se debe permitir una gran cantidad de parámetrización. Por ejemplo la posición, color, longitud y separación entre las marcas de medición de los ejes. Permitir que los ejes puedan ser negativos o estén en forma de rejilla para 2 o más dimensiones. Poder configurar tamaño y color de una legenda, un pop-up o ambas.
 	
-	\item La librería, gracias al punto anterior, será capaz de proporcionar a cada gráfico una leyenda o un pop-up para una mejor interpretación y visualización de los datos
+	\item La librería debe ser capaz de añadir a un gráfico una leyenda y/o un pop-up para una mejor interpretación de los datos. Con ello se persigue obtener más información o facilitar la lectura de datos.
 	
-	\item Gráfico que pueda ser refrescable o filtrable
+	\item La librería proporcionará una herramienta para filtrar o seleccionar distintas fuentes de datos. Además podrá refrescar las visualizaciones dinámicamente.
 	
-	\item Datos en JSON o diversas fuentes
+	\item Debe ser capaz de interpretar ficheros con formato JSON y lanzar una excepción si no fuera capaz de leerlo correctamente.
 	
-	\item gran rendimiento
+	\item El rendimiento es un factor clave que se desea cuidar en este proyecto. Por ello, esta librería debe mostrar un buen comportamiento cargando grandes volúmenes de datos. Se debe comprobar que es capaz de mostrar visualizaciones con una gran cantidad de datos 
 	
-	\item utilizada en varios dispositivos y realidad virtual
+	\item Se debe poder utilizar en cualquier navegador sin necesidad de instalar un plugin. Además se debe poder utilizar y visualizar en dispositivos de realidad virtual como las Oculus Rift.
 	
-	\item Distribuida y usada por la comunidad
+	\item La librería se debe distribuir y poner al servicio de la comunidad. Se debe dar fácil acceso y ser subida a un repositorio de código donde se puedan recibir sugerencias para implementar y resolver posibles incidencias.
 	
-	\item escalable
+	\item Debe ser fácilmente escalable, es decir, deberá estar desarrollada de tal manera que sea sencillo implementar nuevos desarrollos o modificaciones en el código.
 	
-	\item mantenible
-	
-	\item Sin Necesidad de plugins en el navegador. Puro js
+	\item Un objetivo es que el código debe ser mantenible tanto por su autor como por la comunidad. Se debe publicar dicho software en una plataforma donde, como se menciona anteriormente, se pueda contribuir a resolver incidencias y mantener actualizado de manera sencilla las versiones de los framework y librerías que utilizará el proyecto.
 	
 	\item Componentes, Aframe y mundo geometrico 3D, documentación Aframe. Three.js, crear una web en github
 	
@@ -327,9 +325,7 @@ En este apartado se realiza una breve descripción de los objetivos específicos.
 	
 	\item Publicar el proyecto a la comunidad y darle bombo
 	
-	\item resolucion de incidencias y pull requests
-	
-	\item depuración y refactor del código.
+	\item Se deberá cuidar y refactorizar el código para una lectura sencilla del mismo siguiendo distintas directrices que podemos encontrar en el libro Clean Code~\cite{martin:_cleancode}.
 	
 	
 \end{enumerate}
@@ -340,6 +336,11 @@ En este apartado se realiza una breve descripción de los objetivos específicos.
 A mí me gusta que aquí pongáis una descripción de lo que os ha llevado realizar el trabajo.
 Hay gente que añade un diagrama de GANTT.
 Lo importante es que quede claro cuánto tiempo llevas (tiempo natural, p.ej., 6 meses) y a qué nivel de esfuerzo (p.ej., principalmente los fines de semana).
+
+\section{Disponibilidad del Software}
+\label{sec:disponibilidad-software}
+
+Aqui ponemos la web, y el repo de github etc
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -352,7 +353,7 @@ Lo importante es que quede claro cuánto tiempo llevas (tiempo natural, p.ej., 6 
 
 Descripción de las tecnologías que utilizas en tu trabajo. 
 Con dos o tres párrafos por cada tecnología, vale. 
-Se supone que aquí viene todo lo que no has hecho tú.
+Se supone que aquí viene todo lo que no has hecho tú.º
 
 Puedes citar libros, como el de Bonabeau et al. sobre procesos estigmérgicos~\cite{bonabeau:_swarm}. % Nota que el ~ añade un espacio en blanco, pero no deja que exista un salto de línea. Imprescindible ponerlo para las citas.
 
