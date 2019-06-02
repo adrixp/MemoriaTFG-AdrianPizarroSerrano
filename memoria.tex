@@ -30,6 +30,7 @@
 \usepackage{float}  %% H para posicionar figuras
 \usepackage[nottoc, notlot, notlof, notindex]{tocbibind} %% Opciones de índice
 \usepackage{latexsym}  %% Logo LaTeX
+\usepackage[hidelinks]{hyperref}
 
 \title{Memoria del Proyecto}
 \author{Nombre del autor}
@@ -224,7 +225,7 @@ Este proyecto trata sobre la representación de datos en tres dimensiones (a part
 
 El objetivo principal es crear una librería capaz de visualizar datos con distintos tipos de gráficos, fácilmente escalable, mantenible y sencilla de utilizar. Además, como objetivos más específicos, podrá ser usada en cualquier navegador y dispositivo de realidad virtual.
 
-A continuación se describe el contexto, motivación y la estructura de esta memoria.
+A continuación se describe el contexto, motivación, la estructura de esta memoria y la disponibilidad del software.
 
 \section{Contexto}
 \label{sec:contexto}
@@ -277,6 +278,29 @@ En esta sección se describe la estructura de la memoria para una mejor compresió
   \item Por último, tendremos las conclusiones. Aquí se presentará un resumen de los distintos conceptos aprendidos y aplicados. Podremos ver si se han alcanzado los objetivos propuestos. Además se expondrán líneas futuras de investigación y mejora de esta aplicación.
 \end{itemize}
 
+\section{Disponibilidad del Software}
+\label{sec:disponibilidad-software}
+
+Para poder consultar y mantener el proyecto se ha creado un repositorio de software en el portal de GitHub. Este proyecto de software libre cuenta con una licencia de Apache 2.0. Todos los aportes a lo largo del tiempo así como las incidencias se pueden consultar en:
+\vspace{5mm}
+
+\url{https://github.com/adrixp/aframe-charts-component}
+
+\vspace{5mm}
+Además esta librería cuenta con una página web donde podemos ver todos los casos de uso. También se tiene un enlace directo al API para ver todos los parámetros disponibles, y por cada visualización el código utilizado. Se puede acceder a través del siguiente enlace:
+
+\vspace{5mm}
+
+\url{https://adrixp.github.io/aframe-charts-component/}
+
+\vspace{5mm}
+
+Por último, se ha publicado la librería en el sistema de gestión de paquetes (npm). Para facilitar su distribución y poder ser importado por un servidor nodejs en cualquier momento:
+
+\vspace{5mm}
+
+\url{https://www.npmjs.com/package/aframe-charts-component/}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -301,17 +325,17 @@ En este apartado se realiza una breve descripción de los objetivos específicos.
 		
 	\item La librería debe proporcionar varios tipos de visualizaciones. Deberá implementar al menos cinco tipos de visualización tales como gráfico de burbujas, de tarta, de barras, de cilindros o tarta en forma de rosquilla.
 	
-	\item Se debe permitir una gran cantidad de parámetrización. Por ejemplo la posición, color, longitud y separación entre las marcas de medición de los ejes. Permitir que los ejes puedan ser negativos o estén en forma de rejilla para 2 o más dimensiones. Poder configurar tamaño y color de una legenda, un pop-up o ambas.
+	\item Se debe permitir una gran cantidad de parámetros. Por ejemplo, la posición, color, longitud y separación entre las marcas de medición de los ejes. Permitir que los ejes puedan ser negativos o estén en forma de rejilla para dos o más dimensiones. Poder configurar tamaño y color de una legenda, un pop-up o ambas.
 	
-	\item La librería debe ser capaz de añadir a un gráfico una leyenda y/o un pop-up para una mejor interpretación de los datos. Con ello se persigue obtener más información o facilitar la lectura de datos.
+	\item La librería debe ser capaz de añadir una leyenda a un gráfico y/o un pop-up para una mejor interpretación de los datos. Con ello se persigue obtener más información y facilitar la lectura de datos.
 	
-	\item La librería proporcionará una herramienta para filtrar o seleccionar distintas fuentes de datos. Además podrá refrescar las visualizaciones dinámicamente.
+	\item La librería debe proporcionar una herramienta para filtrar o seleccionar distintas fuentes de datos. Además podrán refrescar las visualizaciones dinámicamente.
 	
-	\item Debe ser capaz de interpretar ficheros con formato JSON y lanzar una excepción si no fuera capaz de leerlo correctamente.
+	\item Debe ser capaz de interpretar ficheros con formato JSON (JavaScript Object Notation) y lanzar una excepción si no fuera capaz de leer el archivo correctamente.
 	
 	\item El rendimiento es un factor clave que se desea cuidar en este proyecto. Por ello, esta librería debe mostrar un buen comportamiento cargando grandes volúmenes de datos. Se debe comprobar que es capaz de mostrar visualizaciones con una gran cantidad de datos 
 	
-	\item Se debe poder utilizar en cualquier navegador sin necesidad de instalar un plugin. Además se debe poder utilizar y visualizar en dispositivos de realidad virtual como las Oculus Rift.
+	\item Se debe poder utilizar en cualquier navegador sin necesidad de instalar ningún plugin. Además se debe poder utilizar y visualizar en dispositivos de realidad virtual como las Oculus Rift.
 	
 	\item La librería se debe distribuir y poner al servicio de la comunidad. Se debe dar fácil acceso y ser subida a un repositorio de código donde se puedan recibir sugerencias para implementar y resolver posibles incidencias.
 	
@@ -321,7 +345,7 @@ En este apartado se realiza una breve descripción de los objetivos específicos.
 	
 	\item Aprender Webpack para empaquetar y distribuir nuestra librería.
 	
-	\item Aprender el framework de A-frame. Se debe mirar en profundidad su documentación y estándares para un uso óptimo de la misma. Esta librería de realidad virtual está basada en Three.js por lo que también se deberá realizar un estudio de la misma, crear una web en github
+	\item Aprender el framework de A-frame. Se debe estudiar en profundidad su documentación y estándares para un uso óptimo de la misma. Esta librería de realidad virtual está basada en Three.js por lo que también se deberá realizar un estudio de la misma.
 	
 	\item Crear una web con ejemplos de uso de la librería.
 	
@@ -333,11 +357,6 @@ En este apartado se realiza una breve descripción de los objetivos específicos.
 	
 \end{enumerate}
 
-\section{Disponibilidad del Software}
-\label{sec:disponibilidad-software}
-
-Aqui ponemos la web, y el repo de github etc
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -347,37 +366,69 @@ Aqui ponemos la web, y el repo de github etc
 \cleardoublepage
 \chapter{Estado del arte}
 
-Descripción de las tecnologías que utilizas en tu trabajo. 
-Con dos o tres párrafos por cada tecnología, vale. 
-Se supone que aquí viene todo lo que no has hecho tú.º
+En este capítulo se describirán las tecnologías que se utilizan en este trabajo. Se hará un repaso tanto de los lenguajes básicos de programación web utilizados, el servidor web y las herramientas para la paquetización y distribución de la librería.
 
-Puedes citar libros, como el de Bonabeau et al. sobre procesos estigmérgicos~\cite{bonabeau:_swarm}. % Nota que el ~ añade un espacio en blanco, pero no deja que exista un salto de línea. Imprescindible ponerlo para las citas.
+También se mencionarán las librerías de realidad virtual y los motores en los que estas se apoyan, los cuales nos han facilitado enormemente el trabajo de desarrollo.
 
-También existe la posibilidad de poner notas al pie de página, por ejemplo, una para indicarte que visite la página de LibreSoft\footnote{\url{http://www.libresoft.es}}.
+\section{HTML} 
+\label{sec:htmlseccion}
 
-\section{Sección 1} 
-\label{sec:seccion1}
+html descriptiopm
 
-Hemos hablado de cómo incluir figuras.
-Pero no hemos dicho nada de tablas.
-A mí me gustan las tablas.
-Mucho.
-Aquí un ejemplo de tabla, la Tabla~\ref{tabla:ejemplo}.
+\section{JavaScript} 
+\label{sec:jsseccion}
 
-\begin{table}
- \begin{center}
-  \begin{tabular}{ | l | c | r |} % tenemos tres colummnas, la primera alineada a la izquierda (l), la segunda al centro (c) y la tercera a la derecha (r). El | indica que entre las columnas habrá una línea separadora.
-    \hline
-    1 & 2 & 3 \\ \hline % el hline nos da una línea vertical
-    4 & 5 & 6 \\ \hline
-    7 & 8 & 9 \\
-    \hline
-  \end{tabular}
-  \label{tabla:ejemplo}
-  \caption{Ejemplo de tabla}
- \end{center}
-\end{table}
+html descriptiopm
 
+\section{JSON} 
+\label{sec:jsonseccion}
+
+\section{NodeJS} 
+\label{sec:nodeseccion}
+
+LibreSoft\footnote{\url{http://www.libresoft.es}}.
+
+\section{npm} 
+\label{sec:npmseccion}
+
+\section{Budo} 
+\label{sec:budoseccion}
+
+\section{HighlightJs} 
+\label{sec:highlightseccion}
+
+\section{Webpack} 
+\label{sec:webpackseccion}
+
+\section{Git} 
+\label{sec:gitseccion}
+
+html descriptiopm
+
+\section{WebGL} 
+\label{sec:webglseccion}
+
+html descriptiopm
+
+\section{Virtual Reallity} 
+\label{sec:vrseccion}
+
+html descriptiopm
+
+\section{WebVR} 
+\label{sec:webvrseccion}
+
+html descriptiopm
+
+\section{Three.js} 
+\label{sec:threejsseccion}
+
+html descriptiopm
+
+\section{A-Frame} 
+\label{sec:aframeseccion}
+
+html descriptiopm
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
