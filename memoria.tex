@@ -201,7 +201,11 @@ just before submitting.
 
 \textbf{HTML:} HyperText Markup Language
 
+\textbf{HTTP:} HyperText Transfer Protocol
+
 \textbf{JSON:} JavaScript Object Notation
+
+\textbf{XML:} eXtensible Markup Language
 
 \textbf{JS:} JavaScript
 
@@ -210,6 +214,14 @@ just before submitting.
 \textbf{VR:} Virtual Reality
 
 \textbf{DOM:} Document Object Model
+
+\textbf{AJAX:} Asynchronous JavaScript And XML
+
+\textbf{ES6:} ECMAScript 6
+
+\textbf{IDE:} Integrated Development Environment
+
+\textbf{SVN:} Subversion
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -390,7 +402,7 @@ En este apartado se realiza una breve descripción de los objetivos específicos.
 
 En este capítulo se describirán las tecnologías que se utilizan en este trabajo. Se hará un repaso tanto de los lenguajes básicos de programación web utilizados, el servidor web y las herramientas para la paquetización y distribución de la librería.
 
-También se mencionarán las librerías de realidad virtual y los motores en los que estas se apoyan, los cuales nos han facilitado enormemente el trabajo de desarrollo.
+También se mencionarán las librerías de realidad virtual y los motores en los que estas se apoyan, los cuales facilitan enormemente el trabajo de desarrollo.
 
 \section{HTML} 
 \label{sec:htmlseccion}
@@ -398,7 +410,12 @@ También se mencionarán las librerías de realidad virtual y los motores en los qu
 \includegraphics[scale=0.30]{img/html.png}
 \end{center}
 
-html descriptiopm
+En 1993 se lanza este lenguaje de marcado como herramienta principal para construir páginas web. Define una estructura básica a partir de etiquetas que son interpretadas por los navegadores. El encargado de su mantenimiento y estandarización es el Consorcio de la {\textit{World Wide Web}} (W3C).
+
+Mas adelante, en 2014, se lanza la quinta versión de HTML comúnmente conocida como HTML5~\cite{pilgrim:_htmluprun}. En esta nueva versión se incluyen nuevos elementos como la cabecera \textless header\textgreater, el pie \textless footer\textgreater\space y la sección \textless section\textgreater\space entre otros. Además se añaden elementos gráficos como Canvas, una superficie bidimensional para dibujar mediante Javascript, y svg para gráficos vectoriales.
+
+Por otro lado también se incluyen nuevos atributos y etiquetas para elementos multimedia como audio y video. Finalmente cabe destacar que el nuevo API nos provee de herramientas para la geolocalización, {\textit{drag and drop}}, almacenamiento local, caché, etc.
+
 
 \section{JavaScript} 
 \label{sec:jsseccion}
@@ -406,12 +423,28 @@ html descriptiopm
 \includegraphics[scale=0.30]{img/js.png}
 \end{center}
 
-js descriptiopm
+Para dotar de funcionalidad y dinamismo a las páginas web, que como mencionamos anteriormente utilizan el lenguaje de marcado HTML, tenemos JavaScript~\cite{flanagan:_jsguide}. En 1995 nace este lenguaje orientado a objetos, el cual tiene tipado dinámico y utiliza prototipos en vez de clases para el uso de herencia.
+
+El estándar que sigue este lenguaje actualmente es ECMAScript Todos los navegadores incluyen una implementación de dicho estándar. En este proyecto utilizamos la última versión publicada en 2015 ECMAScript 6 (ES6).
+
+Este lenguaje puede ser utilizado tanto en el lado del cliente como en el lado del servidor como se puede ver más adelante. En el lado del cliente se nos ofrece infinidad de posibilidades para manipular el DOM.
+
+Por último cabe destacar la infinidad de {\textit{frameworks}} que surgen día a día en la actualidad. Un {\textit{framework}} define el diseño completo de una aplicación web y nos facilita el uso de patrones de diseño~\cite{gamma:_designpatterns} como, por ejemplo, el Modelo Vista Controlador (MVC). Hoy en día tenemos a Angular.js\footnote{\url{https://angularjs.org/}}, React\footnote{\url{https://reactjs.org/}} y Vue.js\footnote{\url{https://vuejs.org/}} como los {\textit{frameworks}} más populares
 
 \section{JSON} 
 \label{sec:jsonseccion}
 
-JSON desc
+Como alternativa a XML nace JSON. Es un formato de texto para la distribución de datos o puede ser usado como un objeto Javascript que tiene distinta información, como vemos en la Figura~\ref{fig:json},  debido a su gran versatilidad. Es un formato muy sencillo de leer y de {\textit{parsear}}, es decir, de obtener su información.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=9cm, keepaspectratio]{img/json}
+	\caption{Ejemplo JSON básico}
+	\label{fig:json}
+\end{figure}
+
+Los tipos de datos que soporta JSON son: números, texto, {\textit{booleanos}}, {\textit{arrays}} y objetos Javascript formados por tuplas clave-valor. Y en comparación con XML tiene un mayor soporte y herramientas para su uso.
+En este proyecto se va a utilizar JSON como formato de entrada de datos. Además, se puede ver en los siguientes puntos que para resolver las dependencias de nuestro proyecto y dar una descripción general del mismo se utiliza un fichero de datos llamado {\textit{package.json}}.
 
 \section{NodeJS} 
 \label{sec:nodeseccion}
@@ -419,53 +452,125 @@ JSON desc
 \includegraphics[scale=0.30]{img/node.png}
 \end{center}
 
-NodeJs desc
+NodeJs~\cite{pasquali:_nodejs} es un servidor web desarrollado en C++ en el año 2009. Esta plataforma nos permite desarrollar en el lado del servidor con el lenguaje Javascript y el estándar ES6.
+
+Es un servidor cuyas características principales son que es {\textit{monohilo}} y asíncrono. Como vemos en la Figura~\ref{fig:nodeserver}, tenemos un único hilo donde por cada petición se delega el trabajo y se da respuesta de  manera asíncrona, es decir, no es bloqueante y se ejecutará de manera concurrente recibiendo dichas respuestas mediante funciones {\textit{callback}}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=12cm, keepaspectratio]{img/nodeServer}
+	\caption{Arquitectura NodeJs}
+	\label{fig:nodeserver}
+\end{figure}
+
+Como se menciona anteriormente, el archivo package.json es el corazón del sistema Node.js. Es el archivo de manifiesto de cualquier proyecto con Node.js y contiene los metadatos del proyecto. Además, en la siguiente sección, se podrá ver como el gestor de paquetes de node (NPM) utiliza este fichero para obtener información y descargar las dependencias.
+
+Cabe destacar que NodeJs se utiliza como servidor web en infinidad de compañías y tiene una fuerte comunidad detrás apoyando su desarrollo.
 
 \section{npm} 
 \label{sec:npmseccion}
 \begin{center}
 	\includegraphics[scale=0.30]{img/npm.png}
 \end{center}
-NPM desc
+Como gestor de paquetes, módulos y dependencias de NodeJs nace en 2014 NPM. Es instalado automáticamente con cualquier versión de NodeJs a partir de la 0.6.3. Las instrucciones se ejecutan por línea de comandos y cualquier usuario puede consumir los paquetes subidos a esta plataforma de manera versionada.
+
+Para este proyecto se ha creado un repositorio de npm para poder distribuir nuestra propia librería como dependencia y poder ser usada de manera ágil\footnote{\url{https://www.npmjs.com/package/aframe-charts-component}}. Es necesario registrarse en la plataforma para poder publicar.
+
+Gracias a esta herramienta se facilita el poder crear, compartir, reutilizar y contribuir a los distintos módulos desarrollados por la comunidad.
 
 \section{Budo} 
 \label{sec:budoseccion}
 
+Budo es una herramienta que nos permite desarrollar en el servidor con integración {\textit{LiveReload}}. Esto nos permite que cualquier cambio que realicemos en el servidor se vea reflejado instantáneamente sin necesidad de recargar toda la instancia. Para ello, Budo utiliza otro paquete npm llamado {\textit{broserfy}} que nos permite exportar módulos y dependencias en el cliente.
+
+En este proyecto ha sido muy útil esta herramienta ya que ha facilitado y agilizado el desarrollo. Este paquete está disponible en el repositorio de npm
+
 \section{HighlightJs} 
 \label{sec:highlightseccion}
 
+Esta librería es utilizada para representar código de manera legible en una página web. Nos permite mostrar cualquier lenguaje de programación resaltando las palabras clave como si estuviéramos utilizando un IDE (Entorno de desarrollo) o un editor de texto que tuviera esta funcionalidad.
+
+Como parámetros de entrada, esta librería, acepta nombre del lenguaje de programación, un alias o directamente código. Además cuenta con la posibilidad de resaltar texto a pesar de que haya errores de sintaxis en el código. Cuenta con detección automática del lenguaje de programación e incluso se tiene la posibilidad de incluir múltiples lenguajes en una misma instancia. 
+
+Los usuarios cuentan con la posibilidad de añadir nuevos lenguajes de programación según la necesidad y proveer soporte de los mismos. Actualmente cuenta con soporte para 185 lenguajes de programación y 85 estilos.
+
+En este proyecto, HighlightJs ha sido utilizado para elaborar el manual de usuario\footnote{\url{https://adrixp.github.io/aframe-charts-component/examples/bubbleChart/code.html}} facilitando así la lectura de código y pudiendo reutilizar este código de manera más clara como vemos en la Figura~\ref{fig:highlightexample}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=12cm, keepaspectratio]{img/highlightexample}
+	\caption{Ejemplo HighlightJs}
+	\label{fig:highlightexample}
+\end{figure}
+
 \section{Webpack} 
 \label{sec:webpackseccion}
-
 \begin{center}
 	\includegraphics[scale=0.50]{img/webpack.png}
 \end{center}
-Webpack desc
+
+Webpack es un empaquetador de módulos estáticos. En la programación modular, los desarrolladores particionan su código en pequeños bloques que cumplen una funcionalidad concreta, y a estos se le llama módulos. Gracias a ellos, es trivial verificar, corregir y probar un programa.
+
+El problema que nos podemos encontrar es que, si dividimos nuestro programa en muchos módulos, podemos tener problemas de escalabilidad debido a la gran cantidad de paquetes o {\textit{scripts}} que el navegador necesita descargar. Esto puede provocar, lo que comúnmente llamamos e redes, un {\textit{cuello de botella}}~\cite{littlejohn:_comnetwork}.
+
+Por otro lado podríamos tener un único {\textit{script}} que contenga todo el código. Pero esto nos puede llevar a problemas de alcance, tamaño, legibilidad y mantenibilidad.
+
+Resolviendo esta problemática nace Webpack. El cual nos permite escribir módulos soportando todos los formatos y además gestionar recursos. Como vemos en la Figura~\ref{fig:whatswebpack} es una herramienta que nos permite empaquetar aplicaciones {\textit{JavaScript}} modernas que contengan módulos, imágenes, fuentes, hojas de estilos.
+
+Por último cabe destacar que Webpack se preocupa por el rendimiento y los tiempos de carga. Siempre está mejorando o agregando nuevas funciones, como la carga asíncrona, para ofrecer la mejor experiencia posible para el proyecto y los usuarios.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=12cm, keepaspectratio]{img/whatswebpack}
+	\caption{What is Webpack}
+	\label{fig:whatswebpack}
+\end{figure}
 
 \section{Git} 
 \label{sec:gitseccion}
-
 \begin{center}
 	\includegraphics[scale=0.30]{img/git.png}
 \end{center}
-Webpack desc
 
-\section{Virtual Reallity} 
+Como herramienta de control de versiones, en este proyecto se utiliza Git~\cite{chacon:_progit}. Este {\textit{software}} fue diseñado por Linus Torvalds (Creador del {\textit{kernel}} de {\textit{Linux}}) en 2005, cuyo propósito era crear un sistema capaz de llevar el registro de cambios en archivos de un ordenador y coordinar el trabajo que realicen varias personas simultáneamente sobre dichos ficheros.
+
+Este software está pensado para ser utilizado de manera distribuida manteniendo un registro tanto en la computadora local como en un servidor. De esta forma cada usuario tiene una copia de los ficheros que valida contra el servidor si ha habido cambios o quisiera registrar alguno.
+
+Gracias a esto, se consigue un gran apoyo al desarrollo mediante la rapidez para gestionar ramas y mezclado de las mismas. De hecho, en la mayoría de proyectos de desarrollo Git ha desbancado a SVN como principal controlador de versiones.
+
+\section{Realidad Virtual} 
 \label{sec:vrseccion}
 
-VR
+Entendemos por realidad virtual~\cite{grigore:_vrtech} aquella tecnología que a través de uno o varios dispositivos nos puede general la sensación de realidad en un escenario artificial creado de manera digital. Este término nace a finales de la década de 1980 y originariamente describe cómo una persona interacciona con un entorno tridimensional (3D) artificial.
+
+En la Figura~\ref{fig:oculus} podemos ver un ejemplo de dispositivo de realidad virtual. Por lo general, cuentan con un primer aparato que se coloca en la cabeza a la altura de los ojos para realizar una inmersión en el mundo virtual y abstraerse de la realidad convencional. Además, como vemos en la imagen, estos dispositivos cuentan con unos mandos para moverse o realizar acciones dentro de este mundo virtual.
+
+Desde un inicio, esta tecnología ha estado orientada a la industria de los videojuegos. Pero no ha tardado en expandirse y tener aplicación en el mundo de la medicina, enseñanza, industria y turismo.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=12cm, keepaspectratio]{img/oculus}
+	\caption{Dispositivo de Realidad Virtual}
+	\label{fig:oculus}
+\end{figure}
 
 \section{WebVR} 
 \label{sec:webvrseccion}
 
-webVR
+WebVR es una API escrito Javascript que fue creado en 2014 por Vladimir Vuki?evi? de Mozilla. Este API proporciona soporte para dispositivos de realidad virtual tales como Oculus Rift, HTC Vive o Google Cardboard, en un navegador de web.
+
+Sus principales objetivos son detectar de manera automática dispositivos de realidad virtual disponibles y obtener sus características principales, como la posición y orientación del dispositivo, para mostrar imágenes con una latencia aceptable.
+
+Esta tecnología tiene una primera versión finalizada en 2017 donde principales compañías como Mozilla, Google y ahora Microsoft dan soporte y mantenimiento.
+
+La API WebVR expone ciertas interfaces que permiten a las aplicaciones web incluir contenido de realidad virtual. Para ello se hace uso de WebGL, descrito en el siguiente apartado, como motor para gráficos 3D. Además permite obtener las configuraciones necesarios para la cámara y los dispositivos controladores (por ejemplo, un mando o el punto de vista).
 
 \section{WebGL} 
 \label{sec:webglseccion}
 \begin{center}
 	\includegraphics[scale=0.30]{img/webgl.png}
 \end{center}
-wegl desc
+WebGL ~\cite{danchilla:_webgl}
 
 \section{Three.js} 
 \label{sec:threejsseccion}
@@ -501,14 +606,7 @@ Eso sí, normalmente aconsejo no poner código, sino diagramas.
 
 Si tu proyecto es un software, siempre es bueno poner la arquitectura (que es cómo se estructura tu programa a ``vista de pájaro'').
 
-Por ejemplo, puedes verlo en la figura~\ref{fig:arquitectura}.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=9cm, keepaspectratio]{img/arquitectura}
-  \caption{Estructura del parser básico}
-  \label{fig:arquitectura}
-\end{figure}
+Por ejemplo, puedes verlo en la figura.
 
 Si utilizas una base de datos, no te olvides de incluir también un diagrama de entidad-relación.
 
