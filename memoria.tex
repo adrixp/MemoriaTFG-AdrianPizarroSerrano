@@ -223,6 +223,8 @@ just before submitting.
 
 \textbf{SVN:} Subversion
 
+\textbf{GPU:} Graphics Processing Unit
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -554,10 +556,32 @@ Desde un inicio, esta tecnología ha estado orientada a la industria de los video
 	\label{fig:oculus}
 \end{figure}
 
+\section{OpenGL} 
+\label{sec:webglseccion}
+\begin{center}
+	\includegraphics[scale=0.30]{img/opengl.png}
+\end{center}
+
+OpenGL es una librería de gráficos de código abierto cuyo lanzamiento inicial fue en el año 1994. Define un API multilenguaje y multiplataforma para producir aplicaciones que rendericen gráficos en 2D y 3D. Esta interfaz cuenta con mas de 250 funciones para dibujar escenas tridimensionales a partir de primitivas más simples bidimensionales.
+
+Sus aplicaciones a día de hoy va desde simuladores de vuelo hasta el desarrollo de videojuegos con una creciente comunidad que impulsa este fenómeno. Además está pensado para conseguir una mayor abstracción sobre la complejidad de interactuar con el hardware de la tarjeta gráfica ofreciendo un API único y uniforme.
+
+En la  Figura~\ref{fig:openglshader} tenemos un ejemplo de como a partir de primitivas simples como vértices podemos ir creando distintas formas como triángulos. Cada uno de estos vértices almacena ciertos atributos como por ejemplo las coordenadas.
+
+Por último la tarjeta gráfica procesa cada uno de estos vértices de manera individual y aplica la transformación necesaria para proyectar estos vértices en el mundo 3D en nuestra pantalla 2D. Una vez transformados lo vértices de entrada se formarán los triángulos, líneas o puntos mencionadas anteriormente como primitivas simples.
+
+Un último paso, introducido recientemente, es el de aplicar el sombreado geométrico o {\textit{shader}}.
+\begin{figure}
+	\centering
+	\includegraphics[width=12cm, keepaspectratio]{img/openglshader}
+	\caption{Ejemplo de Shader OpenGL}
+	\label{fig:openglshader}
+\end{figure}
+
 \section{WebVR} 
 \label{sec:webvrseccion}
 
-WebVR es una API escrito Javascript que fue creado en 2014 por Vladimir Vuki?evi? de Mozilla. Este API proporciona soporte para dispositivos de realidad virtual tales como Oculus Rift, HTC Vive o Google Cardboard, en un navegador de web.
+WebVR es una API experimental escrito en Javascript en 2006. Fue iniciado como prototipo de Canvas3D por Vladimir Vuki?evi? en Mozilla. Este API proporciona soporte para dispositivos de realidad virtual tales como Oculus Rift, HTC Vive o Google Cardboard, en un navegador de web.
 
 Sus principales objetivos son detectar de manera automática dispositivos de realidad virtual disponibles y obtener sus características principales, como la posición y orientación del dispositivo, para mostrar imágenes con una latencia aceptable.
 
@@ -570,14 +594,39 @@ La API WebVR expone ciertas interfaces que permiten a las aplicaciones web inclu
 \begin{center}
 	\includegraphics[scale=0.30]{img/webgl.png}
 \end{center}
-WebGL ~\cite{danchilla:_webgl}
+
+WebGL~\cite{danchilla:_webgl} o {\textit{Web Graphics Library}} es un estándar que define una API escrito en JavaScript y que implementa OpenGl  para la generación de gráficos en 3D en el navegador web. No es necesaria la instalación de un complemento o {\textit{plugin}} para los navegadores, debido a que actualmente tanto las versiones para móvil como las de escritorio cuentan con soporte OpenGL 2.0. 
+
+Esta tecnología nace a raíz del WebVR mencionado en el apartado anterior y es en 2009 cuando se consolida como grupo de trabajo. A raíz de ello en marzo de 2011 se lanza la primera versión oficial.
+
+La primera versión (1.0) de WebGL está basado en OpenGL 2.0? y proporciona una API para gráficos 3D. Esta, utiliza el elemento HTML5 llamado canvas o lienzo al que se accede mediante el Document Object Model (DOM). Para ello se debe definir una región dentro de nuestro HTML donde se representará la escena 3D. Solo es posible crear esta región en los navegadores web que admiten HTML5. Al ser parte del DOM nos permite interactuar de forma dinámica con otros elementos de la página.
+
+WebGL 2.0 está basado en OpenGL 3.0 y garantiza disponibilidad de muchas extensiones opcionales de WebGL 1.0 y presenta nuevas APIs.?
+
+WebGL está integrado completamente en todos los estándares web del navegador, permitiendo la aceleración de la GPU y el procesamiento de imágenes y efectos.
+Esta gestión de memoria automática se proporciona mediante el lenguaje JavaScript.
 
 \section{Three.js} 
 \label{sec:threejsseccion}
 \begin{center}
 	\includegraphics[scale=0.30]{img/threejs.png}
 \end{center}
-html descriptiopm
+
+Three.js es una librería escrita en JavaScript para mostrar contenido 3D en páginas web. Nos provee la capacidad de renderizar escenas, modelos, sonido, vídeos, luces, sombras, animaciones, partículas y muchos otros tipos de visualizaciones.
+
+Three.js es una librería escrita en JavaScript para mostrar contenido 3D en páginas web. Nos provee la capacidad de renderizar escenas, modelos, sonido, vídeos, luces, sombras, animaciones, partículas y muchos otros tipos de visualizaciones.
+
+Three.js es una librería escrita en JavaScript para mostrar contenido 3D en páginas web. Nos provee la capacidad de renderizar escenas, modelos, sonido, vídeos, luces, sombras, animaciones, partículas y muchos otros tipos de visualizaciones.
+
+En la  Figura~\ref{fig:threejscene}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=12cm, keepaspectratio]{img/threejscene}
+	\caption{Escena Three.js}
+	\label{fig:threejscene}
+\end{figure}
 
 \section{A-Frame} 
 \label{sec:aframeseccion}
@@ -585,7 +634,14 @@ html descriptiopm
 	\includegraphics[scale=0.30]{img/aframe.jpg}
 \end{center}
 
-Aframe desc
+Three.js es una librería escrita en JavaScript para mostrar contenido 3D en páginas web. Nos provee la capacidad de renderizar escenas, modelos, sonido, vídeos, luces, sombras, animaciones, partículas y muchos otros tipos de visualizaciones.
+
+Three.js es una librería escrita en JavaScript para mostrar contenido 3D en páginas web. Nos provee la capacidad de renderizar escenas, modelos, sonido, vídeos, luces, sombras, animaciones, partículas y muchos otros tipos de visualizaciones.
+
+
+Three.js es una librería escrita en JavaScript para mostrar contenido 3D en páginas web. Nos provee la capacidad de renderizar escenas, modelos, sonido, vídeos, luces, sombras, animaciones, partículas y muchos otros tipos de visualizaciones.
+
+Three.js es una librería escrita en JavaScript para mostrar contenido 3D en páginas web. Nos provee la capacidad de renderizar escenas, modelos, sonido, vídeos, luces, sombras, animaciones, partículas y muchos otros tipos de visualizaciones.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
