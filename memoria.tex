@@ -223,7 +223,11 @@ just before submitting.
 
 \textbf{SVN:} Subversion
 
+\textbf{RAM:} Random Access Memory
+
 \textbf{GPU:} Graphics Processing Unit
+
+\textbf{FPS:} Frame Per Second
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -599,12 +603,11 @@ WebGL~\cite{danchilla:_webgl} o {\textit{Web Graphics Library}} es un estándar q
 
 Esta tecnología nace a raíz del WebVR mencionado en el apartado anterior y es en 2009 cuando se consolida como grupo de trabajo. A raíz de ello en marzo de 2011 se lanza la primera versión oficial.
 
-La primera versión (1.0) de WebGL está basado en OpenGL 2.0? y proporciona una API para gráficos 3D. Esta, utiliza el elemento HTML5 llamado canvas o lienzo al que se accede mediante el Document Object Model (DOM). Para ello se debe definir una región dentro de nuestro HTML donde se representará la escena 3D. Solo es posible crear esta región en los navegadores web que admiten HTML5. Al ser parte del DOM nos permite interactuar de forma dinámica con otros elementos de la página.
+La primera versión (1.0) de WebGL está basado en OpenGL 2.0 y proporciona una API para gráficos 3D. Esta, utiliza el elemento HTML5 llamado canvas o lienzo al que se accede mediante el Document Object Model (DOM). Para ello se debe definir una región dentro de nuestro HTML donde se representará la escena 3D. Solo es posible crear esta región en los navegadores web que admiten HTML5. Al ser parte del DOM nos permite interactuar de forma dinámica con otros elementos de la página.
 
-WebGL 2.0 está basado en OpenGL 3.0 y garantiza disponibilidad de muchas extensiones opcionales de WebGL 1.0 y presenta nuevas APIs.?
+WebGL 2.0 está basado en OpenGL 3.0 y garantiza disponibilidad de muchas extensiones opcionales de WebGL 1.0 y presenta nuevas APIs que facilitan el desarrollo.
 
-WebGL está integrado completamente en todos los estándares web del navegador, permitiendo la aceleración de la GPU y el procesamiento de imágenes y efectos.
-Esta gestión de memoria automática se proporciona mediante el lenguaje JavaScript.
+WebGL está integrado completamente en todos los estándares web del navegador, permitiendo la aceleración de la GPU y el procesamiento de imágenes y efectos. Esta gestión automática de memoria RAM o virtual se proporciona mediante el lenguaje JavaScript.
 
 \section{Three.js} 
 \label{sec:threejsseccion}
@@ -612,21 +615,41 @@ Esta gestión de memoria automática se proporciona mediante el lenguaje JavaScrip
 	\includegraphics[scale=0.30]{img/threejs.png}
 \end{center}
 
-Three.js es una librería escrita en JavaScript para mostrar contenido 3D en páginas web. Nos provee la capacidad de renderizar escenas, modelos, sonido, vídeos, luces, sombras, animaciones, partículas y muchos otros tipos de visualizaciones.
+Three.js\footnote{\url{https://threejs.org}} es una librería escrita en JavaScript para mostrar contenido 3D en páginas web. Nos provee la capacidad de renderizar escenas, modelos, sonido, vídeos, luces, sombras, animaciones, partículas y muchos otros tipos de visualizaciones.
 
-Three.js es una librería escrita en JavaScript para mostrar contenido 3D en páginas web. Nos provee la capacidad de renderizar escenas, modelos, sonido, vídeos, luces, sombras, animaciones, partículas y muchos otros tipos de visualizaciones.
+No debemos confundir Three.js con WebGL. WebGL es un sistema de bajo nivel con el que podemos dibujar primitivas simples como puntos, líneas y triángulos. Three.js utiliza este motor a bajo nivel y nos permite abstraernos de su complejidad teniendo ya disponibles ciertas interfaces como escenas, luces, materiales, etc mencionadas anteriormente.
 
-Three.js es una librería escrita en JavaScript para mostrar contenido 3D en páginas web. Nos provee la capacidad de renderizar escenas, modelos, sonido, vídeos, luces, sombras, animaciones, partículas y muchos otros tipos de visualizaciones.
-
-En la  Figura~\ref{fig:threejscene}
-
+Al igual que WebGL, se utiliza el elemento canvas de HTML5 para comenzar creado una escena. En la  Figura~\ref{fig:threejscene} podemos ver la arquitectura general de como se compone dicha escena. Por un lado tenemos la figura geométrica compuesta por vértices y superficies. Esta figura geométrica puede se le puede añadir un material que está compuesta por una o varias imágenes que a su vez componen lo que conocemos por textura. Si sumamos esta figura geométrica y su material obtenemos lo que denominamos una malla. La malla, las luces y la cámara componen nuestra escena 3D.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=12cm, keepaspectratio]{img/threejscene}
+	\includegraphics[height=10cm,width=12cm, keepaspectratio]{img/threejscene}
 	\caption{Escena Three.js}
 	\label{fig:threejscene}
 \end{figure}
+
+Por último, de manera transparente para el desarrollador, Three.js llama al renderizador de WebGL para representar nuestra escena que se podrá visualizar en cualquier navegador web.
+
+Para comprender mejor el funcionamiento o para que sirve una cámara en una escena 3D tenemos la Figura~\ref{fig:frustum}. La cámara es un punto de perspectiva desde donde se visualiza la escena 3D. En Three.js tenemos cuatro parámetros básicos para definir una cámara:
+
+\begin{figure}
+	\centering
+	\includegraphics[height=7cm,width=10cm, keepaspectratio]{img/frustum}
+	\caption{Ejemplo de cámara. Forma geométrica ''{\textit{frustum}}''}
+	\label{fig:frustum}
+\end{figure}
+
+\begin{itemize}
+	\item El ''fov'' es la abreviatura de {\textit{field of view}} o campo de visión. Es el ángulo de visuón de la cámara y se utilizan grados como medida.
+	
+	\item El segundo parámetro es el ''aspect''. El cual define el aspecto de visualización del lienzo o el ratio de píxeles. Por ejemplo un canvas de 400 píxeles de ancho por 200 de alto, tendría un ''aspect'' de dos.
+	
+	\item Por último tenemos los parámetro ''far'' y ''near'' que definen la distancia de lo que vamos a poder visualizar en la escena. Si algún objeto quedara fuera de este rango no se visualizará.
+\end{itemize}
+
+
+Estos cuatro ajustes definen un ''{\textit{frustum}}'', es decir, el nombre de una forma 3D en forma de pirámide con la punta cortada. Al fin y al cabo esta definición es la que utiliza la cámara para visualizar la escena.
+
 
 \section{A-Frame} 
 \label{sec:aframeseccion}
@@ -634,15 +657,56 @@ En la  Figura~\ref{fig:threejscene}
 	\includegraphics[scale=0.30]{img/aframe.jpg}
 \end{center}
 
-Three.js es una librería escrita en JavaScript para mostrar contenido 3D en páginas web. Nos provee la capacidad de renderizar escenas, modelos, sonido, vídeos, luces, sombras, animaciones, partículas y muchos otros tipos de visualizaciones.
+A-Frame\footnote{\url{https://aframe.io/}} es un {\textit{framework web}} que permite construir experiencias de realidad virtual en el navegador. Gracias a su interfaz de entidad-componente podemos visualizar WebVR en cualquier dispositivo de realidad virtual como las HTC Vive, Oculus Rift, Daydream o Samsung GearVR así como en navegadores de escritorio y móvil. Además puede ser incluso usado para realidad aumentada.
 
-Three.js es una librería escrita en JavaScript para mostrar contenido 3D en páginas web. Nos provee la capacidad de renderizar escenas, modelos, sonido, vídeos, luces, sombras, animaciones, partículas y muchos otros tipos de visualizaciones.
+A-Frame no es solo un creador de escenas en 3D o un lenguaje de marcado. Su motor está apoyado en el {\textit{framework web}} entidad-componente, proveyendo una estructura declarativa, extensible y componible de Three.js. A-Frame nos provee un nivel más de abstracción, facilitando incluso más aún el comienzo para desarrollar en 3D que Three.js.
 
+Esta librería, estuvo originalmente concebida por Mozilla y ahora mantenida por los co-creadores de A-Frame y Supermedium\footnote{\url{https://supermedium.com/}} el cual es un navegador web puramente diseñado para WebVR y usado con dispositivos de realidad virtual. Este proyecto de código libre cuenta con una de las mayores comunidades de Realidad Virtual.
 
-Three.js es una librería escrita en JavaScript para mostrar contenido 3D en páginas web. Nos provee la capacidad de renderizar escenas, modelos, sonido, vídeos, luces, sombras, animaciones, partículas y muchos otros tipos de visualizaciones.
+Entre sus mayores características encontramos:
 
-Three.js es una librería escrita en JavaScript para mostrar contenido 3D en páginas web. Nos provee la capacidad de renderizar escenas, modelos, sonido, vídeos, luces, sombras, animaciones, partículas y muchos otros tipos de visualizaciones.
+\begin{itemize}
+	\item A-Frame provee de un arquetipo 3D, configuración para VR y los controles predeterminados. Sin necesidad de instalación o compilación, únicamente es necesario importar la librería con la etiqueta \textless script\textgreater\space y crear el componente \textless a-scene\textgreater.
+	
+	\item Como vemos en la Figura~\ref{fig:aframe_code}, se utiliza un HTML sencillo de entender y reutilizable. Es accesible para todo tipo de público, desde desarrolladores a educadores, artistas, diseñadores y niños.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=12cm, keepaspectratio]{img/aframe_code}
+		\caption{Ejemplo código HTML de A-Frame}
+		\label{fig:aframe_code}
+	\end{figure}
+	
+	\item Utiliza una arquitectura basada en entidad-componente. Es decir nos provee de una interfaz para reutilizar, declarar y acceder a objetos diseñados y optimizados de Three.js. Además, nos permite el acceso a cualquier elemento del DOM e incluso al motor de bajo nivel WebGL.
+	
+	\item Es una librería VR diseñada para ser multidispositivo y multiplataforma. Como se ha mencionado anteriormente es compatible con Vive, Rift, Windows Mixed Reality, Daydream, GearVR y Cardboard con soporte para todos los controladores respectivos.
+	
+	\item El rendimiento es otro punto fuerte de esta librería. A-Frame está optimizada desde cero para WebVR. Los componentes no manipulan el motor de diseño 3D del navegador y las actualizaciones se realizan en memoria llegando a alcanzar los 90 {\textit{fps}} en escenas con infinidad de elementos.
+	
+	\item La librería de A-Frame nos proporciona un poderoso elemento diseñado para ayudar al desarrollo. Este componente es el inspector de elementos que vemos en la Figura~\ref{fig:aframe_inspector} . Este inspector recuerda a la manera de crear escenas en otros motores gráficos como el de Unity3D\footnote{\url{https://unity.com/es}}. Pero la principal característica es que, gracias a él, podemos realizar cambios en la escena en vivo. Pudiendo añadir y borrar elementos e incluso actualizar los atributos de cada componente.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=12cm, keepaspectratio]{img/aframe_inspector}
+		\caption{Ejemplo del inspector de A-Frame}
+		\label{fig:aframe_inspector}
+	\end{figure}
+	
+	\item Los componenetes principales que nos proporciona A-frame son geometrías, materiales, luces, animaciones, modelos, difusores de rayos, sombras, audio posicional, texto y soporte para la mayoría de auriculares. La comunidad además ha aportado otros como medio ambiente , el estado , los sistemas de partículas , la física , los océanos y la realidad aumentada.
+	
+	\item Es una librería de probada escalabilidad llegando a ser utilizada por grandes empresas como Google, Disney, Samsung, Toyota, Ford, Chevrolet, CERN, NPR. Compañías como Google, Microsoft, Oculus y Samsung han realizado contribuciones para mejorar A-Frame.
+	
+		
+	\begin{figure}
+		\centering
+		\includegraphics[width=12cm, keepaspectratio]{img/aframe_example}
+		\caption{Ejemplo escena de A-Frame}
+		\label{fig:aframe_example}
+	\end{figure}
+	
+\end{itemize}
 
+En esta potente librería de VR se basa este proyecto fundamentalmente.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -657,14 +721,25 @@ Puedes entrar hasta el detalle.
 Es la parte más importante de la memoria, porque describe lo que has hecho tú.
 Eso sí, normalmente aconsejo no poner código, sino diagramas.
 
-\section{Arquitectura general} 
-\label{sec:arquitectura}
 
-Si tu proyecto es un software, siempre es bueno poner la arquitectura (que es cómo se estructura tu programa a ``vista de pájaro'').
 
-Por ejemplo, puedes verlo en la figura.
+\section{Metodología Scrum} 
+\label{sec:scrum}
 
-Si utilizas una base de datos, no te olvides de incluir también un diagrama de entidad-relación.
+\subsection{Iteración 0} 
+\label{sec:iteracion_0}
+
+\subsection{Iteración 1} 
+\label{sec:iteracion_1}
+
+\subsection{Iteración 2} 
+\label{sec:iteracion_2}
+
+\subsection{Iteración 3} 
+\label{sec:iteracion_3}
+
+\subsection{Iteración 4} 
+\label{sec:iteracion_4}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -675,9 +750,19 @@ Si utilizas una base de datos, no te olvides de incluir también un diagrama de e
 \cleardoublepage
 \chapter{Resultados}
 
-En este capítulo se incluyen los resultados de tu trabajo fin de grado.
+\section{Arquitectura general} 
+\label{sec:arquitectura}
 
-Si es una herramienta de análisis lo que has realizado, aquí puedes poner ejemplos de haberla utilizado para que se vea su utilidad.
+Si tu proyecto es un software, siempre es bueno poner la arquitectura (que es cómo se estructura tu programa a ``vista de pájaro'').
+
+Por ejemplo, puedes verlo en la figura.
+
+\section{Funcionamiento Librería} 
+\label{sec:funcionamiento_libreria}
+
+Si tu proyecto es un software, siempre es bueno poner la arquitectura (que es cómo se estructura tu programa a ``vista de pájaro'').
+
+Por ejemplo, puedes verlo en la figura.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -727,17 +812,6 @@ Aquí viene lo que has aprendido en el Trabajo Fin de Grado/Máster.
 Ningún software se termina, así que aquí vienen ideas y funcionalidades que estaría bien tener implementadas en el futuro.
 
 Es un apartado que sirve para dar ideas de cara a futuros TFGs/TFMs.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% APÉNDICE(S) %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\cleardoublepage
-\appendix
-\chapter{Manual de usuario}
-\label{app:manual}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
