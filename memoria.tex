@@ -528,7 +528,7 @@ Por último cabe destacar que Webpack se preocupa por el rendimiento y los tiempo
 \begin{figure}
 	\centering
 	\includegraphics[width=12cm, keepaspectratio]{img/whatswebpack}
-	\caption{What is Webpack}
+	\caption{Qué es Webpack}
 	\label{fig:whatswebpack}
 \end{figure}
 
@@ -722,25 +722,99 @@ Es la parte más importante de la memoria, porque describe lo que has hecho tú.
 Eso sí, normalmente aconsejo no poner código, sino diagramas.
 
 
-
 \section{Metodología Scrum} 
 \label{sec:scrum}
+
+Hablamos de la metodología Scrum y de las distintas iteraciones con breve descripción de la misma
 
 \subsection{Iteración 0} 
 \label{sec:iteracion_0}
 
+Fase previa para comenzar el proyecto. Estudio de A-frame js, Webpack, nodejs etc.
+
 \subsection{Iteración 1} 
 \label{sec:iteracion_1}
+-Reproducción de primeras escenas con A-frame. Estudio de A-frame playgruund de Jesús.
+
+-Primera creación de repositorio llamado A-Charts. Creación de 2 ramas para el proyecto. Develop y Master
 
 \subsection{Iteración 2} 
 \label{sec:iteracion_2}
 
+-Creación de primeros gráficos de barras.
+
+- Creación de gráfico de líneas
+
+- Librería como plugin.
+
+-Creación de gráfico de burbujas
+
+-Licencia Apache
+
+
 \subsection{Iteración 3} 
 \label{sec:iteracion_3}
+
+Seguimos las recomendaciones de Aframe registry y creamos un nuevo repositorio con las best practise :
+
+-Must be published to npm.
+
+-Must be published to GitHub.
+
+-Must self-register themselves with AFRAME.registerComponent.
+
+-Must contain documentation on component properties and sample usage in the README.
+
+-Must contain at least one example published to GitHub Pages.
+
+-A link to the examples must be added as the GitHub repository's Website next to the GitHub repository's Description.
+
+-Must make sense in the context of a WebVR application. This can change later, but the initial components of theRegistry will be under strict curation.
+
+-Should include an attractive preview image or GIF in your README for display.
+
+-Should follow semver in your component versioning scheme, mirroring A-Frame's latest stable version.
+
+-Use angle, an A-Frame command-line tool, to bootstrap a component template for publishing.
+
+-Add A-Frame Registry maintainer Kevin Ngo as a collaborator to your GitHub repository and as an owner to your npm package (npm owner add ngokevin) if you want help maintaining your component.
 
 \subsection{Iteración 4} 
 \label{sec:iteracion_4}
 
+-Comenzamos a separar la librería de la capa de datos pudiendo leer de un JSON
+
+-Gran refactorización de código. Componetizamos todo. Ejes y generación de gráficas separados
+
+-Se añaden parametrización en los ejes. separacion de los ticks, grosor, posicion de los ejes y los ticks.
+
+- Ejes parametrizables si hay datos negativos
+
+- Grid axis
+
+-Texto de los ejes, color y tamaño del mismo
+
+-Se añade gráficos de cilindros
+
+-Se añaden los gráficos de tarta y donut
+
+
+\subsection{Iteración 5} 
+\label{sec:iteracion_5}
+
+-Añadimos pop up
+
+- Añadimos leyenda
+
+-Añadimos la funcionalidad ddel totem. Cambiar datos de manera dinámica.
+
+-Pruebas de rendimiento (Creación de programa para generar random json con los datos que necesitamos)
+
+-Mayor refactorización.
+
+-Implementación del museo
+
+-Adaptación para Oculus Rift
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -753,16 +827,24 @@ Eso sí, normalmente aconsejo no poner código, sino diagramas.
 \section{Arquitectura general} 
 \label{sec:arquitectura}
 
-Si tu proyecto es un software, siempre es bueno poner la arquitectura (que es cómo se estructura tu programa a ``vista de pájaro'').
+Hablo de la arquitectura con nodejs.
 
-Por ejemplo, puedes verlo en la figura.
+package json, index.js node modules.
 
-\section{Funcionamiento Librería} 
+Ejes.js
+
+Leyenda.js
+
+Totem.js
+
+JSON para datos
+
+Foto general de la arquitectura
+
+\section{Funcionamiento de la Librería} 
 \label{sec:funcionamiento_libreria}
 
-Si tu proyecto es un software, siempre es bueno poner la arquitectura (que es cómo se estructura tu programa a ``vista de pájaro'').
-
-Por ejemplo, puedes verlo en la figura.
+Manual de usuario con lo que hay en la web.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
