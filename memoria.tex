@@ -716,29 +716,51 @@ En esta potente librería de VR se basa este proyecto fundamentalmente.
 \cleardoublepage
 \chapter{Diseño e implementación}
 
-Aquí viene todo lo que has hecho tú (tecnológicamente). 
-Puedes entrar hasta el detalle. 
-Es la parte más importante de la memoria, porque describe lo que has hecho tú.
-Eso sí, normalmente aconsejo no poner código, sino diagramas.
+En este apartado se muestra el diseño e implementación de este proyecto. Se comienza describiendo la metodología utilizada y las distintas etapas por las que ha pasado el proyecto. Más adelante profundizaremos en cada una de dichas etapas, describiendo el desarrollo que se ha realizado de manera incremental para este trabajo.
 
 
 \section{Metodología Scrum} 
 \label{sec:scrum}
 
-Hablamos de la metodología Scrum y de las distintas iteraciones con breve descripción de la misma
+La metodología que se ha seguido en este proyecto es la denominada metodología Scrum~\cite{blokehead:scrum}. Este procedimiento se caracteriza principalmente por ser incremental y estar enfocado al desarrollo de software ágil. A diferencia de otros métodos donde se desarrolla de manera secuencial o en cascada (requisitos, diseño, implementación, verificación y mantenimiento), la metodología Scrum permite solapar estas fases e incluso realizarlas mediante incrementos más pequeños.
 
-\subsection{Iteración 0} 
+El objetivo de Scrum es aplicar de manera regular buenas prácticas para trabajar en equipo y obtener el mejor resultado y calidad posible para el proyecto. Para esto se definen un conjunto de prácticas y roles como el de Scrum  \textit{máster} encargado del proceso asegurando su correcto uso y guiado por las distintas etapas, el \textit{product owner} el cual es el responsable de mantener el producto y asegurar la continuidad por las líneas de trabajo establecidas. Por último tenemos al equipo de desarrollo que debe ser multidisciplinar y encargado de ir cumpliendo las distintas iteraciones y tareas para sacar adelante el proyecto.
+
+A continuación se describe brevemente cada una de las etapas o \textit{sprints} por las que ha pasado este proyecto:
+
+\begin{itemize}
+	\item \textbf{Iteración 0:} Esta es la fase previa donde se realizará un estudio de los requisitos del proyecto y las tecnologías a utilizar. La idea principal es familiarizarse con la librería A-Frame utilizando la documentación oficial y practicar mediante ejemplos básicos.
+	
+	\item \textbf{Iteración 1:} En esta primera etapa se tiene como objetivo crear las primeras escenas con gráficos en 3D. Para ello crearemos un repositorio de código inicial. Se debe crear un primer gráfico de ejemplo para nuestra librería con un \textit{dataset} de ejemplo incrustado en el propio código JavaScript.
+	
+	\item \textbf{Iteración 2:} El segundo paso será empleado para enriquecer nuestra librería para que soporte un mayor número de gráficas. Se empezará a proporcionar un API para el uso de la librería. Además se procederá a separar la capa de datos de la aplicación para una mejor generalización.
+	
+	\item \textbf{Iteración 3:} En la tercera iteración se procederá a una refactorización total del código. Se utilizarán los estándares de A-Frame y crearemos un nuevo proyecto en GitHub, publicaremos nuestra librería en el repositorio de código de NodeJs
+	
+	\item \textbf{Iteración 4:} En este apartado se realizará un enriquecimiento de la parametrización de nuestros gráficos pudiendo ser explotadas gracias al API proporcionado. Además se añadirán nuevos gráficos como el de tarta solicitado por la comunidad cerrando así las primeras incidencias.
+	
+	\item \textbf{Iteración 5:} En esta quinta y última iteración se procede a solucionar los distintos errores de funcionamiento de la librería. Se proporciona la posibilidad de una representación dinámica de los datos. Y por último se facilita la integración mediante ejemplos para ser utilizada con dispositivos de realidad virtual.
+	
+\end{itemize}
+
+\section{Iteración 0. Estudio previo.} 
 \label{sec:iteracion_0}
 
-Fase previa para comenzar el proyecto. Estudio de A-frame js, Webpack, nodejs etc.
+En esta fase previa se comienza realizando un estudio previo de las tecnologías que vamos a utilizar en el proyecto. Se comienza visitando la web oficial de A-Frame\footnote{\url{https://aframe.io/}} donde podemos encontrar toda la documentación\footnote{\url{https://aframe.io/docs/0.9.0/introduction/}} necesaria para comenzar a crear escenas en 3D en nuestro navegador con unos simples pasos. Además, vamos a proceder a nuestra iniciación en el mundo con proyectos NodeJs y Webpack. Para todos estas tecnologías, el tutor de esta memoria ha proporcionado una web\footnote{\url{https://jgbarah.github.io/aframe-playground/}} con documentación y ejemplos que también han ayudado en el estudio previo a realizar.
 
-\subsection{Iteración 1} 
+
+
+ 
+
+Fase previa para comenzar el proyecto. Estudio de A-frame js, Webpack, nodejs etc. Todo el playground aframe de Jesús.
+
+\section{Iteración 1. Primer gráfico.} 
 \label{sec:iteracion_1}
--Reproducción de primeras escenas con A-frame. Estudio de A-frame playgruund de Jesús.
+-Reproducción de primeras escenas con A-frame. 
 
 -Primera creación de repositorio llamado A-Charts. Creación de 2 ramas para el proyecto. Develop y Master
 
-\subsection{Iteración 2} 
+\section{Iteración 2. Enriquecimiento de la librería y separación de la capa de datos.} 
 \label{sec:iteracion_2}
 
 -Creación de primeros gráficos de barras.
@@ -751,8 +773,12 @@ Fase previa para comenzar el proyecto. Estudio de A-frame js, Webpack, nodejs et
 
 -Licencia Apache
 
+- Json de Datos, Formato!
 
-\subsection{Iteración 3} 
+-Comenzamos a separar la librería de la capa de datos pudiendo leer de un JSON
+
+
+\section{Iteración 3. Refactorización y estandarización de la librería.} 
 \label{sec:iteracion_3}
 
 Seguimos las recomendaciones de Aframe registry y creamos un nuevo repositorio con las best practise :
@@ -779,10 +805,8 @@ Seguimos las recomendaciones de Aframe registry y creamos un nuevo repositorio c
 
 -Add A-Frame Registry maintainer Kevin Ngo as a collaborator to your GitHub repository and as an owner to your npm package (npm owner add ngokevin) if you want help maintaining your component.
 
-\subsection{Iteración 4} 
+\section{Iteración 4. Poblamiento de funcionalidad para el API. Resolución de incidencias de la comunidad.} 
 \label{sec:iteracion_4}
-
--Comenzamos a separar la librería de la capa de datos pudiendo leer de un JSON
 
 -Gran refactorización de código. Componetizamos todo. Ejes y generación de gráficas separados
 
@@ -798,8 +822,10 @@ Seguimos las recomendaciones de Aframe registry y creamos un nuevo repositorio c
 
 -Se añaden los gráficos de tarta y donut Gracias al Change Resquest de la comunidad! cerrando el issue
 
+- Json de Datos, Formato para tarta y donut.
 
-\subsection{Iteración 5} 
+
+\section{Iteración 5. Adaptación para dispositivos de VR y representación dinámica de datos.} 
 \label{sec:iteracion_5}
 
 -Añadimos pop up
