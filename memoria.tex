@@ -31,6 +31,85 @@
 \usepackage[nottoc, notlot, notlof, notindex]{tocbibind} %% Opciones de índice
 \usepackage{latexsym}  %% Logo LaTeX
 \usepackage[hidelinks]{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+
+\lstdefinelanguage{JavaScript}{
+	keywords={break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with, let, const, exports},
+	morecomment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	morestring=[b]',
+	morestring=[b]",
+	ndkeywords={class, export, boolean, throw, implements, import, this},
+	keywordstyle=\color{blue}\bfseries,
+	ndkeywordstyle=\color{darkgray}\bfseries,
+	identifierstyle=\color{black},
+	commentstyle=\color{purple}\ttfamily,
+	stringstyle=\color{red}\ttfamily,
+	sensitive=true
+}
+
+\lstdefinelanguage{json}{
+	basicstyle=\normalfont\ttfamily,
+	numbers=left,
+	numberstyle=\scriptsize,
+	stepnumber=1,
+	numbersep=8pt,
+	showstringspaces=false,
+	breaklines=true,
+	frame=lines,
+	backgroundcolor=\color{background},
+	literate=
+	*{0}{{{\color{numb}0}}}{1}
+	{1}{{{\color{numb}1}}}{1}
+	{2}{{{\color{numb}2}}}{1}
+	{3}{{{\color{numb}3}}}{1}
+	{4}{{{\color{numb}4}}}{1}
+	{5}{{{\color{numb}5}}}{1}
+	{6}{{{\color{numb}6}}}{1}
+	{7}{{{\color{numb}7}}}{1}
+	{8}{{{\color{numb}8}}}{1}
+	{9}{{{\color{numb}9}}}{1}
+	{:}{{{\color{punct}{:}}}}{1}
+	{,}{{{\color{punct}{,}}}}{1}
+	{\{}{{{\color{delim}{\{}}}}{1}
+	{\}}{{{\color{delim}{\}}}}}{1}
+	{[}{{{\color{delim}{[}}}}{1}
+	{]}{{{\color{delim}{]}}}}{1},
+}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{style=mystyle}
 
 \title{Memoria del Proyecto}
 \author{Nombre del autor}
@@ -735,7 +814,7 @@ A continuación se describe brevemente cada una de las etapas o \textit{sprints} 
 	
 	\item \textbf{Iteración 2:} El segundo paso será empleado para enriquecer nuestra librería para que soporte un mayor número de gráficas. Se empezará a proporcionar un API para el uso de la librería. Además se procederá a separar la capa de datos de la aplicación para una mejor generalización.
 	
-	\item \textbf{Iteración 3:} En la tercera iteración se procederá a una refactorización total del código. Se utilizarán los estándares de A-Frame y crearemos un nuevo proyecto en GitHub, publicaremos nuestra librería en el repositorio de código de NodeJs
+	\item \textbf{Iteración 3:} En la tercera iteración se procederá a una refactorización total del código. Se utilizarán los estándares de A-Frame y crearemos un nuevo proyecto en GitHub, publicaremos nuestra librería en el repositorio de código de NodeJs.
 	
 	\item \textbf{Iteración 4:} En este apartado se realizará un enriquecimiento de la parametrización de nuestros gráficos pudiendo ser explotadas gracias al API proporcionado. Además se añadirán nuevos gráficos como el de tarta solicitado por la comunidad cerrando así las primeras incidencias.
 	
@@ -748,31 +827,101 @@ A continuación se describe brevemente cada una de las etapas o \textit{sprints} 
 
 En esta fase previa se comienza realizando un estudio previo de las tecnologías que vamos a utilizar en el proyecto. Debido a que se tiene un amplio conocimiento de JavaScript y HTML vamos a cumplir directamente nuestro objetivo específico de estudiar el \textit{framework} A-Frame. Para este menester, se comienza visitando la web oficial de A-Frame\footnote{\url{https://aframe.io/}} donde se puede encontrar toda la documentación\footnote{\url{https://aframe.io/docs/0.9.0/introduction/}} necesaria para comenzar a crear escenas en 3D en nuestro navegador con unos simples pasos.
 
-Para ello se va a comenzar creando un primer proyecto HTML que llamaremos provisionalmente A-Charts. Utilizaremos el IDE WebStorm\footnote{\url{https://www.jetbrains.com/webstorm/}} de la compañía Jetbrains para comenzar con el desarrollo. Crearemos un proyecto HTML vacío que constará de una arquitectura básica como vemos en la Figura X
+Para ello se va a comenzar creando un primer proyecto HTML que llamaremos provisionalmente A-Charts. Utilizaremos el IDE WebStorm\footnote{\url{https://www.jetbrains.com/webstorm/}} de la compañía Jetbrains para comenzar con el desarrollo. Crearemos un proyecto HTML vacío que constará de los siguientes componentes: última versión de la librería de A-Frame\footnote{\url{https://aframe.io/releases/0.9.2/aframe.min.js}} mimificada, y el siguiente fichero HTML con el código que vemos a continuación.
+
+\lstinputlisting[language=Html]{code/iteracion0-index.html} 
 
 
-Foto de la arquitectura
+Como se puede ver en el código, A-Frame interpreta distintas etiquetas de marcado como:
 
-Explicación de descarga de la libreria de aframe
+\begin{itemize}
+	\item[--] \textless a-scene\textgreater: La escena es el objeto raíz global, y todas las entidades están contenidas dentro de la escena.
+	\item[--] \textless a-box\textgreater: Es una de las formas geométricas primitivas de la librería y crea formas como cajas, cubos o paredes.
+	\item[--] \textless a-sphere\textgreater: Otra forma primitiva para crear una forma esférica o poliedro
+	\item[--] \textless a-cylinder\textgreater: Esta etiqueta crea figuras geométricas en forma de tubo y superficies curvadas.
+	\item[--] \textless a-plane\textgreater: Una primitiva más para crear superficies planas.
+	\item[--] \textless a-sky\textgreater: El cielo agrega un color de fondo o una imagen de 360 ??° a una escena. Un cielo es una esfera grande con un color o textura mapeada hacia adentro.
+	\item[--] \textless a-camera\textgreater: Componente que define desde qué perspectiva el usuario ve la escena
+\end{itemize}
 
-poner el código del index html y listo
 
- 
+Estas etiquetas son las más basicas y el resultado podemos verlo en la siguiente Figura~\ref{fig:iteracion0}
 
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=12cm, keepaspectratio]{img/iteracion0}
+	\caption{Primera escena con A-Frame}
+	\label{fig:iteracion0}
+\end{figure}
 
 \section{Iteración 1. Primer gráfico.} 
 \label{sec:iteracion_1}
 
-En esta primera iteración vamos a proceder a la creación de un repositorio de código en GitHub y subiremos nuestros primeros cambios realizados en la primera iteración.
+En esta primera iteración vamos a proceder a la creación de un repositorio de código en GitHub donde subiremos nuestros primeros desarrollos de la librería. se van a crear dos ramas de desarrollo, develop y master, en nuestro repositorio de git. De esta manera podremos ir desarrollando y probando distinta funcionalidad y solo subiremos a nuestra rama principal cuando tengamos el código probado y listo para producción.
 
 Además, vamos a proceder a nuestra iniciación en el mundo con proyectos NodeJs y Webpack. Para todos estas tecnologías, el tutor de esta memoria ha proporcionado una web\footnote{\url{https://jgbarah.github.io/aframe-playground/}} con documentación y ejemplos que también han ayudado en el estudio previo a realizar.
 
+Con esta información, se genera un nuevo proyecto llamado A-Charts con la arquitectura que vemos en la Figura~\ref{fig:arquitecturaAlpha} 
 
--Reproducción de primeras escenas con A-frame. 
+\begin{figure}
+	\centering
+	\includegraphics[width=8cm, keepaspectratio]{img/arquitecturaAlpha}
+	\caption{Primera arquitectura del proyecto}
+	\label{fig:arquitecturaAlpha}
+\end{figure}
 
-Webpack, nodejs etc
+Primero se comienza aprendiendo que es Webpack y para qué se utiliza. Como se describe en el estado de arte, esta teconología es utilizada para empaquetar módulos estáticos. En la programación modular, los desarrolladores particionan su código en pequeños bloques que cumplen una funcionalidad concreta, y a estos se le llama módulos. 
 
--Primera creación de repositorio llamado A-Charts. Creación de 2 ramas para el proyecto. Develop y Master
+Por tanto, para empezar a usar esta herramienta se crea el fichero de configuración llamado \textit{webpack.config.js}:
+
+\lstinputlisting[language=JavaScript]{code/iteracion1-webpack.js}
+
+En esta configuración se establece que nuestro código, estará en \textit{src/acharts.js} y su salida bundle.js en el directorio dist. Además se le especifican donde tendremos nuestros módulos JavaScript así como el transpilador a utilizar, en este caso babel y el módulo de HTML. Por otro lado se utilizará el plugin de HTML para webpack y definir nuestro template.
+
+Por otro lado se comienza con la configuración del servidor web NodeJs. Para ello es necesario un fichero llamado package.json donde se especifican los metadatos del proyecto como nombre, descripción, versión, licencia, repositorio, etc.
+
+A continuación se describen las líneas del fichero package.json que detallan las acciones para las etapas de desarrollo y despliegue.
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+	"scripts": {
+		"dev": "webpack --mode development",
+		"build": "webpack --mode production",
+		"watch": "webpack --mode development --watch",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "webpack-dev-server --mode development --content-base dist/",
+		"clean": "rm -r dist/*",
+		"cleanbuild": "rm -r dist/* && webpack --mode production"
+	}	
+}
+\end{lstlisting} 
+
+Y por último las dependecias del proyecto también incluidas en nuestro fichero package.json. Node automáticamente buscará estas dependencias en el repositorio de npm y las guardará en el directorio \textit{\texttt{node\_modules}} .
+
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+	"devDependencies": {
+		"babel-core": "^6.26.0",
+		"babel-loader": "^7.1.4",
+		"babel-preset-env": "^1.6.1",
+		"copy-webpack-plugin": "^4.5.1",
+		"file-loader": "^1.1.11",
+		"html-loader": "^0.5.5",
+		"html-webpack-plugin": "^3.0.6",
+		"webpack": "^4.1.1",
+		"webpack-cli": "^2.0.11",
+		"webpack-dev-server": "^3.1.1"
+	},
+	"dependencies": {
+		"aframe": "^0.8.2"
+	}	
+}
+\end{lstlisting} 
+
+-Primera creación de repositorio llamado A-Charts. 
+
+Creación de 2 ramas para el proyecto. Develop y Master
 
 \section{Iteración 2. Enriquecimiento de la librería y separación de la capa de datos.} 
 \label{sec:iteracion_2}
@@ -905,11 +1054,15 @@ Esta sección es la sección espejo de las dos primeras del capítulo de objetivos,
 Es aquí donde hay que debatir qué se ha conseguido y qué no. 
 Cuando algo no se ha conseguido, se ha de justificar, en términos de qué problemas se han encontrado y qué medidas se han tomado para mitigar esos problemas.
 
+Todos conseguidos of course.
+
 
 \section{Aplicación de lo aprendido}
 \label{sec:aplicacion}
 
 Aquí viene lo que has aprendido durante el Grado/Máster y que has aplicado en el TFG/TFM. Una buena idea es poner las asignaturas más relacionadas y comentar en un párrafo los conocimientos y habilidades puestos en práctica.
+
+La de Meteor, La de Barahona de Js etc, alguna con Node
 
 \begin{enumerate}
   \item a
@@ -921,6 +1074,9 @@ Aquí viene lo que has aprendido durante el Grado/Máster y que has aplicado en el
 \label{sec:lecciones_aprendidas}
 
 Aquí viene lo que has aprendido en el Trabajo Fin de Grado/Máster.
+webpack
+y todo lo que tenga en objetivos
+A frame, realidad virtual
 
 \begin{enumerate}
   \item a
@@ -933,8 +1089,14 @@ Aquí viene lo que has aprendido en el Trabajo Fin de Grado/Máster.
 
 Ningún software se termina, así que aquí vienen ideas y funcionalidades que estaría bien tener implementadas en el futuro.
 
-Es un apartado que sirve para dar ideas de cara a futuros TFGs/TFMs.
-
+Integracion con ElasticSearch (Que pueda ser Near Real Time)
+Otras bases de datos relacionales
+Mayor customización y mas tipos de gráficos
+Animaciones
+Permitir añadir plugins y addons a la libreria
+Crear comunidad
+Dashboards
+Mas Realidad Virtual
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
