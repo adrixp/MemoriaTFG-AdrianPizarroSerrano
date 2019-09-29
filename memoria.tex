@@ -919,9 +919,28 @@ Y por último las dependecias del proyecto también incluidas en nuestro fichero p
 }
 \end{lstlisting} 
 
--Primera creación de repositorio llamado A-Charts. 
+Una vez configurado el proyecto comenzaremos a escribir nuestro template HTML
 
-Creación de 2 ramas para el proyecto. Develop y Master
+\lstinputlisting[language=Html]{code/iteracion1-template.html}
+
+Por otra parte nuestro código JavaScript
+
+\lstinputlisting[language=JavaScript, title= code 1]{code/iteracion1-import.js}
+
+\lstinputlisting[language=JavaScript]{code/iteracion1-loader.js}
+
+\lstinputlisting[language=JavaScript]{code/iteracion1-axis.js}
+
+\lstinputlisting[language=JavaScript]{code/iteracion1-barplot.js}
+
+Cuando se arranca el proyecto se obtiene como resultado el primer gráfico que se puede ver en la Figura~\ref{fig:iteracion1-resultado} 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=8cm, keepaspectratio]{img/iteracion1-resultado}
+	\caption{Iteración 1: Resultado}
+	\label{fig:iteracion1-resultado}
+\end{figure} 
 
 \section{Iteración 2. Enriquecimiento de la librería y separación de la capa de datos.} 
 \label{sec:iteracion_2}
