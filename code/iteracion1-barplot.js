@@ -4,9 +4,8 @@ AFRAME.registerComponent('barplot', {
         color: {type: 'string', default: 'red'},
         height: {type: 'number', default: 1},
         size: {type: 'number', default: 1},
-        type: {type: 'string', default: 'box'} //two types: box and cilinder
+        type: {type: 'string', default: 'cylinder'}
     },
-
     update: function () {
         var self = this;
         if(self.data.type === 'cylinder'){
@@ -17,6 +16,5 @@ AFRAME.registerComponent('barplot', {
             self.cylinder.setAttribute('height', self.data.height);
             this.el.appendChild(self.cylinder);
         }
-
     }
 });

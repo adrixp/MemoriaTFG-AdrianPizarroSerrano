@@ -919,21 +919,34 @@ Y por último las dependecias del proyecto también incluidas en nuestro fichero p
 }
 \end{lstlisting} 
 
-Una vez configurado el proyecto comenzaremos a escribir nuestro template HTML
+Una vez configurado el proyecto comenzaremos a escribir nuestro template HTML.
 
-\lstinputlisting[language=Html]{code/iteracion1-template.html}
+\lstinputlisting[language=Html, title= template.html]{code/iteracion1-template.html}
 
-Por otra parte nuestro código JavaScript
+Como se ve en el código HTML del template, se definen varias etiquetas que el motor de A-Frame interpreta. En el apartado \textit{Iteración 0}, se explican varias de las etiquetas básicas utilizadas en el \textit{template.html} tales como \textless a-scene\textgreater, \textless a-sky\textgreater, \textless a-light\textgreater y \textless a-camera\textgreater. 
 
-\lstinputlisting[language=JavaScript, title= code 1]{code/iteracion1-import.js}
+Además se añaden una entidad genéricas de A-frame con la etiqueta \textless a-entity\textgreater. Estas entidades, son componentes genéricos listos para proporcionar una apariencia, comportamiento y funcionalidad determinada. Dichas cualidades se generan mediante código JavaScript completando estos componentes.
+Por tanto se puede decir que el objetivo de esta librería sería,  mediante estas entidades generícas, dotar de a nuestro HTML de los gráficos que se requieran.
 
-\lstinputlisting[language=JavaScript]{code/iteracion1-loader.js}
+Como se puede ver, la etiqueta \textless a-entity\textgreater tiene un identificador que utilizaremos en el código JavaScript detallado a continuación para generar un componente llamado \textit{axis}, el cual representará los ejes x,y,z en 3D.
 
-\lstinputlisting[language=JavaScript]{code/iteracion1-axis.js}
+Primero se comienza importando la librería de A-Frame.
+
+\lstinputlisting[language=JavaScript, title= Importación librería A-Frame]{code/iteracion1-import.js}
+
+Se definen los puntos que tendrá nuestro gráfico de barras en tres dimensiones x,y,z. Además se definen los atributos color y altura.
+\lstinputlisting[language=json, title= JSON para representar el  gráfico]{code/iteracion1-points.json}
+
+A continuación se define la función encargada de generar el gráfico 
+\lstinputlisting[language=JavaScript, title= Función ejecutada al cargarse el DOM]{code/iteracion1-loader.js}
 
 \lstinputlisting[language=JavaScript]{code/iteracion1-barplot.js}
 
-Cuando se arranca el proyecto se obtiene como resultado el primer gráfico que se puede ver en la Figura~\ref{fig:iteracion1-resultado} 
+\lstinputlisting[language=JavaScript]{code/iteracion1-axis.js}
+
+
+
+Cuando arrancamos el proyecto con el comando \textit{start} definido en el fichero \textit{package.json} se obtiene como resultado el primer gráfico que se puede ver en la Figura~\ref{fig:iteracion1-resultado} 
 
 \begin{figure}
 	\centering
