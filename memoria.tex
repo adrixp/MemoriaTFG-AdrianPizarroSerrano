@@ -925,10 +925,10 @@ Una vez configurado el proyecto comenzaremos a escribir nuestro template HTML.
 
 Como se ve en el código HTML del template, se definen varias etiquetas que el motor de A-Frame interpreta. En el apartado \textit{Iteración 0}, se explican varias de las etiquetas básicas utilizadas en el \textit{template.html} tales como \textless a-scene\textgreater, \textless a-sky\textgreater, \textless a-light\textgreater y \textless a-camera\textgreater. 
 
-Además se añaden una entidad genéricas de A-frame con la etiqueta \textless a-entity\textgreater. Estas entidades, son componentes genéricos listos para proporcionar una apariencia, comportamiento y funcionalidad determinada. Dichas cualidades se generan mediante código JavaScript completando estos componentes.
-Por tanto se puede decir que el objetivo de esta librería sería,  mediante estas entidades generícas, dotar de a nuestro HTML de los gráficos que se requieran.
+Además se añaden una entidad genéricas de A-Frame con la etiqueta \textless a-entity\textgreater. Estas entidades, son componentes genéricos listos para proporcionar una apariencia, comportamiento y funcionalidad determinada. Dichas cualidades se generan mediante código JavaScript completando estos componentes.
+Por tanto se puede decir que el objetivo de esta librería sería,  mediante estas entidades genéricas, dotar de a nuestro HTML de los gráficos que se requieran.
 
-Como se puede ver, la etiqueta \textless a-entity\textgreater tiene un identificador que utilizaremos en el código JavaScript detallado a continuación para generar un componente llamado \textit{axis}, el cual representará los ejes x,y,z en 3D.
+Como se puede ver, la etiqueta \textless a-entity\textgreater tiene un identificador para generar un componente llamado \textit{axis}, el cual representará los ejes x,y,z en 3D. Esta definición, entre otras, quedará reflejada en el fichero \textit{src/acharts.js} visto en la Figura 4.2. detallado a continuación por partes.
 
 Primero se comienza importando la librería de A-Frame.
 
@@ -937,16 +937,33 @@ Primero se comienza importando la librería de A-Frame.
 Se definen los puntos que tendrá nuestro gráfico de barras en tres dimensiones x,y,z. Además se definen los atributos color y altura.
 \lstinputlisting[language=json, title= JSON para representar el  gráfico]{code/iteracion1-points.json}
 
-A continuación se define la función encargada de generar el gráfico 
+A continuación se define la función encargada de generar nuestro gráfico de barras una vez el DOM haya sido cargado. Lo primero de todo, almacenamos en la variable \textit{scene} la entidad a-scene de A-Frame. Recorremos todos los puntos previamente definidos en la variable \textit{barPlotItems} y por cada punto, creamos una nueva entidad con el atributo \textit{barplot}. Esto quiere decir que cada entidad tomará el comportamiento, funcionalidad y estilo que hayamos registrado en el componente de A-Frame \textit{barplot}. Además a cada nueva entidad se le pasan como argumento una lista de valores definidos en el esquema del componente que veremos a continuación. Por último, añadimos cada nueva entidad a la escena con la función \textit{appendChild}.
+\clearpage
+
 \lstinputlisting[language=JavaScript, title= Función ejecutada al cargarse el DOM]{code/iteracion1-loader.js}
 
-\lstinputlisting[language=JavaScript]{code/iteracion1-barplot.js}
+En este siguiente paso vamos a registrar nuestro componente \textit{barplot} mediante la función \textit{registerComponent} de A-Frame. A esta función se le pasa como argumento el nombre, el cual será usado como atributo HTML en la representación del componente en el DOM. Luego se añade la definición del componente, que es un objeto JavaScript de métodos y propiedades. Estos métodos pueden definir el manejo del ciclo de vida del componente.
 
-\lstinputlisting[language=JavaScript]{code/iteracion1-axis.js}
+En este caso, la definición del componente constará de la posición, el color, la altura, el tamaño y el tipo. Este último nos servirá en un futuro para que nuestro componente no sólo sea un gráfico de barras sino que pueda implementar distintos tipos de gráficos en función del esquema que se le pase.
 
+Después, se implementa la función \textit{update} proporcionada por el core de A-Frame. Esta función es ejecutada cuando se modifica alguna propiedad de dicho componente (para actualizar el gráfico dinámicamente sin necesidad de refrescar la página web) o en el inicio del ciclo de vida del componente (después de la función \textit{init}) como es el caso.
+
+Como vemos en el código, se comprueba que el tipo de gráfico sea \textit{cylinder}, es decir una barra cilíndrica, y si se cumple dicha condición, se rellenan todos los parámetros del esquema gracias al método \textit{self.data} donde tenemos almacenados todos los datos introducidos anteriormente. 
+
+
+\lstinputlisting[language=JavaScript, title= Definición del componente barplot]{code/iteracion1-barplot.js}
+
+Por último, se registra el componente \textit{axis}. En este caso, se define en el esquema del componente únicamente el color. Además se implementa nuevamente la función \textit{update}.
+
+Dentro de esta función se generan el elemento \textit{line} de A-Frame varias veces. Se crean, en concreto, tres líneas por cada eje de coordenadas (x,y,z) con una longitud de diez unidades. Luego, por cada eje de coordenadas y de una en una unidad, se generan los \textit{ticks} (más líneas de longitud 0.4 unidades) para ayudar en la interpretación de la posición del gráfico final.
+
+El componente \textit{line} dibuja una línea dada una coordenada de inicio y otra final. Como se expone anteriormente en el punto 3. Estado del arte, este componente lo hereda A-Frame de la librería Three.js y por tanto se tiene a disposición para su uso en esta librería.
+
+\lstinputlisting[language=JavaScript, title= Definición del componente barplot]{code/iteracion1-axis.js}
 
 
 Cuando arrancamos el proyecto con el comando \textit{start} definido en el fichero \textit{package.json} se obtiene como resultado el primer gráfico que se puede ver en la Figura~\ref{fig:iteracion1-resultado} 
+
 
 \begin{figure}
 	\centering
@@ -954,6 +971,8 @@ Cuando arrancamos el proyecto con el comando \textit{start} definido en el fiche
 	\caption{Iteración 1: Resultado}
 	\label{fig:iteracion1-resultado}
 \end{figure} 
+
+\clearpage
 
 \section{Iteración 2. Enriquecimiento de la librería y separación de la capa de datos.} 
 \label{sec:iteracion_2}
