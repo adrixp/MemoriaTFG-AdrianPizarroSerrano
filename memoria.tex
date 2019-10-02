@@ -977,20 +977,29 @@ Cuando arrancamos el proyecto con el comando \textit{start} definido en el fiche
 \section{Iteración 2. Enriquecimiento de la librería y separación de la capa de datos.} 
 \label{sec:iteracion_2}
 
--Creación de primeros gráficos de barras.
+En esta segunda iteración tenemos como objetivo añadir más tipos de gráficos a nuestra librería. Cada gráfico será un nuevo componente que registraremos en A-Frame como se ha mostrado en la primera iteración.
 
-- Creación de gráfico de líneas
+Por otro lado vamos a separar los datos, que forman los puntos en el espacio tridimiensional de los gráfcos, del código donde se generan las representaciones en sí. Para ello se crea un fichero JSON con los datos y se especificará en el componente la manera de obtener estos datos.
 
-- Librería como plugin.
+Primero se muestra el template html
 
--Creación de gráfico de burbujas
+Después enseñamos el código de un componente y se comenta que todos son iguales.
+Aqui ademas se dice que cada gráfico rellena su componente axis y que este ha sido refactorizo
 
--Licencia Apache
 
-- Json de Datos, Formato!
+Por último se habla un poco del selector de gráfos. Su html y un poco de su código y Si eso un poco de la nueva configuracion con el css de webpack
 
--Comenzamos a separar la librería de la capa de datos pudiendo leer de un JSON
+Cuando arrancamos el proyecto, nuevamente con el comando \textit{start} definido en el fichero \textit{package.json}, se obtiene como resultado la Figura~\ref{fig:iteracion2-resultado}. Se puede apreciar el menú de opciones donde se tiene la posibilidad de seleccionar un tipo de gráfico y cambiarlo dinámicamente sin necesidad de refrescar la página.
 
+Todo ello gracias a la función \textit{update} de A-Frame.
+\clearpage
+
+\begin{figure}
+	\centering
+	\includegraphics[width=8cm, keepaspectratio]{img/iteracion2-resultado}
+	\caption{Iteración 1: Resultado}
+	\label{fig:iteracion2-resultado}
+\end{figure} 
 
 \section{Iteración 3. Refactorización y estandarización de la librería.} 
 \label{sec:iteracion_3}
