@@ -980,26 +980,93 @@ Cuando arrancamos el proyecto con el comando \textit{start} definido en el fiche
 En esta segunda iteración tenemos como objetivo añadir más tipos de gráficos a nuestra librería. Cada gráfico será un nuevo componente que registraremos en A-Frame como se ha mostrado en la primera iteración.
 
 Por otro lado vamos a separar los datos, que forman los puntos en el espacio tridimiensional de los gráfcos, del código donde se generan las representaciones en sí. Para ello se crea un fichero JSON con los datos y se especificará en el componente la manera de obtener estos datos.
+\newline
+\newline
+Respecto al template HTML mostrado a continuación y al visto en la primera iteración se aprecian varios cambios. Para empezar se ha eliminado la entidad \textit{axis} ya que, como veremos más adelante, ahora cada componente gráfico llamará a dicho componente \textit{axis}. Por tanto, solo es necesario declarar una entidad de A-Frame teniendo como atributo el nombre del componente. 
+\lstinputlisting[language=Html, title= template.html]{code/iteracion2-template.html}
+Como se ve en la imagen \textit{template.html}, dentro del atributo \textit{bubble\_chart} añadimos cuatro propiedades: \textit{datapoints}, \textit{size}, \textit{position} y \textit{color}. Estas propiedades estan descritas en el esquema del componente que veremos a continuación.
+\newline
+\newline
+En esta versión de la librería registraremos tres tipos de componentes, uno por cada tipo de gráfico. Solo necesitaremos poner el nombre del componente como atributo para que la librería de A-Frame renderice nuestro gráfico tal y como hemos visto en el código HTML anterior.
 
-Primero se muestra el template html
+Los tres componentes que se desarrollan son \textit{bubble\_chart} (Para el gráfico de burbujas), \textit{bar\_chart}(Para el gráfico de barras cilíndricas o cúbicas) y \textit{line\_chart}(Para el gráfico de líneas).
+Todos ellos siguen la siguiente estructura de código:
+\begin{itemize}
+	\item Registro del componente y definición del esquema.
+	
+	\lstinputlisting[language=JavaScript, title= Registro del componente y esquema]{code/iteracion2-schema.js}
+	En este esquema se puede ver la concordancia del HTML visto anteriormente y el componente. Vemos que se definen las cuatro propiedades especificando el tipo de dato. La propiedad más importante y novedosa en esta iteración es la de \textit{datapoints} la cual se le especifica que sea del tipo \textit{asset} (activo o recurso). Esto quiere decir que vamos a poder pasar al componente una ruta donde tengamos nuestro fichero JSON con los datos del gráfico.
+	
+	La única diferencia de esquema entre los tres componentes es el atributo \textit{type}. Este atributo se usa únicamente en el componente \textit{bar\_chart} para especificar si queremos un gráfico con barras cilíndricas o cúbicas. En posteriores iteraciones se usará este concepto para unificar los componentes en uno siguiendo los estándares de desarrollo de A-Frame.
+	\newline
+	\newline
+	\item Definición de la función \textit{init} y \textit{update}.
+	\lstinputlisting[language=JavaScript, title= Funciones init y update]{code/iteracion2-init-update.js}
+	
+	La función \textit{init} es llamada al inicio del ciclo de vida del componente. Sirve para inicializar ciertas variables del componentes o funciones \textit{listener}. En este caso, se inicializa la función \textit{FileLoader}
+	que nos provee Threejs encargada de cargar en memoria cualquier tipo de fichero.
+	
+	Por otro lado, la función \textit{update} es llamada después de la función \textit{init} en el ciclo de vida del componente. Además tiene la peculiaridad de ser invocada cada vez que se cambie algún atributo, por ello realizamos ciertas comprobaciones en el código. La primera de ellas, es comparar si el fichero de datos que se ha modificado es igual que el que teníamos cargado con la función \textit{deepEqual} de A-Frame. Si son iguales se ignora el fichero y no se realiza ningún trabajo.
+	En la segunda comprobación volvemos a comprobar que los datos en JSON son efectivamente distintos y si el fichero contiene datos válidos. Si es así, invocamos a la función \textit{onDataLoaded} que hemos definido en nuestro componente. Esta función no es nativa de A-Frame, si no que ha sido implementada en este proyecto y es donde se desarrolla toda la lógica de nuestra gráfica.
+	\newline
+	\newline
+	
+	\item Definición de la función \textit{onDataLoaded}
+	\lstinputlisting[language=JavaScript, title= Funciones onDataLoaded]{code/iteracion2-ondataloaded.js}
+	Finalmente, se define la función \textit{onDataLoaded} cuyo argumento \textit{file} es el fichero de datos que recibimos al inicializar el componente y cada vez que se actualice el mismo.
+	Primero se crea el componente genérico \textit{axis} que utilizan todos los gráficos pasándole como esquema el color y la posición de los ejes.
+	Seguidamente parseamos el fichero con la función JavaScript JSON.parse. Gracias a ella podemos recorrer cada punto del gráfico con un bucle.
+	Por cada elemento de los datos del JSON se crea una entidad de A-Frame, en este caso \textless a-sphere\textgreater. Los atributos vienen dados por el propio fichero de datos y el esquema del componente. Además se le añade una pequeña función para que cuando pasemos el ratón por encima de cada elemento, este se haga mayor.
+	
+\end{itemize}
 
-Después enseñamos el código de un componente y se comenta que todos son iguales.
-Aqui ademas se dice que cada gráfico rellena su componente axis y que este ha sido refactorizo
+Cabe destacar que el componente \textit{axis} ha sido refactorizado respecto a la primera iteración. En este caso se ha subdividido en dos componentes, uno de ellos genérico donde se recorren los ejes x, y, z y el otro donde se crean las líneas y ticks de los propios ejes quedando de la siguiente manera:
 
+\lstinputlisting[language=JavaScript, title= Componente axis]{code/iteracion2-axis.js}
 
-Por último se habla un poco del selector de gráfos. Su html y un poco de su código y Si eso un poco de la nueva configuracion con el css de webpack
+Se puede apreciar en el esquema del componente que ahora se puede definir la propiedad color.
 
-Cuando arrancamos el proyecto, nuevamente con el comando \textit{start} definido en el fichero \textit{package.json}, se obtiene como resultado la Figura~\ref{fig:iteracion2-resultado}. Se puede apreciar el menú de opciones donde se tiene la posibilidad de seleccionar un tipo de gráfico y cambiarlo dinámicamente sin necesidad de refrescar la página.
+\lstinputlisting[language=JavaScript, title= Componente axis-line]{code/iteracion2-axis-line.js}
 
-Todo ello gracias a la función \textit{update} de A-Frame.
+Por último, se ha añadido a modo de ejemplo para uso de esta librería un menú de opciones. Si se selecciona alguna de estas opciones se sustituye el gráfico anterior por el seleccionado.
+
+Para esto se han seguido los siguientes pasos:
+
+\begin{itemize}
+	\item Se añade al fichero \textit{webpack.config.js} las siguientes líneas para procesar CSS y JSON	
+	\lstinputlisting[language=JavaScript, title= webpack.config.js CSS y JSON]{code/iteracion2-webpack.js}.
+	
+	\item Añadimos esta dependencia al fichero \textit{package.json}.	
+	\lstinputlisting[language=Json, title= Dependencia para package.json]{code/iteracion2-package.json}
+		
+	\item Código HTML para el menú de opciones
+	\lstinputlisting[language=html, title= HTML menú de opciones]{code/iteracion2-menu.html}
+	
+	\item Código CSS para el menú de opciones
+	\lstinputlisting[language=Json, title= CSS menú de opciones]{code/iteracion2-menu.json}
+	
+	\item Código JavaScript para el menú de opciones
+	\lstinputlisting[language=JavaScript, title= JS menú de opciones]{code/iteracion2-menu.js}
+	
+\end{itemize}
+
+Cuando arrancamos el proyecto, nuevamente con el comando \textit{start} definido en el fichero \textit{package.json}, se obtiene como resultado la Figura~\ref{fig:iteracion2-resultado}. Se puede apreciar el menú de opciones donde se tiene la posibilidad de seleccionar un tipo de gráfico y cambiarlo dinámicamente sin necesidad de refrescar la página como vemos en la Figura~\ref{fig:iteracion2-resultadob}. Todo ello gracias a la función \textit{update} de A-Frame.
 \clearpage
 
 \begin{figure}
 	\centering
-	\includegraphics[width=8cm, keepaspectratio]{img/iteracion2-resultado}
-	\caption{Iteración 1: Resultado}
+	\includegraphics[width=12cm, keepaspectratio]{img/iteracion2-resultado}
+	\caption{Iteración 2: Resultado}
 	\label{fig:iteracion2-resultado}
-\end{figure} 
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=12cm, keepaspectratio]{img/iteracion2-resultadob}
+	\caption{Iteración 2: Resultado Gráfico de burbujas}
+	\label{fig:iteracion2-resultadob}
+\end{figure}
+\clearpage
 
 \section{Iteración 3. Refactorización y estandarización de la librería.} 
 \label{sec:iteracion_3}

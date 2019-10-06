@@ -1,0 +1,19 @@
+.div-opt {
+	background-color: #333;
+	color: #fafafa;
+	border-radius: 0;
+	font: 10px monospace;
+	left: 20px;
+	top: 20px;
+	line-height: 1em;
+	opacity: .85;
+	overflow: hidden;
+	padding: 10px;
+	position: fixed;
+	width: 300px;
+	z-index: 10000;
+}
+
+.max-width{
+	width: 100%;
+}
