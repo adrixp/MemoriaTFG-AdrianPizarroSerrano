@@ -7,14 +7,31 @@ AFRAME.registerComponent('axis', {
         const data = this.data;
         for (let axis of ['x', 'y', 'z']) {
             var axis_line = document.createElement('a-entity');
-            axis_line.setAttribute('axis-line',
-                {
+            axis_line.setAttribute('axis-line',{
                     'axis': axis,
                     'color': data.color,
-                    'position': data.position
-                }
+                    'position': data.position}
             );
             this.el.appendChild(axis_line);
+        }
+    }
+});
+AFRAME.registerComponent('axis-line', {
+    ...
+    update: function () {
+        ...
+        el.setAttribute('line',{
+            'start': {x: pos.x, y: pos.y, z: pos.z},
+            'end': line_end,
+            'color': data.color}
+        );
+        for (var tick = 1; tick < 10; tick++) {
+            ...
+            el.setAttribute('line__' + tick,{
+                'start': tick_start,
+                'end': tick_end,
+                'color': this.data.color}
+            );
         }
     }
 });

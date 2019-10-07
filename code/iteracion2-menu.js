@@ -1,7 +1,3 @@
-var bubble_chart       = {'color': 'green', 'size': 1, 'position': {x: 0, y: 0, z: 0}, 'datapoints': 'data.json'};
-var box_bar_chart      = {'color': 'red', 'size': 1, 'position': {x: 0, y: 0, z: 0}, 'datapoints': 'data.json', 'type':'box'};
-var cylinder_bar_chart = {'color': 'orange', 'size': 1, 'position': {x: 0, y: 0, z: 0}, 'datapoints': 'data.json', 'type':'cylinder'};
-var line_chart         = {'color': 'black', 'size': 1, 'position': {x: 0, y: 0, z: 0}, 'datapoints': 'data.json'};
 function changeChart() {
 	...
 	var entity = document.createElement('a-entity');
@@ -15,4 +11,5 @@ function changeChart() {
 		entity.setAttribute(selectedChart, line_chart);
 	parent.appendChild(entity);
 }
-document.getElementById("selectChart").addEventListener("change", changeChart);
+document.getElementById("selectChart")
+		.addEventListener("change", changeChart);
