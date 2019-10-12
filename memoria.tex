@@ -1025,8 +1025,8 @@ Por último, se ha añadido a modo de ejemplo para uso de esta librería un menú de
 Para esto se han seguido los siguientes pasos:
 
 \begin{itemize}
-	\item Se añade al fichero \textit{webpack.config.js} las siguiente configuración para empaquetar CSS y JSON	
-	\lstinputlisting[language=JavaScript, title= webpack.config.js CSS y JSON]{code/iteracion2-webpack.js}.
+	\item Se añade al fichero \textit{webpack.config.js} las siguiente configuración para empaquetar CSS y JSON.	
+	\lstinputlisting[language=JavaScript, title= webpack.config.js CSS y JSON]{code/iteracion2-webpack.js}
 	
 	\item Añadimos la dependencia \textit{css-loader} al fichero  \textit{package.json}.	
 	\lstinputlisting[language=Json, title= Dependencia para package.json]{code/iteracion2-package.json}
@@ -1041,11 +1041,11 @@ Para esto se han seguido los siguientes pasos:
 	
 \end{itemize}
 
-Cuando arrancamos el proyecto, nuevamente con el comando \textit{start} definido en el fichero \textit{package.json}, se obtiene como resultado la Figura~\ref{fig:iteracion2-resultado} y la Figura~\ref{fig:iteracion2-resultadob}.
+Cuando arrancamos el proyecto, nuevamente con el comando \textit{start} definido en el fichero \textit{package.json}, se obtiene como resultado las Figuras~\ref{fig:iteracion2-resultado} y~\ref{fig:iteracion2-resultadob}.
 \begin{figure}
 	\centering
 	\includegraphics[width=8cm, keepaspectratio]{img/iteracion2-resultado}
-	\caption{Iteración 2: Resultado}
+	\caption{Iteración 2: Resultado Gráfico de Barras}
 	\label{fig:iteracion2-resultado}
 \end{figure}
 \begin{figure}
@@ -1059,36 +1059,67 @@ Cuando arrancamos el proyecto, nuevamente con el comando \textit{start} definido
 \section{Iteración 3. Refactorización y estandarización de la librería.} 
 \label{sec:iteracion_3}
 
-Seguimos las recomendaciones de Aframe registry y creamos un nuevo repositorio con las best practise :
+En esta iteración, el objetivo es publicar nuestro componente en la comunidad de A-Frame. Para ello seguimos las instrucciones de A-Frame Registry\footnote{\url{https://github.com/aframevr/aframe-registry}} donde debemos seguir una serie de pasos para cumplir con las \textit{best practices}.
 
--Must be published to npm.
+Gracias a estas medidas tendremos nuestro componente correctamente versionado, publicado en varios repositorios de código listo para ser utilizado por terceros e incluso permitiendo la contribución de otros desarrolladores. Se creará un proyecto de cero donde integraremos nuestro antiguo componente siguiendo los siguientes pasos:
+\begin{itemize}
+	\item[--] En primer lugar se utiliza la herramienta \textit{angle}\footnote{\url{https://github.com/ngokevin/angle}}, la cual permite crear un proyecto de cero por línea de comando (Figura~\ref{fig:iteracion3-angle}). Se genera un componente con una arquitectura genérica (Figura~\ref{fig:iteracion3-arquitectura}).	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=16cm, keepaspectratio]{img/angle}
+		\caption{Iteración 3: Inicializar proyecto con Angle}
+		\label{fig:iteracion3-angle}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=6cm, keepaspectratio]{img/iteracion3-arquitectura}
+		\caption{Iteración 3: Nueva Arquitectura}
+		\label{fig:iteracion3-arquitectura}
+	\end{figure}		
+	\item[--] Se publica el componente en npm, el repositorio de paquetes de nodeJs, mediante el comando \textit{npm publish}. Para ello es necesario tener instalado npm en nuestro sistema y crearse una cuenta gratuita en la web oficial \footnote{\url{https://www.npmjs.com/}}
+	
+	\item[--] Se publica el componente en GitHub, un repositorio online de código. Para ello es necesario tener instalado git en nuestro sistema y crearse una cuenta gratuita en la web oficial \footnote{\url{https://github.com/}}. Una vez creado el proyecto en la web, debemos ir mediante línea de comandos donde tenemos nuestro proyecto y ejecutar \textit{git init}, \textit{git commit} y \textit{git push}.	
+	
+	\item[--] Se añade documentación sobre las propiedades del componente y una página de ejemplo de uso de la librería. Todo ello se puede consultar en la sección de Resultados. 
+	
+	\item[--] Se debe publicar una página web con ejemplos. Se propone \textit{GitHub Pages} la cual utilizamos para ver nuestro resultado\footnote{\url{https://adrixp.github.io/aframe-charts-component/}}.
+	
+	\item[--] Se debe añadir un enlace desde dicha página web al repositorio de GitHub.
+	
+	\item[--] Debe tener sentido en el contexto de una aplicación WebVR.
+	
+	\item[--] Debe incluir una imagen de vista previa o GIF en el archivo README.
+	
+	\item[--] Deberá seguir semver\footnote{\url{https://semver.org/}} en su esquema de versión de componente, reflejando la última versión estable de A-Frame.
+	
+	\item[--] Se debe auto registrar el componente con la función \textit{AFRAME.registerComponent}. En este último punto aprovechamos para realizar una refactorización del código. Nuestro template HTML queda de la siguiente manera:
+	
+	\lstinputlisting[language=html, title= Iteración 3: Template HTML]{code/iteracion3-template.html}
+	
+	Como se puede ver únicamente se instancia una entidad de A-Frame con el atributo \textit{charts}. Además, se utilizan dos propiedades, una donde se le indica la ruta del fichero de datos y el tipo de gráfico a representar.
+	
+	En cuanto al código JavaScript, únicamente registramos un componente llamado \textit{charts}. 
+	
+	\lstinputlisting[language=JavaScript, title= Iteración 3: Componente Charts]{code/iteracion3-component.js}
+	
+	Como vemos en su esquema, únicamente tendremos por ahora dos propiedades. La propiedad \textit{type} nos indica el tipo de gráfico que se va a generar, y en base a dicho tipo se selecciona una función u otra como la que vemos a continuación:
+	
+	\lstinputlisting[language=JavaScript, title= Iteración 3: Función para generar Gráfico Burbujas]{code/iteracion3-chart-function.js}
+	
+	Finalmente, el eje del gráfico también a recibido una refactorización importante de código quedando de la siguiente manera:
+	
+	\lstinputlisting[language=JavaScript, title= Iteración 3: Función para generar ejes]{code/iteracion3-axis.js}
 
--Must be published to GitHub.
+\end{itemize}
 
--Must self-register themselves with AFRAME.registerComponent.
+El resultado final es un único componente, cuyo código es mucho más limpio y nos vale para generar distintos tipos de gráficos. Además, cumple con todas las recomendaciones de A-Frame. Cabe destacar que se ha eliminado el gráfico de líneas debido a que visualmente no aporta información sino confusión.
 
--Must contain documentation on component properties and sample usage in the README.
 
--Must contain at least one example published to GitHub Pages.
-
--A link to the examples must be added as the GitHub repository's Website next to the GitHub repository's Description.
-
--Must make sense in the context of a WebVR application. This can change later, but the initial components of theRegistry will be under strict curation.
-
--Should include an attractive preview image or GIF in your README for display.
-
--Should follow semver in your component versioning scheme, mirroring A-Frame's latest stable version.
-
--Use angle, an A-Frame command-line tool, to bootstrap a component template for publishing.
-
--Add A-Frame Registry maintainer Kevin Ngo as a collaborator to your GitHub repository and as an owner to your npm package (npm owner add ngokevin) if you want help maintaining your component.
-
-\section{Iteración 4. Poblamiento de funcionalidad para el API. Resolución de incidencias de la comunidad.} 
+\section{Iteración 4. Poblamiento de funcionalidad de la API. Resolución de incidencias de la comunidad.} 
 \label{sec:iteracion_4}
 
--Gran refactorización de código. Componetizamos todo. Ejes y generación de gráficas separados
 
--Se añaden parametrización en los ejes. separacion de los ticks, grosor, posicion de los ejes y los ticks.
+- Se añaden parametrización en los ejes. separacion de los ticks, grosor, posicion de los ejes y los ticks.
 
 - Ejes parametrizables si hay datos negativos
 
@@ -1110,13 +1141,9 @@ Seguimos las recomendaciones de Aframe registry y creamos un nuevo repositorio c
 
 - Añadimos leyenda
 
--Añadimos la funcionalidad ddel totem. Cambiar datos de manera dinámica.
-
 -Pruebas de rendimiento (Creación de programa para generar random json con los datos que necesitamos)
 
--Mayor refactorización.
-
--Implementación del museo
+-Añadimos la funcionalidad del totem. Cambiar datos de manera dinámica.
 
 -Adaptación para Oculus Rift
 
