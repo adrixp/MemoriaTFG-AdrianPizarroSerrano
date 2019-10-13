@@ -1118,23 +1118,61 @@ El resultado final es un único componente, cuyo código es mucho más limpio y nos
 \section{Iteración 4. Poblamiento de funcionalidad de la API. Resolución de incidencias de la comunidad.} 
 \label{sec:iteracion_4}
 
-En esta cuarta iteración se tiene como objetivo poblar de funcionalidad el API de la librería. Para ello se aumentará el número de propiedades del esquema de nuestro componente y se adaptarán las distintas funciones para que todos los gráficos disfruten de dicha operatividad.
+En esta cuarta iteración se tiene como objetivo enriquecer el API de la librería. Para ello se aumentará el número de propiedades del esquema de nuestro componente y se adaptarán las distintas funciones para que todos los gráficos disfruten de dicha operatividad.
 
-Por otro lado se irá actualizando a la par la documentación del componente así como su página de ejemplo y casos de uso.
+Por otro lado, se irá actualizando la documentación del componente así como su página de ejemplo y casos de uso.
 
-Finalmente, gracias a la publicación del componente en la comunidad se reciben peticiones para añadir nuevos gráficos como el gráfico de tarta.
+Finalmente, gracias a la publicación del componente en la comunidad se recibe la petición para añadir nuevos gráficos como el gráfico de tarta quedando implementado al final de la iteración.
+\newline
 
-- Se añaden parametrización en los ejes. separacion de los ticks, grosor, posicion de los ejes y los ticks.
+Para aumentar dicha funcionalidad, se comienza actualizando el esquema del componente. En esta iteración se quiere dotar a los ejes x, y, z de un mayor protagonismo ya que ayuda a la hora de obtener información del gráfico. Por ello el esquema del componente queda de la siguiente manera:
 
-- Ejes parametrizables si hay datos negativos
+\lstinputlisting[language=JavaScript, title= Iteración 4: Esquema del componente]{code/iteracion4-schema.js}
 
-- Grid axis
+La descripción de la funcionalidad de estos nuevos parámetros es la siguiente:
+
+\begin{itemize}
+	
+	\item \textbf{axis\_position:} Posición de los ejes en las coordenadas tridimensionales. Es Posible que en función de los datos el usuario prefiera tener los ejes en una u otra posición. Por defecto están en (0,0,0)
+	
+	\item \textbf{axis\_color:} Color de los ejes. El valor que se le pasa es un \textit{string} con el valor que se le daría al CSS de cualquier elemento HTML. El valor puede ser el color en inglés o códigos de color Hexadecimal, RGB y HSL. 
+	
+	\item \textbf{axis\_length:} Longitud de los ejes. Por defecto, si no se le pasa ningún valor los ejes serán adaptativos. Es decir, lo ejes por defecto tienen la longitud x,y,z del punto que mayor valor tenga. 
+	
+	\item \textbf{axis\_negative:} Si queremos mostrar los ejes en las coordenadas x,y,z negativos.
+	
+	Para implementar estas dos últimas propiedades se utiliza la siguiente comprobación en el código y la siguiente función que recorre los puntos para obtener el máximo.
+	
+	\lstinputlisting[language=JavaScript, title= Iteración 4: Ejes adaptativos y negativos]{code/iteracion4-axis-adaptive.js}
+	
+	Como vemos se comprueba si la longitud de los ejes es cero o si queremos ejes negativos. Después recorremos todos los datos para devolver un objeto que posteriormente utilizaremos en la generación de los ejes de coordenadas.
+	
+	\item \textbf{axis\_tick\_separation:} Separación de los \textit{ticks} de los ejes. Por defecto será de una unidad.
+	
+	\item \textbf{axis\_tick\_length:} Longitud de los \textit{ticks}.
+	
+	\item \textbf{axis\_tick\_color:} Color de los ticks	
+	
+	\item \textbf{axis\_grid:} Esta opción permite generar una rejilla por cada plano que forman los ejes x,y,z. Esta rejilla ayuda a la hora de interpretar de los datos representados
+	
+	\item \textbf{axis\_grid\_3D} En este caso, se genera una rejilla por cada punto de cada eje tridimensional. Añade una mayor precisión que el punto anterior. Por contra genera muchas líneas y puede generar en algún caso confusión.
+
+	La función que genera nuestros ejes quedaría de la siguiente manera:
+	
+	\lstinputlisting[language=JavaScript, title= Iteración 4: Nueva generación de ejes]{code/iteracion4-axis.js}
+	
+	Como se puede ver, primero se inicializan todas las propiedades tales como color, longitud etc. tanto de los ejes como de los \textit{ticks}. Seguidamente, se generan dichos ejes en función de la posición y de si se requiere que tomen valores negativos o no. Por último, se utiliza esto mismo para generar cada \textit{tick} de cada eje. Teniendo en cuenta su longitud e intervalos.
+	
+\end{itemize}
+
+Una vez llegado a este punto se recibe la petición por parte de un miembro de la comunidad de A-Frame de incluir en la librería un gráfico de tarta\footnote{\url{https://github.com/adrixp/aframe-charts-component/issues/1}}. Por ello se decide aplazar otras propiedades definidas en el \textit{roadmap} de esta iteracion y se pospone al final de la misma. Entre estas nueva funcionalidad se incluye el texto y numeración en los ejes y el color y tamaño de los mismos.
+
+Por tanto, se decide implementar este nuevo tipo de gráfico en la librería. Además, visto que tanto el gráfico de tartas y el gráfico con forma de donut siguen un desarrollo muy parecido se deciden añadir ambos.
+
+Primero se comienza
+
 
 -Texto y numeración de los ejes, color y tamaño del mismo
-
-
-
--Se añaden los gráficos de tarta y donut Gracias al Change Resquest de la comunidad! cerrando el issue
 
 
 \section{Iteración 5. Adaptación para dispositivos de VR y representación dinámica de datos.} 
@@ -1161,19 +1199,7 @@ Finalmente, gracias a la publicación del componente en la comunidad se reciben p
 \section{Arquitectura general} 
 \label{sec:arquitectura}
 
-Hablo de la arquitectura con nodejs.
-
-package json, index.js node modules.
-
-Ejes.js
-
-Leyenda.js
-
-Totem.js
-
-JSON para datos
-
-Foto general de la arquitectura
+Foto final de la arquitectura
 
 \section{Funcionamiento de la Librería} 
 \label{sec:funcionamiento_libreria}
