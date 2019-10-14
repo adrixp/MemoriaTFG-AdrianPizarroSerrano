@@ -1167,13 +1167,49 @@ La descripción de la funcionalidad de estos nuevos parámetros es la siguiente:
 
 Una vez llegado a este punto se recibe la petición por parte de un miembro de la comunidad de A-Frame de incluir en la librería un gráfico de tarta\footnote{\url{https://github.com/adrixp/aframe-charts-component/issues/1}}. Por ello se decide aplazar otras propiedades definidas en el \textit{roadmap} de esta iteracion y se pospone al final de la misma. Entre estas nueva funcionalidad se incluye el texto y numeración en los ejes y el color y tamaño de los mismos.
 
-Por tanto, se decide implementar este nuevo tipo de gráfico en la librería. Además, visto que tanto el gráfico de tartas y el gráfico con forma de donut siguen un desarrollo muy parecido se deciden añadir ambos.
+Por tanto, se decide implementar este nuevo tipo de gráfico en la librería. Además, visto que tanto el gráfico de tartas y el gráfico con forma de \textit{donut} siguen un desarrollo muy parecido se decide añadir ambos.
 
-Primero se comienza
+Primero se comienza añadiendo dos nuevas propiedades al esquema del componente
+\lstinputlisting[language=JavaScript, title= Iteración 4: Nuevas propiedades:  gráfico de tarta]{code/iteracion4-schema-pie.js}
+
+En estas propiedades se define el radio del gráfico de tartas, es decir, el tamaño que tendrá. Además se permite elegir si se quiere en forma de \textit{donut} o no.
+
+En cuanto al código, antes de llamar a la función que genera las partes del gráfico se realizan ciertas operaciones y comprobaciones.
+
+\lstinputlisting[language=JavaScript, title= Iteración 4: Gráfico de tarta: Inicialización]{code/iteracion4-pie-check.js}
+
+Primero se necesita calcular el valor total de todos los puntos a representar. Para ello se recorre en un bucle y se añade a la variable \textit{pie\_total\_value}. Acto seguido se calcula el ángulo que tendrá cada valor a representar. Para ello se utiliza la siguiente fórmula:
+
+\[angulo = \frac{360 * valorpunto}{valortotal}\]
+
+Por último incrementamos el ángulo inicial para el siguiente punto y llamamos a la función que se ve a continuación:
+
+\lstinputlisting[language=JavaScript, title= Iteración 4: Funcíon gráfico de tarta]{code/iteracion4-pie-function.js}
+
+Como se puede observar, esta función recibe cuatro argumentos. El punto de donde se tomar el color, ángulo de inicio, ángulo final y el radio. Se utiliza la entidad pura \textless a-cylinder\textgreater de A-Frame y gracias a los atributos \textit{theta-start} y \textit{theta-end} se genera nuestro trozo de tarta. Para el gráfico en forma de \textit{donut} se sigue el mismo procedimiento. Lo único que cambia, es que se utiliza el elemento toroide de A-Frame llamado \textless a-torus\textgreater con las propiedades \textit{rotation} y \textit{arc} para los ángulos de inicio y fin. Podemos ver el resultado en la ~\ref{fig:iteracion4-result}.
+
+Finalmente, se decide implementar las últimas propiedades para esta iteración. Nuevamente se quiere aumentar la funcionalidad y legibilidad de los ejes ya que nos aportarán bastante información del gráfico. Por ello se decide añadir numeración en los ejes tridimensionales y que se permita elegir el color y tamaño.
+
+Para este menester, se utilizará el elemento \textless a-text\textgreater de A-Frame como veremos a continuación.
+
+Como siempre se comienza añadiendo al esquema las nuevas propiedades que hacen que el componente sea totalmente configurable para el usuario y pueda utilizar las herramientas que necesite para cada caso de uso.
+
+\lstinputlisting[language=JavaScript, title= Iteración 4: Funcíon gráfico de tarta]{code/iteracion4-schema-axis-text.js}
+
+Como se observa, simplemente se añade si se quiere incluir texto, su color y el tamaño. En cuanto al código, se modifica la función \textit{generateAxis} para incluir el texto de la siguiente manera:
+
+\lstinputlisting[language=JavaScript, title= Iteración 4: Funcíon gráfico de tarta]{code/iteracion4-axis-text.js}
+
+Como vemos, por cada tick de cada eje tridimensional se añade el valor correspondiente redondeado. Podemos ver el resultado en la ~\ref{fig:iteracion4-result}.
 
 
--Texto y numeración de los ejes, color y tamaño del mismo
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm, keepaspectratio]{img/iteracion4-result}
+	\caption{Iteración 4: Resultado}
+	\label{fig:iteracion4-result}
+\end{figure}
+\clearpage
 
 \section{Iteración 5. Adaptación para dispositivos de VR y representación dinámica de datos.} 
 \label{sec:iteracion_5}

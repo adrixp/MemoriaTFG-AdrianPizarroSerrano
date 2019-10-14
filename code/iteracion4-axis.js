@@ -1,15 +1,7 @@
 function generateAxis(element, properties) {
     let axis_length = properties.axis_length;
     let axis_position = properties.axis_position;
-    let axis_color = properties.axis_color;
-
-    let tick_separation = properties.axis_tick_separation;
-    let tick_length = properties.axis_tick_length;
-    let tick_color = properties.axis_tick_color;
-
-    let axis_negative = properties.axis_negative;
-    let axis_negative_offset = 0;
-
+    ...
     for (let axis of ['x', 'y', 'z']) {
 
         let line_end = {x: axis_position.x, y: axis_position.y, z: axis_position.z};
