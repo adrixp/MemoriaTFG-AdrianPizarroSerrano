@@ -1133,19 +1133,19 @@ La descripción de la funcionalidad de estos nuevos parámetros es la siguiente:
 
 \begin{itemize}
 	
-	\item \textbf{axis\_position:} Posición de los ejes en las coordenadas tridimensionales. Es Posible que en función de los datos el usuario prefiera tener los ejes en una u otra posición. Por defecto están en (0,0,0)
+	\item \textbf{axis\_position:} Posición de los ejes en las coordenadas tridimensionales. Es posible que en función de los datos el usuario prefiera tener los ejes en una u otra posición. Por defecto están en (0,0,0).
 	
 	\item \textbf{axis\_color:} Color de los ejes. El valor que se le pasa es un \textit{string} con el valor que se le daría al CSS de cualquier elemento HTML. El valor puede ser el color en inglés o códigos de color Hexadecimal, RGB y HSL. 
 	
-	\item \textbf{axis\_length:} Longitud de los ejes. Por defecto, si no se le pasa ningún valor los ejes serán adaptativos. Es decir, lo ejes por defecto tienen la longitud x,y,z del punto que mayor valor tenga. 
+	\item \textbf{axis\_length:} Longitud de los ejes. Por defecto, si no se le pasa ningún valor los ejes serán adaptativos. Es decir, lo ejes por defecto tienen la longitud x,y,z del punto que mayor valor tenga en cada eje de coordenada. 
 	
-	\item \textbf{axis\_negative:} Si queremos mostrar los ejes en las coordenadas x,y,z negativos.
+	\item \textbf{axis\_negative:} Opción para mostrar los ejes en las coordenadas x,y,z negativos.
 	
-	Para implementar estas dos últimas propiedades se utiliza la siguiente comprobación en el código y la siguiente función que recorre los puntos para obtener el máximo.
+	Para implementar estas dos últimas propiedades se utiliza la siguiente comprobación en el código y una función que recorre los puntos para obtener el mayor de todos en cada eje.
 	
 	\lstinputlisting[language=JavaScript, title= Iteración 4: Ejes adaptativos y negativos]{code/iteracion4-axis-adaptive.js}
 	
-	Como vemos se comprueba si la longitud de los ejes es cero o si queremos ejes negativos. Después recorremos todos los datos para devolver un objeto que posteriormente utilizaremos en la generación de los ejes de coordenadas.
+	Como vemos se comprueba si la longitud de los ejes es cero o si se quieren ejes negativos. Después recorremos todos los datos para devolver un objeto que posteriormente se utiliza en la generación de los ejes de coordenadas.
 	
 	\item \textbf{axis\_tick\_separation:} Separación de los \textit{ticks} de los ejes. Por defecto será de una unidad.
 	
@@ -1153,9 +1153,9 @@ La descripción de la funcionalidad de estos nuevos parámetros es la siguiente:
 	
 	\item \textbf{axis\_tick\_color:} Color de los ticks	
 	
-	\item \textbf{axis\_grid:} Esta opción permite generar una rejilla por cada plano que forman los ejes x,y,z. Esta rejilla ayuda a la hora de interpretar de los datos representados
+	\item \textbf{axis\_grid:} Esta opción permite generar una rejilla por cada plano que forman los ejes x,y,z. Esta rejilla ayuda a la hora de interpretar los datos representados
 	
-	\item \textbf{axis\_grid\_3D} En este caso, se genera una rejilla por cada punto de cada eje tridimensional. Añade una mayor precisión que el punto anterior. Por contra genera muchas líneas y puede generar en algún caso confusión.
+	\item \textbf{axis\_grid\_3D} En este caso, se genera una rejilla por cada punto de cada eje tridimensional. Añade mayor precisión que el punto anterior. Por contra genera muchas líneas y puede generar, en algún caso, confusión.
 
 	La función que genera nuestros ejes quedaría de la siguiente manera:
 	
@@ -1165,11 +1165,12 @@ La descripción de la funcionalidad de estos nuevos parámetros es la siguiente:
 	
 \end{itemize}
 
-Una vez llegado a este punto se recibe la petición por parte de un miembro de la comunidad de A-Frame de incluir en la librería un gráfico de tarta\footnote{\url{https://github.com/adrixp/aframe-charts-component/issues/1}}. Por ello se decide aplazar otras propiedades definidas en el \textit{roadmap} de esta iteracion y se pospone al final de la misma. Entre estas nueva funcionalidad se incluye el texto y numeración en los ejes y el color y tamaño de los mismos.
+Una vez llegado a este punto se recibe la petición por parte de un miembro de la comunidad de A-Frame de incluir en la librería un gráfico de tarta\footnote{\url{https://github.com/adrixp/aframe-charts-component/issues/1}}. Por ello se decide aplazar otras propiedades definidas en el \textit{roadmap} de esta iteracion y se pospone al final de la misma. Estas nuevas funcionalidades serían las de incluir numeración en los ejes y color y tamaño de los mismos.
 
-Por tanto, se decide implementar este nuevo tipo de gráfico en la librería. Además, visto que tanto el gráfico de tartas y el gráfico con forma de \textit{donut} siguen un desarrollo muy parecido se decide añadir ambos.
+En un estudio previo se observa que la implementación del gráfico de tartas y el gráfico con forma de \textit{donut} siguen un desarrollo muy parecido, por lo que se decide añadir ambos.
 
 Primero se comienza añadiendo dos nuevas propiedades al esquema del componente
+
 \lstinputlisting[language=JavaScript, title= Iteración 4: Nuevas propiedades:  gráfico de tarta]{code/iteracion4-schema-pie.js}
 
 En estas propiedades se define el radio del gráfico de tartas, es decir, el tamaño que tendrá. Además se permite elegir si se quiere en forma de \textit{donut} o no.
@@ -1186,13 +1187,13 @@ Por último incrementamos el ángulo inicial para el siguiente punto y llamamos a 
 
 \lstinputlisting[language=JavaScript, title= Iteración 4: Funcíon gráfico de tarta]{code/iteracion4-pie-function.js}
 
-Como se puede observar, esta función recibe cuatro argumentos. El punto de donde se tomar el color, ángulo de inicio, ángulo final y el radio. Se utiliza la entidad pura \textless a-cylinder\textgreater de A-Frame y gracias a los atributos \textit{theta-start} y \textit{theta-end} se genera nuestro trozo de tarta. Para el gráfico en forma de \textit{donut} se sigue el mismo procedimiento. Lo único que cambia, es que se utiliza el elemento toroide de A-Frame llamado \textless a-torus\textgreater con las propiedades \textit{rotation} y \textit{arc} para los ángulos de inicio y fin. Podemos ver el resultado en la ~\ref{fig:iteracion4-result}.
+Como se puede observar, esta función recibe cuatro argumentos. El punto de donde se toma el color, ángulo de inicio, ángulo de fin y el radio. Se utiliza la entidad pura \textless a-cylinder\textgreater de A-Frame y gracias a los atributos \textit{theta-start} y \textit{theta-end} se genera nuestro trozo de tarta. Para el gráfico en forma de \textit{donut} se sigue el mismo procedimiento. Lo único que cambia, es que se utiliza el elemento toroide de A-Frame llamado \textless a-torus\textgreater con las propiedades \textit{rotation} y \textit{arc} para los ángulos de inicio y fin. Podemos ver el resultado en la Figura~\ref{fig:iteracion4-result}.
 
-Finalmente, se decide implementar las últimas propiedades para esta iteración. Nuevamente se quiere aumentar la funcionalidad y legibilidad de los ejes ya que nos aportarán bastante información del gráfico. Por ello se decide añadir numeración en los ejes tridimensionales y que se permita elegir el color y tamaño.
+Finalmente, se decide implementar las últimas propiedades para esta iteración. Nuevamente se quiere aumentar la funcionalidad y legibilidad de los ejes ya que aportará bastante información del gráfico. Por ello se decide añadir numeración en los ejes tridimensionales y que se permita elegir el color y tamaño.
 
 Para este menester, se utilizará el elemento \textless a-text\textgreater de A-Frame como veremos a continuación.
 
-Como siempre se comienza añadiendo al esquema las nuevas propiedades que hacen que el componente sea totalmente configurable para el usuario y pueda utilizar las herramientas que necesite para cada caso de uso.
+Como siempre, se comienza añadiendo al esquema las nuevas propiedades que hacen que el componente sea totalmente configurable para el usuario y pueda utilizar las herramientas que necesite para cada caso de uso.
 
 \lstinputlisting[language=JavaScript, title= Iteración 4: Funcíon gráfico de tarta]{code/iteracion4-schema-axis-text.js}
 
@@ -1200,7 +1201,7 @@ Como se observa, simplemente se añade si se quiere incluir texto, su color y el 
 
 \lstinputlisting[language=JavaScript, title= Iteración 4: Funcíon gráfico de tarta]{code/iteracion4-axis-text.js}
 
-Como vemos, por cada tick de cada eje tridimensional se añade el valor correspondiente redondeado. Podemos ver el resultado en la ~\ref{fig:iteracion4-result}.
+Finalmente, por cada tick de cada eje tridimensional se añade el valor correspondiente redondeado con la función \textit{Math.round}. Se puede ver el resultado en la Figura~\ref{fig:iteracion4-result}.
 
 
 \begin{figure}[H]
