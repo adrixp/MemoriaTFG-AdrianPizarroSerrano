@@ -1212,16 +1212,23 @@ Finalmente, por cada tick de cada eje tridimensional se añade el valor correspon
 \end{figure}
 \clearpage
 
-\section{Iteración 5. Adaptación para dispositivos de VR y representación dinámica de datos.} 
+\section{Iteración 5. Consumo de otras fuentes de datos y Adaptación para dispositivos de VR.} 
 \label{sec:iteracion_5}
 
--Añadimos pop up
+En esta iteración, se tiene como objetivo seguir aumentando la información proporcionada por los gráficos mediante la implementación de una leyenda y de un panel informativo o \textit{pop-up}.
+
+Por otro lado, se desarrollará un nuevo componente que nos permitirá cambiar los datos del gráfico de manera dinámica con un solo \textit{click}. Además, se habilitará en la librería la opción de consumir de otras fuentes de datos. Hasta ahora se tenía la opción de incluirlos mediante ficheros JSON, pero para poder utilizar la librería en cualquier otra aplicación web es muy importante este desarrollo.
+
+Por último, cumpliendo con otro de los objetivos más importantes, se dotará de un módulo de ejemplo para el uso de la librería con dispositivos de realidad virtual. De esta manera, cerraremos el círculo poniendo broche final a esta memoria.
+\newline
+
+Primero se comienza con el desarrollo del componente \textit{pop-up}. Para ello
 
 - Añadimos leyenda
 
--Pruebas de rendimiento (Creación de programa para generar random json con los datos que necesitamos)
-
 -Añadimos la funcionalidad del totem. Cambiar datos de manera dinámica.
+
+-Adaptación para llamadas Ajax
 
 -Adaptación para Oculus Rift
 
