@@ -1195,11 +1195,11 @@ Para este menester, se utilizará el elemento \textless a-text\textgreater de A-F
 
 Como siempre, se comienza añadiendo al esquema las nuevas propiedades que hacen que el componente sea totalmente configurable para el usuario y pueda utilizar las herramientas que necesite para cada caso de uso.
 
-\lstinputlisting[language=JavaScript, title= Iteración 4: Funcíon gráfico de tarta]{code/iteracion4-schema-axis-text.js}
+\lstinputlisting[language=JavaScript, title= Iteración 4: Esquema texto de los ejes]{code/iteracion4-schema-axis-text.js}
 
 Como se observa, simplemente se añade si se quiere incluir texto, su color y el tamaño. En cuanto al código, se modifica la función \textit{generateAxis} para incluir el texto de la siguiente manera:
 
-\lstinputlisting[language=JavaScript, title= Iteración 4: Funcíon gráfico de tarta]{code/iteracion4-axis-text.js}
+\lstinputlisting[language=JavaScript, title= Iteración 4: Código para generar el texto de los ejes.]{code/iteracion4-axis-text.js}
 
 Finalmente, por cada tick de cada eje tridimensional se añade el valor correspondiente redondeado con la función \textit{Math.round}. Se puede ver el resultado en la Figura~\ref{fig:iteracion4-result}.
 
@@ -1212,25 +1212,99 @@ Finalmente, por cada tick de cada eje tridimensional se añade el valor correspon
 \end{figure}
 \clearpage
 
-\section{Iteración 5. Consumo de otras fuentes de datos y Adaptación para dispositivos de VR.} 
+\section{Iteración 5. Leyenda y pop-up, consumo de otras fuentes de datos y Adaptación para dispositivos de VR.} 
 \label{sec:iteracion_5}
 
 En esta iteración, se tiene como objetivo seguir aumentando la información proporcionada por los gráficos mediante la implementación de una leyenda y de un panel informativo o \textit{pop-up}.
 
-Por otro lado, se desarrollará un nuevo componente que nos permitirá cambiar los datos del gráfico de manera dinámica con un solo \textit{click}. Además, se habilitará en la librería la opción de consumir de otras fuentes de datos. Hasta ahora se tenía la opción de incluirlos mediante ficheros JSON, pero para poder utilizar la librería en cualquier otra aplicación web es muy importante este desarrollo.
+Por otro lado, se desarrollará un nuevo componente que nos permitirá cambiar los datos del gráfico de manera dinámica con un solo \textit{click}. Además, se habilitará en la librería la opción de consumir de otras fuentes de datos. Hasta ahora se tenía la opción de incluirlos mediante ficheros JSON, pero para poder utilizar la librería de manera más versátil se considera importante este desarrollo.
 
-Por último, cumpliendo con otro de los objetivos más importantes, se dotará de un módulo de ejemplo para el uso de la librería con dispositivos de realidad virtual. De esta manera, cerraremos el círculo poniendo broche final a esta memoria.
+Por último, cumpliendo con otro de los objetivos más importantes, se dotará de un módulo de ejemplo para el uso de la librería con dispositivos de realidad virtual.
 \newline
 
-Primero se comienza con el desarrollo del componente \textit{pop-up}. Para ello
+Primero se comienza con el desarrollo del \textit{pop-up}. Esta funcionalidad se encarga de mostrar un pequeño recuadro encima de cada punto tridimensional. Gracias a ello, pasando el cursor por cada punto se mostrará dicha información. Para ello añadimos al esquema de nuestro componente la siguiente propiedad:
 
-- Añadimos leyenda
+\lstinputlisting[language=JavaScript, title= Iteración 5: Propiedad del esquema para el pop-up]{code/iteracion5-schema-popup.js}
 
--Añadimos la funcionalidad del totem. Cambiar datos de manera dinámica.
+Esta propiedad únicamente nos indica si queremos que se muestre o no el \textit{pop-up}. Además solo se podrá mostrar para gráficos que no sean del tipo tarta.
+Por cada punto, utilizamos una función que escucha eventos. Es decir, si se detecta que el cursor está sobre un punto en cuestión se llamará a la función, y si sale del espacio que ocupa dicho punto llamará a otra para dejar de mostrar el \textit{pop-up}.
 
--Adaptación para llamadas Ajax
+\lstinputlisting[language=JavaScript, title= Iteración 5: Funciones que escuchan eventos para mostrar u ocultar el pop-up]{code/iteracion5-listener-popup.js}
 
--Adaptación para Oculus Rift
+A continuación se puede ver la función que genera el plano con el texto del \textit{pop-up}
+
+\lstinputlisting[language=JavaScript, title= Iteración 5: Código para generar el pop-up]{code/iteracion5-code-popup.js}
+
+Por último, si se cumple la condición de mostrar el \textit{pop-up} llamamos a la función \textit{generatePopUp} la cual simplemente genera un plano con la información del punto. Se puede ver el resultado en la Figura~\ref{fig:iteracion5-popup}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=8cm, keepaspectratio]{img/iteracion5-popup}
+	\caption{Iteración 5: Resultado Pop-up}
+	\label{fig:iteracion5-popup}
+\end{figure}
+
+El siguiente objetivo para esta iteración es incluir una leyenda para gráficos de tipo tarta. Para ello se sigue una estrategia similar que para el \textit{pop-up}. Se comienza añadiendo varias propiedades al esquema del componente.
+
+\lstinputlisting[language=JavaScript, title= Iteración 5: Propiedad del esquema para la leyenda]{code/iteracion5-schema-legend.js}
+
+En este caso se usan cuatro propiedades. La primera, \textit{show\_legend\_info}, se utiliza para mostrar o no la leyenda. Las otras propiedades son para establecer la posición y rotación de la leyenda. Al ser un plano en el espacio, se facilita al usuario el poder colocarla donde necesite. Además se da la opción de utilizar un título para la leyenda, que por defecto es 'Leyenda'. En contraposición con el \textit{pop-up} se da una mayor parametrización debido a que el \textit{pop-up} hereda estos parámetros de sus puntos mientras que la leyenda no.
+
+En cuanto al código se utilizan cuatro funciones para generarla:
+
+\lstinputlisting[language=JavaScript, title= Iteración 5: Funciones para generar la leyenda]{code/iteracion5-code-legend.js}
+
+Primero obtenemos una recopilación de las propiedades que hemos establecido en el esquema. Seguidamente se genera el título de la leyenda y una entrada de texto para cada dato del gráfico. Por otro lado, se quiere mostrar de manera destacada el punto donde se tenga el cursor. Para ello, de la misma manera que se hizo para el \textit{pop-up} se utilizan funciones que escuchen eventos. De esta manera si se selecciona un punto se destaca dicho texto para una mejor interpretación de los datos por parte del usuario. 
+
+A continuación vemos el código utilizado para generar lo comentado anteriormente:
+
+\lstinputlisting[language=JavaScript, title= Iteración 5: Código para generar la leyenda]{code/iteracion5-codemore-legend.js}
+
+
+En la Figura~\ref{fig:iteracion5-legend} se observa el resultado final.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=8cm, keepaspectratio]{img/iteracion5-legend}
+	\caption{Iteración 5: Resultado Pop-up}
+	\label{fig:iteracion5-legend}
+\end{figure}
+
+
+
+
+
+
+
+-Añadimos la funcionalidad del totem. Cambiar datos de manera dinámica. LAst THING
+
+
+
+
+
+
+
+
+
+
+
+
+
+Por otro lado, uno de los últimos cambios que se han realizado en la librería es la posibilidad de obtener los datos con llamadas AJAX y no únicamente con ficheros JSON. Hoy en día, en cualquier entorno o aplicación web, lo común es obtener los datos mediante llamadas AJAX en incluso ir actualizando los mismos con dichas llamadas. Por ello, se ha dotado a la librería de esta funcionalidad. Gracias a  podrá ser utilizada con mayor versatilidad en cualquier aplicación web.
+
+A continuación se muestra la parte de código encargada de gestionar ficheros u objetos de datos provenientes de llamadas AJAX o variables:
+
+\lstinputlisting[language=JavaScript, title= Iteración 5: Código gestión de Objetos o ficheros]{code/iteracion5-ajax.js}
+
+Como vemos simplemente se comprueba el tipo de objeto que se le pasa a la función update de A-Frame. Si es un JSON no recibe tratamiento, si es un String se parsea a JSON y si es un fichero se obtiene con la función loader de ThreeJS descrita anteriormente.
+\newline
+
+Finalmente se provee de un ejemplo para la visualización de la librería con dispositivos de Realidad Virtual. Para ellos simplemente es necesario añadir a nuestro códgio HTML las siguientes propiedades que nos ofrece la librería de A-Frame.
+
+\lstinputlisting[language=HTML, title= Iteración 5: Código para integración con dispositivos VR]{code/iteracion5-vr-control.html}
+
+Como vemos, añadiendo la entidad \textit{laser-control} de A-Frame dotamos al dispositivo VR del control necesario para poder interactuar con la librería. Además para facilitar la visualización, se le añade la entidad \textit{movement-control} con el parámetro \textit{fly} y valor \textit{true}. Esto nos permite que la cámara se mueva a la par del movimiento del usuario que utilice el dispositivo de realidad virtual.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1249,6 +1323,12 @@ Foto final de la arquitectura
 \label{sec:funcionamiento_libreria}
 
 Manual de usuario con lo que hay en la web.
+
+Ejemplo de uso con AJAX:
+
+\lstinputlisting[language=HTML, title= Iteración 5: Código HTML de ejemplo]{code/Resultados-ajax.html}
+
+\lstinputlisting[language=JavaScript, title= Iteración 5: Código Ajax de ejemplo]{code/Resultados-ajax.js}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

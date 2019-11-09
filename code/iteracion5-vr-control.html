@@ -1,0 +1,11 @@
+<a-scene background="color: grey" cursor="rayOrigin:mouse"> <!-- Cursor mouse clickable. -->
+	<a-light type="point" intensity="1" position="-2 10 10"></a-light>
+
+	<a-entity charts="type: bar;      dataPoints: ../data/dataPositive.json" position="-50 0 10" rotation="0 30 -10"></a-entity>
+
+	<a-entity movement-controls="fly: true" position="0 30 30" rotation="-24 15 0"> <!-- Camera fly movement. -->
+		<a-camera position="4.2 -1 1.5" rotation="0 -1 0">
+		</a-camera>
+		<a-entity laser-controls="hand: right"></a-entity> <!-- Control for Oculus Rift. -->
+	</a-entity>
+</a-scene>
