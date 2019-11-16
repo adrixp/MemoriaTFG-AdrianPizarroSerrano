@@ -32,7 +32,7 @@
 \usepackage{latexsym}  %% Logo LaTeX
 \usepackage[hidelinks]{hyperref}
 \usepackage{listings}
-\usepackage{xcolor}
+\usepackage[table,xcdraw]{xcolor}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -1215,7 +1215,7 @@ Finalmente, por cada tick de cada eje tridimensional se añade el valor correspon
 \section{Iteración 5. Leyenda y pop-up, consumo de otras fuentes de datos y Adaptación para dispositivos de VR.} 
 \label{sec:iteracion_5}
 
-En esta iteración, se tiene como objetivo seguir aumentando la información proporcionada por los gráficos mediante la implementación de una leyenda y de un panel informativo o \textit{pop-up}.
+En esta última iteración, se tiene como objetivo seguir aumentando la información proporcionada por los gráficos mediante la implementación de una leyenda y de un panel informativo o \textit{pop-up}.
 
 Por otro lado, se desarrollará un nuevo componente que nos permitirá cambiar los datos del gráfico de manera dinámica con un solo \textit{click}. Además, se habilitará en la librería la opción de consumir de otras fuentes de datos. Hasta ahora se tenía la opción de incluirlos mediante ficheros JSON, pero para poder utilizar la librería de manera más versátil se considera importante este desarrollo.
 
@@ -1231,7 +1231,7 @@ Por cada punto, utilizamos una función que escucha eventos. Es decir, si se dete
 
 \lstinputlisting[language=JavaScript, title= Iteración 5: Funciones que escuchan eventos para mostrar u ocultar el pop-up]{code/iteracion5-listener-popup.js}
 
-A continuación se puede ver la función que genera el plano con el texto del \textit{pop-up}
+A continuación se puede ver la función que genera el elemento \textit{pop-up}. Simplemente se crea la entidad plano (nativa de A-Frame) con un tamaño predefinido y un texto con la información.
 
 \lstinputlisting[language=JavaScript, title= Iteración 5: Código para generar el pop-up]{code/iteracion5-code-popup.js}
 
@@ -1248,9 +1248,9 @@ El siguiente objetivo para esta iteración es incluir una leyenda para gráficos d
 
 \lstinputlisting[language=JavaScript, title= Iteración 5: Propiedad del esquema para la leyenda]{code/iteracion5-schema-legend.js}
 
-En este caso se usan cuatro propiedades. La primera, \textit{show\_legend\_info}, se utiliza para mostrar o no la leyenda. Las otras propiedades son para establecer la posición y rotación de la leyenda. Al ser un plano en el espacio, se facilita al usuario el poder colocarla donde necesite. Además se da la opción de utilizar un título para la leyenda, que por defecto es 'Leyenda'. En contraposición con el \textit{pop-up} se da una mayor parametrización debido a que el \textit{pop-up} hereda estos parámetros de sus puntos mientras que la leyenda no.
+En este caso se usan cuatro propiedades. La primera, \textit{show\_legend\_info}, se utiliza para mostrar o no la leyenda. Las otras propiedades son para establecer la posición y rotación. Al ser un plano en el espacio, se facilita al usuario el poder colocarla donde necesite. Además se da la opción de utilizar un título para la leyenda, que por defecto es 'Leyenda'. En contraposición con el \textit{pop-up} se da una mayor parametrización debido a que el \textit{pop-up} hereda estos parámetros de sus puntos mientras que la leyenda no.
 
-En cuanto al código se utilizan cuatro funciones para generarla:
+En cuanto al código, se utilizan cuatro funciones para generarla:
 
 \lstinputlisting[language=JavaScript, title= Iteración 5: Funciones para generar la leyenda]{code/iteracion5-code-legend.js}
 
@@ -1270,40 +1270,41 @@ En la Figura~\ref{fig:iteracion5-legend} se observa el resultado final.
 	\label{fig:iteracion5-legend}
 \end{figure}
 
+Por otro lado, dado que A-Frame permite cambiar los componentes de manera dinámica mediante la función \textit{update}, se quiere añadir una nueva funcionalidad para facilitar al usuario la tarea de cambiar los datos de los gráficos de manera activa.
 
+Para este menester, se añade otro tipo de gráfico llamado \textit{totem} cuya función no es otra que mostrar distintos ficheros de datos en un plano y si el usuario los selecciona cambien los gráficos de manera dinámica.
 
+Se comienza añadiendo al esquema del componente dos nuevas propiedades que se ven a continuación:
 
+\lstinputlisting[language=JavaScript, title= Iteración 5: Función para generar el totem]{code/iteracion5-schema-totem.js}
 
+La propiedad \textit{entity\_id\_list} será una lista de identificadores proporcionada por el usuario para cada \textit{entity} de A-Frame que se añada en el HTML. Por otro lado, la propiedad \textit{dataPoints\_list} provee de un listado de ficheros. Por tanto, cuando el usuario seleccione un fichero de la lista de ficheros proporcionada y gracias a la lista de identificadores, podremos llamar a la función \textit{update} de cada entidad pasándole los nuevos datos y que se refresque de manera dinámica.
 
+Podemos observar en el siguiente fragmento de código, como en la función \textit{update} se llama a la función \textit{generateTotem} solo si el tipo de gráfico es \textit{totem} y además no se le han pasado un fichero de datos debido a que no es un gráfico normal y, como se ha mencionado anteriormente, recibe un listado de ficheros y un listado de identificadores.
 
--Añadimos la funcionalidad del totem. Cambiar datos de manera dinámica. LAst THING
+\lstinputlisting[language=JavaScript, title= Iteración 5: Propiedades del esquema para el totem]{code/iteracion5-update-totem.js}
 
+Por último, se procede a explicar como se construye el \textit{totem} mediante la función \textit{generateTotem} y la subfunción \textit{generateTotemSlice}. 
 
+\lstinputlisting[language=JavaScript, title= Iteración 5: Funciones generateTotem y generateTotemSlice]{code/iteracion5-totem.js}
 
+Como se ve en la función \textit{generateTotem}, por cada fichero de datos de la lista de archivos se genera lo que se denomina un \textit{totem slice}. Esta porción de totem, no es más que un plano con el nombre del fichero al que se le asigna una función que escucha el evento \textit{click}. Cada vez que se haga un \textit{click}, se recopilan todos los identificadores de los gráficos y se le asigna el nuevo fichero de datos seleccionado. A-Frame es el encargado de llamar a la función \textit{update} de cada gráfico cambiando así sus datos de manera dinámica.
+\newline
 
-
-
-
-
-
-
-
-
-
-Por otro lado, uno de los últimos cambios que se han realizado en la librería es la posibilidad de obtener los datos con llamadas AJAX y no únicamente con ficheros JSON. Hoy en día, en cualquier entorno o aplicación web, lo común es obtener los datos mediante llamadas AJAX en incluso ir actualizando los mismos con dichas llamadas. Por ello, se ha dotado a la librería de esta funcionalidad. Gracias a  podrá ser utilizada con mayor versatilidad en cualquier aplicación web.
+A continuación y relacionado con el punto anterior para la carga dinámica de datos, uno de los últimos cambios que se han realizado en la librería es la posibilidad de obtener los datos con llamadas AJAX y no únicamente con ficheros JSON. Hoy en día, en cualquier entorno o aplicación web, lo común es obtener los datos mediante llamadas AJAX en incluso ir actualizando los mismos con dichas llamadas. Por ello, se ha dotado a la librería de esta funcionalidad. Gracias a  podrá ser utilizada con mayor versatilidad en cualquier aplicación web.
 
 A continuación se muestra la parte de código encargada de gestionar ficheros u objetos de datos provenientes de llamadas AJAX o variables:
 
 \lstinputlisting[language=JavaScript, title= Iteración 5: Código gestión de Objetos o ficheros]{code/iteracion5-ajax.js}
 
-Como vemos simplemente se comprueba el tipo de objeto que se le pasa a la función update de A-Frame. Si es un JSON no recibe tratamiento, si es un String se parsea a JSON y si es un fichero se obtiene con la función loader de ThreeJS descrita anteriormente.
+Como se puede ver, simplemente se comprueba el tipo de objeto que se le pasa a la función update de A-Frame. Si es un JSON no recibe tratamiento, si es un String se parsea a JSON y si es un fichero se obtienen los datos con la función loader de ThreeJS descrita anteriormente.
 \newline
 
-Finalmente se provee de un ejemplo para la visualización de la librería con dispositivos de Realidad Virtual. Para ellos simplemente es necesario añadir a nuestro códgio HTML las siguientes propiedades que nos ofrece la librería de A-Frame.
+Finalmente y como último punto, se provee de un ejemplo para la visualización de la librería con dispositivos de Realidad Virtual. Para ello simplemente es necesario añadir a nuestro códgio HTML las siguientes propiedades que nos ofrece la librería de A-Frame.
 
 \lstinputlisting[language=HTML, title= Iteración 5: Código para integración con dispositivos VR]{code/iteracion5-vr-control.html}
 
-Como vemos, añadiendo la entidad \textit{laser-control} de A-Frame dotamos al dispositivo VR del control necesario para poder interactuar con la librería. Además para facilitar la visualización, se le añade la entidad \textit{movement-control} con el parámetro \textit{fly} y valor \textit{true}. Esto nos permite que la cámara se mueva a la par del movimiento del usuario que utilice el dispositivo de realidad virtual.
+Como se ha podido ver, añadiendo la entidad \textit{laser-control} de A-Frame dotamos al dispositivo VR del control necesario para poder interactuar con la librería. Además para facilitar la visualización, se le añade la entidad \textit{movement-control} con el parámetro \textit{fly} y valor \textit{true}. Esto nos permite que la cámara se mueva a la par del movimiento del usuario que utilice el dispositivo de realidad virtual.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1317,20 +1318,196 @@ Como vemos, añadiendo la entidad \textit{laser-control} de A-Frame dotamos al di
 \section{Arquitectura general} 
 \label{sec:arquitectura}
 
-Foto final de la arquitectura
+En esta sección se explica la foto final de la arquitectura con la que se ha desarrollado la librería. Como se ha mencionado previamente, gracias a la herramienta \textit{angle} de A-Frame se genera un arquetipo con los ficheros necesarios para desarrollar un componente. En la Figura~\ref{fig:resultados-arquitectura} se observa el resultado que se describirá a continuación.
+
+\begin{itemize}
+	\item \textbf{package.json:} Este fichero, tal y como se ha mencionado anteriormente en esta memoria, contiene los metadatos del proyecto. Además, se utiliza como gestor de dependencias y es el encargado de definir las etapas de desarrollo, despliegue, tests, etc.
+	
+	\item \textbf{index.js:} Este archivo contiene el código JavaScript que se ha desarrollado en este proyecto. Como se ha visto en el punto anterior, aquí se registra el componente de A-Frame así como todas sus funcionalidades.
+	
+	\item \textbf{index.html:} Este fichero es utilizado como página de ejemplo\footnote{\url{https://adrixp.github.io/aframe-charts-component/}} para mostrar la funcionalidad del componente.
+	
+	\item \textbf{node\_modules:} En esta carpeta se almacenan todas las dependencias del proyecto reflejadas en el archivo \textit{package.json} o aquellas que se utilicen de manera indirecta.	
+	
+	\item \textbf{tests:} Esta ubicación contiene los tests del proyecto. Su propósito es el de probar la funcionalidad desarrollada, mejorar la calidad del código y evitar posibles errores.
+	
+	\item \textbf{examples:} En esta carpeta se almacenan todos los ejemplos que se ven en el \textit{index.html}. En el siguiente apartado se describirá uno a uno cada ejemplo.
+	
+	\item \textbf{README.md:} Este archivo sirve para describir el funcionamiento y puesta en marcha del componente. En el se realiza una breve descripción y se pone algún ejemplo de uso para mostrar el software de un vistazo rápido.
+	
+	\item \textbf{.gitignore y .npmignore:} Estos ficheros se utilizan para ignorar ciertos directorios o archivos que no deben subir al repositorio de código.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=8cm, keepaspectratio]{img/resultados-arquitectura}
+	\caption{Resultados: Arquitectura Final}
+	\label{fig:resultados-arquitectura}
+\end{figure}
 
 \section{Funcionamiento de la Librería} 
 \label{sec:funcionamiento_libreria}
 
-Manual de usuario con lo que hay en la web.
+En este apartado se describe el funcionamiento de la librería. Se pondrá un ejemplo de uso y una imagen por cada gráfico y funcionalidad que soporta la librería.
+
+\subsection{Gráfico de burbujas}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{img/resultados-burbujas}
+	\caption{Resultados: Gráfico de burbujas}
+	\label{fig:resultados-burbujas}
+\end{figure}
+
+Código para el gráfico de burbujas
+
+\lstinputlisting[language=HTML]{code/resultados-bubble.html}
+
+\subsection{Gráfico de barras}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{img/resultados-barras}
+	\caption{Resultados: Gráfico de barras}
+	\label{fig:resultados-barras}
+\end{figure}
+
+Código para el gráfico de barras
+
+\lstinputlisting[language=HTML]{code/resultados-bar.html}
+
+\subsection{Gráfico de barras cilíndricas}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{img/resultados-cilinder}
+	\caption{Resultados: Gráfico de barras cilíndricas}
+	\label{fig:resultados-cilinder}
+\end{figure}
+
+Código para el gráfico de barras cilíndricas
+
+\lstinputlisting[language=HTML]{code/resultados-cilinder.html}
+
+\subsection{Gráfico de tarta}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=6cm]{img/resultados-pie}
+	\caption{Resultados: Gráfico de tarta}
+	\label{fig:resultados-tarta}
+\end{figure}
+
+Código para el gráfico de tarta
+
+\lstinputlisting[language=HTML]{code/resultados-pie.html}
+
+\subsection{Gráfico de doughnut}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=6cm]{img/resultados-doughnut}
+	\caption{Resultados: Gráfico de doughnut}
+	\label{fig:resultados-donut}
+\end{figure}
+
+Código para el gráfico de doughnut
+
+\lstinputlisting[language=HTML]{code/resultados-doughnut.html}
+
+\subsection{Totem}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=12cm]{img/resultados-totem}
+	\caption{Resultados: Totem}
+	\label{fig:resultados-totem}
+\end{figure}
+
+Código para el Totem
+
+\lstinputlisting[language=HTML]{code/resultados-totem.html}
+
+\subsection{Parámetros de los ejes}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=12cm]{img/resultados-axis-param}
+	\caption{Resultados: Ejemplo de ejes parametrizables}
+	\label{fig:resultados-axis-param}
+\end{figure}
+
+Código para el ejemplo con ejes parametrizables
+
+\lstinputlisting[language=HTML]{code/resultados-axis-param.html}
+
+\subsection{Pop up}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{img/resultados-pop-up}
+	\caption{Resultados: Gráfico con Pop-up}
+	\label{fig:resultados-pop-up}
+\end{figure}
+
+Código para el gráfico que muestra un pop-up
+
+\lstinputlisting[language=HTML]{code/resultados-pop-up.html}
+
+\subsection{Leyenda}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=12cm]{img/resultados-legend}
+	\caption{Resultados: Gráfico con leyenda}
+	\label{fig:resultados-legend}
+\end{figure}
+
+Código para el gráfico que muestra una leyenda
+
+\lstinputlisting[language=HTML]{code/resultados-legend.html}
+
+\subsection{LLamadas Ajax}
 
 Ejemplo de uso con AJAX:
 
-\lstinputlisting[language=HTML, title= Iteración 5: Código HTML de ejemplo]{code/Resultados-ajax.html}
+\lstinputlisting[language=HTML, title= Código HTML de ejemplo]{code/resultados-ajax.html}
 
-\lstinputlisting[language=JavaScript, title= Iteración 5: Código Ajax de ejemplo]{code/Resultados-ajax.js}
+\lstinputlisting[language=JavaScript, title= Código Ajax de ejemplo]{code/resultados-ajax.js}
 
+\subsection{API}
 
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+	\hline
+	\rowcolor[HTML]{C0C0C0} 
+	Propiedad              & Descripción                                                                                                       & Valor por defecto                                                                               \\ \hline
+	type                   & Tipo de gráfico                                                                                                   & bubble                                                                                          \\ \hline
+	dataPoints             & Ruta al fichero JSON de entrada, asset o array de datos                                                           & ../data/data.json                                                                               \\ \hline
+	axis\_position         & Posición de los ejes                                                                                              & \{x:0, y:0, z:0\}                                                                               \\ \hline
+	axis\_visible          & Si es falso, no se muestran los ejes                                                                              & true                                                                                            \\ \hline
+	axis\_color            & Color de los ejes                                                                                                 & red                                                                                             \\ \hline
+	axis\_length           & Longitud de los ejes. Por defecto son adaptativos.                                                                & 0                                                                                               \\ \hline
+	axis\_tick\_separation & Separación de los ticks de los ejes                                                                               & 1                                                                                               \\ \hline
+	axis\_tick\_length     & Longitud de los ticks de los ejes                                                                                 & 0.2                                                                                             \\ \hline
+	axis\_tick\_color      & Color de los ticks de los ejes                                                                                    & red                                                                                             \\ \hline
+	axis\_negative         & Habilita ejes negativos.                                                                                          & true                                                                                            \\ \hline
+	axis\_grid             & Habilita rejilla en los ejes                                                                                      & false                                                                                           \\ \hline
+	axis\_grid\_3D         & Habilita rejilla tridimensional en los ejes                                                                       & false                                                                                           \\ \hline
+	axis\_text             & Numeración de los ejes                                                                                            & true                                                                                            \\ \hline
+	axis\_text\_color      & Color de la numeración de los ejes                                                                                & white                                                                                           \\ \hline
+	axis\_text\_size       & Tamaño de texto de la numeración                                                                                  & 10                                                                                              \\ \hline
+	pie\_radius            & Radio del gráfico de tarta                                                                                        & 1                                                                                               \\ \hline
+	pie\_doughnut          & \begin{tabular}[c]{@{}l@{}}Si en vez de gráfico con forma de tarta se quiere con\\ forma de doughnut\end{tabular} & false                                                                                           \\ \hline
+	show\_popup\_info      & Mostrar pop up                                                                                                    & false                                                                                           \\ \hline
+	show\_legend\_info     & Mostrar leyenda                                                                                                   & false                                                                                           \\ \hline
+	show\_legend\_position & Posición de la leyenda                                                                                            & \{x:0, y:0, z:0\}                                                                               \\ \hline
+	show\_legend\_rotation & Rotación de la leyenda                                                                                            & \{x:0, y:0, z:0\}                                                                               \\ \hline
+	show\_legend\_title    & Título de la leyenda                                                                                              & Legend                                                                                          \\ \hline
+	entity\_id\_list       & Lista de identificadores separada por comas.                                                                      & barId,pieId                                                                                     \\ \hline
+	dataPoints\_list       & Lista de JSON de datos.                                                                                           & \begin{tabular}[c]{@{}l@{}}\{"data1":\\  "data.json",\\ "data2":\\  "data2.json"\}\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CONCLUSIONES %
