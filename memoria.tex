@@ -131,9 +131,9 @@
 \includegraphics[scale=0.25]{img/logo_vect.png} &
 \begin{tabular}[b]{l}
 \Huge
-\textsf{UNIVERSIDAD} \\
+\textsf{Universidad} \\
 \Huge
-\textsf{REY JUAN CARLOS} \\
+\textsf{Rey Juan Carlos} \\
 \end{tabular}
 \\
 \end{tabular}
@@ -141,27 +141,28 @@
 \vspace{3cm}
 
 \Large
+ESCUELA TÉCNICA SUPERIOR DE INGENIERÍA DE TELECOMUNICACIÓN
+
+\vspace{0.6cm}
+
+\Large
 GRADO EN INGENIERÍA EN TECNOLOGÍAS DE LA TELECOMUNICACIÓN
-
-\vspace{0.4cm}
-
-\large
-Curso Académico 2019/2020
 
 \vspace{0.8cm}
 
-Trabajo Fin de Grado
+\textbf{Trabajo Fin de Grado}
 
 \vspace{2.5cm}
 
 \LARGE
 VISUALIZACIÓN DE DATOS EN REALIDAD VIRTUAL
 
-\vspace{4cm}
+\vspace{2cm}
 
 \large
 Autor : Adrián Pizarro Serrano \\
-Tutor : Dr. Jesús M. González Barahona
+Tutor : Dr. Jesús M. González Barahona \\
+Curso Académico 2019/2020
 \end{center}
 \end{titlepage}
 
@@ -252,9 +253,11 @@ Por último quisiera hacer una mención especial a la comunidad de desarrollo tan 
 %\addcontentsline{toc}{chapter}{Resumen} % si queremos que aparezca en el índice
 \markboth{RESUMEN}{RESUMEN} % encabezado
 
-Este proyecto consiste en el desarrollo de un módulo capaz de visualizar datos en tres dimensiones mediante Realidad Virtual. Este sistema puede ser utilizado en cualquier navegador y plataforma, así como visualizado con distintos dispositivos de realidad virtual.
+Este proyecto consiste en el desarrollo de un módulo capaz de visualizar datos en tres dimensiones mediante realidad virtual. Este sistema puede ser utilizado en cualquier navegador y plataforma, así como visualizado con distintos dispositivos de realidad virtual.
 
 Se utilizan distintas tecnologías en el \textit{frontend} que permiten visualizaciones clásicas así como otras no tan clásicas en tres dimensiones. Debido a la creciente necesidad de analizar grandes cantidades de información sumado a la inexistencia de un módulo para representar datos en 3D, hacen de este trabajo un proyecto apasionante.
+
+Este módulo es completamente configurable para una mejor experiencia de usuario. Se provee de un API para modificar las distintas visualizaciones e incluir distintos complementos para una mejor representación y comprensión de los datos.
 
 Se ha utilizado el \textit{framework} de A-Frame, el cual, permite construir experiencias de realidad virtual. Gracias al extenso API, entidades y componenetes que provee, se ha podido desarrollar con éxito este módulo. Como se explica en esta memoria, dicho \textit{framework} se apoya fundamentalmente en la librería ThreeJS cuyo motor gráfico es WebGL. Por tanto, básicamente se utiliza HTML5 y JavaScript para generar todas las visualizaciones necesarias.
 
@@ -268,9 +271,11 @@ El resultado final ha consistido en publicar este módulo en la comunidad, y que 
 %\addcontentsline{toc}{chapter}{Summary} % si queremos que aparezca en el índice
 \markboth{SUMMARY}{SUMMARY} % encabezado
 
-This project consists in the development of a library able of visualizing data in three dimensions through Virtual Reality. This system can be used in any browser and platform, as well as visualized with different virtual reality devices.
+This project consists in the development of a library able of visualizing data in three dimensions through virtual reality. This system can be used in any browser and platform, as well as visualized with different virtual reality devices.
 
 Different technologies are used in the frontend that allow classic visualizations as well as others not so classic in three dimensions. Due to the growing need to analyze large amounts of information added to the absence of a module to represent 3D data, they make this work an exciting project.
+
+This module is fully configurable for a better user experience. An API is provided in order to modify the different visualizations and include complements for a better representation and understanding of the data.
 
 The A-Frame framework has been used, which allows to build virtual reality experiences. Thanks to the extensive API, entities and components it provides, this module has been successfully developed. As explained in this report, this framework relies primarily on the ThreeJS library whose graphic engine is WebGL. Therefore, HTML5 and JavaScript are basically used to generate all the necessary visualizations.
 
@@ -348,9 +353,9 @@ The final result has been to publish this module in the community, and so, the r
 \label{sec:intro} % etiqueta para poder referenciar luego en el texto con ~\ref{sec:intro}
 \pagenumbering{arabic} % para empezar la numeración de página con números
 
-Este proyecto trata sobre la representación de datos en tres dimensiones (a partir de ahora 3D) en un navegador web utilizando como base el {\textit{framework}} A-Frame\footnote{\url{https://aframe.io/}}. Este {\textit{framework}} nace a su vez a partir de la librería Three.js\footnote{\url{https://threejs.org/}} utilizada para mostrar gráficos animados en 3D.
+Este proyecto trata sobre la visualización de datos mediante realidad virtual en cualquier navegador web y dispositivo VR. Se utiliza como base el {\textit{framework}} A-Frame\footnote{\url{https://aframe.io/}}. Esta biblioteca nace a su vez a partir de la librería Three.js\footnote{\url{https://threejs.org/}} utilizada para mostrar gráficos animados en 3D.
 
-El objetivo principal es crear una librería capaz de visualizar datos con distintos tipos de gráficos, fácilmente escalable, mantenible y sencilla de utilizar. Además, como objetivos más específicos, podrá ser usada en cualquier navegador y dispositivo de realidad virtual.
+El objetivo principal es crear un módulo capaz de visualizar datos con distintos tipos de gráficos, fácilmente escalable, mantenible y sencilla de utilizar. Además, como objetivos más específicos, podrá ser usada en cualquier navegador y dispositivo de realidad virtual.
 
 A continuación se describe el contexto, motivación, la estructura de esta memoria y la disponibilidad del software.
 
@@ -386,15 +391,59 @@ Respecto a la motivación personal podemos decir que se ha pasado por distintas f
 
 Es así como gracias a todos estos factores se ha podido finalizar este proyecto y escritura de esta memoria. De la cual procedemos a describir su estructura en la siguiente sección.
 
+\section{Objetivo general} % título de sección (se muestra)
+\label{sec:objetivo-general} % identificador de sección (no se muestra, es para poder referenciarla)
+
+Este proyecto consiste en crear un sistema para la visualización de datos en 3D compatible con cualquier navegador. La cual además pueda ser usada en un dispositivo de realidad virtual.
+
+\section{Objetivos específicos}
+\label{sec:objetivos-especificos}
+
+En este apartado se realiza una breve descripción de los objetivos específicos.
+
+\begin{enumerate}
+	
+	\item La librería debe proporcionar varios tipos de visualizaciones. Deberá implementar al menos cinco tipos de visualización tales como gráfico de burbujas, de tarta, de barras, de cilindros o tarta en forma de rosquilla.
+	
+	\item Se debe permitir una gran cantidad de parámetros. Por ejemplo, la posición, color, longitud y separación entre las marcas de medición de los ejes. Permitir que los ejes puedan ser negativos o estén en forma de rejilla para dos o más dimensiones. Poder configurar tamaño y color de una legenda, un pop-up o ambas.
+	
+	\item La librería debe ser capaz de añadir una leyenda a un gráfico y/o un pop-up para una mejor interpretación de los datos. Con ello se persigue obtener más información y facilitar la lectura de datos.
+	
+	\item La librería debe proporcionar una herramienta para filtrar o seleccionar distintas fuentes de datos. Además podrán refrescar las visualizaciones dinámicamente.
+	
+	\item Debe ser capaz de interpretar ficheros con formato JSON (JavaScript Object Notation) y lanzar una excepción si no fuera capaz de leer el archivo correctamente.
+	
+	\item El rendimiento es un factor clave que se desea cuidar en este proyecto. Por ello, esta librería debe mostrar un buen comportamiento cargando grandes volúmenes de datos. Se debe comprobar que es capaz de mostrar visualizaciones con una gran cantidad de datos 
+	
+	\item Se debe poder utilizar en cualquier navegador sin necesidad de instalar ningún plugin. Además se debe poder utilizar y visualizar en dispositivos de realidad virtual como las Oculus Rift.
+	
+	\item La librería se debe distribuir y poner al servicio de la comunidad. Se debe dar fácil acceso y ser subida a un repositorio de código donde se puedan recibir sugerencias para implementar y resolver posibles incidencias.
+	
+	\item Debe ser fácilmente escalable, es decir, deberá estar desarrollada de tal manera que sea sencillo implementar nuevos desarrollos o modificaciones en el código.
+	
+	\item Un objetivo importante es que el código deberá ser mantenible tanto por su autor como por la comunidad. Se debe publicar dicho software en una plataforma donde, como se menciona anteriormente, se pueda contribuir a resolver incidencias y mantener actualizado de manera sencilla las versiones de los framework y librerías que utilizará el proyecto.
+	
+	\item Aprender Webpack para empaquetar y distribuir nuestra librería.
+	
+	\item Aprender el framework de A-Frame. Se debe estudiar en profundidad su documentación y estándares para un uso óptimo de la misma. Esta librería de realidad virtual está basada en Three.js por lo que también se deberá realizar un estudio de la misma.
+	
+	\item Crear una web con ejemplos de uso de la librería.
+	
+	\item Crear el proyecto con Angle. Una herramienta hecha por los creadores de A-Frame para comenzar nuestro componente con un arquetipo que sigue los estándares de A-Frame
+	
+	\item Una vez creado el proyecto siguiendo los estándares y después de realizar los primeros avances se deberá publicar nuestro proyecto en el registry de A-Frame donde aparecen todos los componentes de la comunidad de A-Frame. Esto proporcionará visibilidad al proyecto pudiendo salir en el blog oficial llamado Week of A-Frame 
+	
+	\item Se deberá cuidar y refactorizar el código para una lectura sencilla del mismo siguiendo distintas directrices que podemos encontrar en el libro Clean Code~\cite{martin:_cleancode}.
+	
+\end{enumerate}
+
 \section{Estructura de la memoria}
 \label{sec:estructura}
 
 En esta sección se describe la estructura de la memoria para una mejor compresión de la misma:
 
 \begin{itemize}
-  \item En el primer capítulo se hace una breve introducción al proyecto. Describiremos el marco y contexto del trabajo para un mejor aterrizaje del lector. Acto seguido se habla de la motivación del proyecto tanto a nivel personal como profesional. Por último se describe brevemente la estructura de la memoria.
-  
-  \item En el capítulo 2 se muestran los objetivos del proyecto. Se comienza hablando del objetivo principal que perseguimos con este trabajo. Acto seguido, pasaremos a los específicos donde se profundizará y se ampliará los conceptos tratados en el objetivo principal. Además en este apartado se hará una descripción de la planificación temporal que se ha seguido para llevar a cabo este proyecto 
+  \item En el primer capítulo se hace una breve introducción al proyecto. Describiremos el marco y contexto del trabajo para un mejor aterrizaje del lector. Acto seguido, se habla de la motivación del proyecto tanto a nivel personal como profesional. Después se describe el objetivo principal que perseguimos con este trabajo para continuar con los específicos, donde se profundizará y ampliarán los conceptos tratados en el principal. Por último se describe brevemente la estructura de la memoria.
   
   \item A continuación se presenta el estado del arte. Aquí haremos un repaso así como una breve descripción de todas las tecnologías que se han utilizado.
   
@@ -427,63 +476,6 @@ Por último, se ha publicado la librería en el sistema de gestión de paquetes (np
 \vspace{5mm}
 
 \url{https://www.npmjs.com/package/aframe-charts-component/}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% OBJETIVOS %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\cleardoublepage % empezamos en página impar
-\chapter{Objetivos} % título del capítulo (se muestra)
-\label{chap:objetivos} % identificador del capítulo (no se muestra, es para poder referenciarlo)
-
-\section{Objetivo general} % título de sección (se muestra)
-\label{sec:objetivo-general} % identificador de sección (no se muestra, es para poder referenciarla)
-
-Este proyecto consiste en crear un sistema para la visualización de datos en 3D compatible con cualquier navegador. La cual además pueda ser usada en un dispositivo de realidad virtual.
-
-\section{Objetivos específicos}
-\label{sec:objetivos-especificos}
-
-En este apartado se realiza una breve descripción de los objetivos específicos.
-
-\begin{enumerate}
-		
-	\item La librería debe proporcionar varios tipos de visualizaciones. Deberá implementar al menos cinco tipos de visualización tales como gráfico de burbujas, de tarta, de barras, de cilindros o tarta en forma de rosquilla.
-	
-	\item Se debe permitir una gran cantidad de parámetros. Por ejemplo, la posición, color, longitud y separación entre las marcas de medición de los ejes. Permitir que los ejes puedan ser negativos o estén en forma de rejilla para dos o más dimensiones. Poder configurar tamaño y color de una legenda, un pop-up o ambas.
-	
-	\item La librería debe ser capaz de añadir una leyenda a un gráfico y/o un pop-up para una mejor interpretación de los datos. Con ello se persigue obtener más información y facilitar la lectura de datos.
-	
-	\item La librería debe proporcionar una herramienta para filtrar o seleccionar distintas fuentes de datos. Además podrán refrescar las visualizaciones dinámicamente.
-	
-	\item Debe ser capaz de interpretar ficheros con formato JSON (JavaScript Object Notation) y lanzar una excepción si no fuera capaz de leer el archivo correctamente.
-	
-	\item El rendimiento es un factor clave que se desea cuidar en este proyecto. Por ello, esta librería debe mostrar un buen comportamiento cargando grandes volúmenes de datos. Se debe comprobar que es capaz de mostrar visualizaciones con una gran cantidad de datos 
-	
-	\item Se debe poder utilizar en cualquier navegador sin necesidad de instalar ningún plugin. Además se debe poder utilizar y visualizar en dispositivos de realidad virtual como las Oculus Rift.
-	
-	\item La librería se debe distribuir y poner al servicio de la comunidad. Se debe dar fácil acceso y ser subida a un repositorio de código donde se puedan recibir sugerencias para implementar y resolver posibles incidencias.
-	
-	\item Debe ser fácilmente escalable, es decir, deberá estar desarrollada de tal manera que sea sencillo implementar nuevos desarrollos o modificaciones en el código.
-	
-	\item Un objetivo importante es que el código deberá ser mantenible tanto por su autor como por la comunidad. Se debe publicar dicho software en una plataforma donde, como se menciona anteriormente, se pueda contribuir a resolver incidencias y mantener actualizado de manera sencilla las versiones de los framework y librerías que utilizará el proyecto.
-	
-	\item Aprender Webpack para empaquetar y distribuir nuestra librería.
-	
-	\item Aprender el framework de A-Frame. Se debe estudiar en profundidad su documentación y estándares para un uso óptimo de la misma. Esta librería de realidad virtual está basada en Three.js por lo que también se deberá realizar un estudio de la misma.
-	
-	\item Crear una web con ejemplos de uso de la librería.
-	
-	\item Crear el proyecto con Angle. Una herramienta hecha por los creadores de A-Frame para comenzar nuestro componente con un arquetipo que sigue los estándares de A-Frame
-	
-	\item Una vez creado el proyecto siguiendo los estándares y después de realizar los primeros avances se deberá publicar nuestro proyecto en el registry de A-Frame donde aparecen todos los componentes de la comunidad de A-Frame. Esto proporcionará visibilidad al proyecto pudiendo salir en el blog oficial llamado Week of A-Frame 
-
-	\item Se deberá cuidar y refactorizar el código para una lectura sencilla del mismo siguiendo distintas directrices que podemos encontrar en el libro Clean Code~\cite{martin:_cleancode}.
-	
-\end{enumerate}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
