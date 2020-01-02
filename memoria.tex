@@ -194,7 +194,7 @@ Visualización de Datos en Realidad Virtual
 \end{center}
 
 \vspace{1cm}
-La defensa del presente Proyecto Fin de Carrera se realizó el día \qquad$\;\,$ de \qquad\qquad\qquad\qquad \newline de 2019, siendo calificada por el siguiente tribunal:
+La defensa del presente Proyecto Fin de Carrera se realizó el día \qquad$\;\,$ de \qquad\qquad\qquad\qquad \newline de 2020, siendo calificada por el siguiente tribunal:
 
 
 \vspace{0.5cm}
@@ -216,7 +216,7 @@ y habiendo obtenido la siguiente calificación:
 
 \vspace{1cm}
 \begin{flushright}
-Fuenlabrada, a \qquad$\;\,$ de \qquad\qquad\qquad\qquad de 2019
+Fuenlabrada, a \qquad$\;\,$ de \qquad\qquad\qquad\qquad de 2020
 \end{flushright}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -357,7 +357,9 @@ Este proyecto trata sobre la visualización de datos mediante realidad virtual en
 
 El objetivo principal es crear un módulo capaz de visualizar datos con distintos tipos de gráficos, fácilmente escalable, mantenible y sencilla de utilizar. Además, como objetivos más específicos, podrá ser usada en cualquier navegador y dispositivo de realidad virtual.
 
-A continuación se describe el contexto, motivación, la estructura de esta memoria y la disponibilidad del software.
+El hecho de que apenas existan librerías para representación de datos con realidad virtual hacen de este proyecto un trabajo estimulante y motivador.
+
+A continuación se describe el contexto, motivación, los objetivos, la estructura de esta memoria y la disponibilidad del software.
 
 \section{Contexto}
 \label{sec:contexto}
@@ -385,16 +387,16 @@ Muchas veces se escucha la frase atribuida al filósofo inglés Francis Bacon ``La
 
 Hasta ahora, tenemos infinidad de librerías para representar datos en 2D pero ¿Qué ocurre con la llegada del 3D a nuestros navegadores? ¿Existen librerías para visualizar datos utilizando realidad virtual o realidad aumentada? Lo cierto es que estas preguntas nos llevan a una de las motivaciones principales de este proyecto. Este mundo es relativamente nuevo y hasta ahora se ha apostado más por realizar visualizaciones complejas en 3D o videojuegos. Por lo que la representación de datos en 3D es un nicho aun por explotar.
 
-Este último punto ha sido muy motivador para realizar una de las primeras librerías capaz de visualizar datos en 3D tanto en un navegador como en un dispositivo de realidad virtual. Además, la intención de este proyecto es que sea escalable, mantenible y el resto de la comunidad pueda contribuir a su uso y desarrollo.
+Este último punto ha sido muy motivador para realizar una de las primeras librerías capaz de visualizar datos en 3D tanto en un navegador como en dispositivos de realidad virtual. Además, la intención de este proyecto es que sea escalable, mantenible y el resto de la comunidad pueda contribuir a su uso y desarrollo.
 
-Respecto a la motivación personal podemos decir que se ha pasado por distintas fases. En primer lugar, hubo un intento fallido de realizar una aplicación de posible utilidad médica. Siempre se puede interpretar como poner excusas, pero el tiempo, obligaciones y el querer dedicar tu tiempo libre a otros menesteres son factores que impidieron la consecución de este primer proyecto el cual, a pesar de todo, era muy interesante. Todo esto llevó a volver a comenzar con una búsqueda exhaustiva y motivadora donde por suerte pude contactar con Jesús M. González Barahona, tutor del proyecto, el cual me ofreció toda la ayuda y un trabajo de fin de grado por el cual no me importara dedicar todo el tiempo libre posible.
+Respecto a la motivación personal podemos decir que siempre he querido publicar un módulo en el que la comunidad pueda participar y contribuir. Ha sido muy gratificante ver como distintos usuarios han incluido esta biblioteca en sus proyectos así como realizado peticiones de mejora e inclusión de nuevos gráficos. Por otra parte, las tecnologías que se han utilizado en este proyecto son pioneras en el \textit{frontend} sumado al uso de la realidad virtual como medio para reproducir distintas escenas hacen de este proyecto un trabajo apasionante.
 
-Es así como gracias a todos estos factores se ha podido finalizar este proyecto y escritura de esta memoria. De la cual procedemos a describir su estructura en la siguiente sección.
+Es así como gracias a todos estos factores se ha podido finalizar este proyecto y escritura de esta memoria.
 
 \section{Objetivo general} % título de sección (se muestra)
 \label{sec:objetivo-general} % identificador de sección (no se muestra, es para poder referenciarla)
 
-Este proyecto consiste en crear un sistema para la visualización de datos en 3D compatible con cualquier navegador. La cual además pueda ser usada en un dispositivo de realidad virtual.
+Este proyecto consiste en crear un sistema para la visualización de datos en 3D compatible con cualquier navegador. La cual además pueda ser usada en dispositivos de realidad virtual.
 
 \section{Objetivos específicos}
 \label{sec:objetivos-especificos}
@@ -403,19 +405,21 @@ En este apartado se realiza una breve descripción de los objetivos específicos.
 
 \begin{enumerate}
 	
-	\item La librería debe proporcionar varios tipos de visualizaciones. Deberá implementar al menos cinco tipos de visualización tales como gráfico de burbujas, de tarta, de barras, de cilindros o tarta en forma de rosquilla.
+	\item Este módulo se debe poder utilizar en cualquier navegador sin necesidad de instalar ningún plugin. Además, se podrá visualizar en distintos dispositivos de realidad virtual.
 	
-	\item Se debe permitir una gran cantidad de parámetros. Por ejemplo, la posición, color, longitud y separación entre las marcas de medición de los ejes. Permitir que los ejes puedan ser negativos o estén en forma de rejilla para dos o más dimensiones. Poder configurar tamaño y color de una legenda, un pop-up o ambas.
+	\item Debe proporcionar varios tipos de visualizaciones tales como gráfico de burbujas, de tarta, de barras, de cilindros o tarta en forma de rosquilla.
 	
-	\item La librería debe ser capaz de añadir una leyenda a un gráfico y/o un pop-up para una mejor interpretación de los datos. Con ello se persigue obtener más información y facilitar la lectura de datos.
+	\item Se podrá colocar una o varias visualizaciones en cualquier parte del espacio tridimensional.
 	
-	\item La librería debe proporcionar una herramienta para filtrar o seleccionar distintas fuentes de datos. Además podrán refrescar las visualizaciones dinámicamente.
+	\item Las visualizaciones podrán ser configurables por el usuario. Por ejemplo, se podrá modificar la posición, color, longitud y separación entre las marcas de medición de los ejes. Permitir que los ejes puedan ser negativos o estén en forma de rejilla para dos o más dimensiones. Poder configurar tamaño y color de la leyenda.	
 	
-	\item Debe ser capaz de interpretar ficheros con formato JSON (JavaScript Object Notation) y lanzar una excepción si no fuera capaz de leer el archivo correctamente.
+	\item El sistema debe ser capaz de añadir una leyenda a un gráfico y/o un pop-up para una mejor interpretación de los datos. Con ello se persigue obtener más información y facilitar la lectura de datos.
 	
-	\item El rendimiento es un factor clave que se desea cuidar en este proyecto. Por ello, esta librería debe mostrar un buen comportamiento cargando grandes volúmenes de datos. Se debe comprobar que es capaz de mostrar visualizaciones con una gran cantidad de datos 
+	\item La biblioteca debe proporcionar una herramienta para filtrar o seleccionar distintas fuentes de datos. Además las visualizaciones se podrán refrescar dinámicamente.
 	
-	\item Se debe poder utilizar en cualquier navegador sin necesidad de instalar ningún plugin. Además se debe poder utilizar y visualizar en dispositivos de realidad virtual como las Oculus Rift.
+	\item Debe ser capaz de interpretar ficheros o datos con formato JSON (JavaScript Object Notation) y lanzar una excepción si no fuera capaz de leer el archivo correctamente.
+	
+	\item El rendimiento es un factor clave que se desea cuidar en este proyecto. Por ello, esta librería debe mostrar un buen comportamiento cargando grandes volúmenes de datos. Se debe comprobar que es capaz de mostrar visualizaciones con una gran cantidad de datos.
 	
 	\item La librería se debe distribuir y poner al servicio de la comunidad. Se debe dar fácil acceso y ser subida a un repositorio de código donde se puedan recibir sugerencias para implementar y resolver posibles incidencias.
 	
@@ -423,13 +427,13 @@ En este apartado se realiza una breve descripción de los objetivos específicos.
 	
 	\item Un objetivo importante es que el código deberá ser mantenible tanto por su autor como por la comunidad. Se debe publicar dicho software en una plataforma donde, como se menciona anteriormente, se pueda contribuir a resolver incidencias y mantener actualizado de manera sencilla las versiones de los framework y librerías que utilizará el proyecto.
 	
-	\item Aprender Webpack para empaquetar y distribuir nuestra librería.
+	\item Aprender el framework de A-Frame, el cual viene dado desde el principio como recomendación del tutor. Se debe estudiar en profundidad su documentación y estándares para un uso óptimo de la misma. Esta librería de realidad virtual está basada en Three.js por lo que también se deberá realizar un estudio de la misma.
 	
-	\item Aprender el framework de A-Frame. Se debe estudiar en profundidad su documentación y estándares para un uso óptimo de la misma. Esta librería de realidad virtual está basada en Three.js por lo que también se deberá realizar un estudio de la misma.
+	\item Aprender Webpack para empaquetar y distribuir nuestra librería.	
+	
+	\item Crear el proyecto con Angle. Una herramienta hecha por los creadores de A-Frame para comenzar nuestro componente con un arquetipo que sigue los estándares de A-Frame.
 	
 	\item Crear una web con ejemplos de uso de la librería.
-	
-	\item Crear el proyecto con Angle. Una herramienta hecha por los creadores de A-Frame para comenzar nuestro componente con un arquetipo que sigue los estándares de A-Frame
 	
 	\item Una vez creado el proyecto siguiendo los estándares y después de realizar los primeros avances se deberá publicar nuestro proyecto en el registry de A-Frame donde aparecen todos los componentes de la comunidad de A-Frame. Esto proporcionará visibilidad al proyecto pudiendo salir en el blog oficial llamado Week of A-Frame 
 	
@@ -463,7 +467,7 @@ Para poder consultar y mantener el proyecto se ha creado un repositorio de softw
 \url{https://github.com/adrixp/aframe-charts-component}
 
 \vspace{5mm}
-Además esta librería cuenta con una página web donde podemos ver todos los casos de uso. También se tiene un enlace directo al API para ver todos los parámetros disponibles, y por cada visualización el código utilizado. Se puede acceder a través del siguiente enlace:
+Además esta librería cuenta con una página web donde podemos ver las \textit{demos} y casos de uso. También se tiene un enlace directo al API para ver todos los parámetros disponibles, y por cada visualización el código utilizado. Se puede acceder a través del siguiente enlace:
 
 \vspace{5mm}
 
@@ -489,17 +493,19 @@ En este capítulo se describirán las tecnologías que se utilizan en este trabajo.
 
 También se mencionarán las librerías de realidad virtual y los motores en los que estas se apoyan, los cuales facilitan enormemente el trabajo de desarrollo.
 
-\section{HTML} 
+\section{HTML5} 
 \label{sec:htmlseccion}
 \begin{center}
 \includegraphics[scale=0.30]{img/html.png}
 \end{center}
 
-En 1993 se lanza este lenguaje de marcado como herramienta principal para construir páginas web. Define una estructura básica a partir de etiquetas que son interpretadas por los navegadores. El encargado de su mantenimiento y estandarización es el Consorcio de la {\textit{World Wide Web}} (W3C).
+En 1993 se lanza el lenguaje de marcado HTML como herramienta principal para construir páginas web. Define una estructura básica a partir de etiquetas que son interpretadas por los navegadores. El encargado de su mantenimiento y estandarización es el Consorcio de la {\textit{World Wide Web}} (W3C).
 
 Mas adelante, en 2014, se lanza la quinta versión de HTML comúnmente conocida como HTML5~\cite{pilgrim:_htmluprun}. En esta nueva versión se incluyen nuevos elementos como la cabecera \textless header\textgreater, el pie \textless footer\textgreater\space y la sección \textless section\textgreater\space entre otros. Además se añaden elementos gráficos como Canvas, una superficie bidimensional para dibujar mediante Javascript, y svg para gráficos vectoriales.
 
-Por otro lado también se incluyen nuevos atributos y etiquetas para elementos multimedia como audio y video. Finalmente cabe destacar que el nuevo API nos provee de herramientas para la geolocalización, {\textit{drag and drop}}, almacenamiento local, caché, etc.
+Por otro lado también se incluyen nuevos atributos y etiquetas para elementos multimedia como audio y video. Además, cabe destacar que el nuevo API nos provee de herramientas para la geolocalización, \textit{drag and drop}, almacenamiento local, caché, etc.
+
+Finalmente subrayar que se proporciona una mayor optimización en el uso del \textit{hardware} así como la inclusión del estándar CSS3 el cual ofrece una nueva gran variedad de opciones para hacer diseños más sofisticados.
 
 
 \section{JavaScript} 
@@ -521,7 +527,7 @@ Por último cabe destacar la infinidad de {\textit{frameworks}} que surgen día a 
 
 Como alternativa a XML nace JSON. Es un formato de texto para la distribución de datos o puede ser usado como un objeto Javascript que tiene distinta información, como vemos en la Figura~\ref{fig:json},  debido a su gran versatilidad. Es un formato muy sencillo de leer y de {\textit{parsear}}, es decir, de obtener su información.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=9cm, keepaspectratio]{img/json}
 	\caption{Ejemplo JSON básico}
@@ -541,7 +547,7 @@ NodeJs~\cite{pasquali:_nodejs} es un servidor web desarrollado en C++ en el año 
 
 Es un servidor cuyas características principales son que es {\textit{monohilo}} y asíncrono. Como vemos en la Figura~\ref{fig:nodeserver}, tenemos un único hilo donde por cada petición se delega el trabajo y se da respuesta de  manera asíncrona, es decir, no es bloqueante y se ejecutará de manera concurrente recibiendo dichas respuestas mediante funciones {\textit{callback}}.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm, keepaspectratio]{img/nodeServer}
 	\caption{Arquitectura NodeJs}
@@ -557,7 +563,7 @@ Cabe destacar que NodeJs se utiliza como servidor web en infinidad de compañías 
 \begin{center}
 	\includegraphics[scale=0.30]{img/npm.png}
 \end{center}
-Como gestor de paquetes, módulos y dependencias de NodeJs nace en 2014 NPM. Es instalado automáticamente con cualquier versión de NodeJs a partir de la 0.6.3. Las instrucciones se ejecutan por línea de comandos y cualquier usuario puede consumir los paquetes subidos a esta plataforma de manera versionada.
+Como gestor de paquetes, módulos y dependencias de NodeJs nace npm en 2014. Es instalado automáticamente con cualquier versión de NodeJs a partir de la 0.6.3. Las instrucciones se ejecutan por línea de comandos y cualquier usuario puede consumir los paquetes subidos a esta plataforma de manera versionada.
 
 Para este proyecto se ha creado un repositorio de npm para poder distribuir nuestra propia librería como dependencia y poder ser usada de manera ágil\footnote{\url{https://www.npmjs.com/package/aframe-charts-component}}. Es necesario registrarse en la plataforma para poder publicar.
 
@@ -645,7 +651,7 @@ Desde un inicio, esta tecnología ha estado orientada a la industria de los video
 	\includegraphics[scale=0.30]{img/opengl.png}
 \end{center}
 
-OpenGL es una librería de gráficos de código abierto cuyo lanzamiento inicial fue en el año 1994. Define un API multilenguaje y multiplataforma para producir aplicaciones que rendericen gráficos en 2D y 3D. Esta interfaz cuenta con mas de 250 funciones para dibujar escenas tridimensionales a partir de primitivas más simples bidimensionales.
+OpenGL~\cite{paulmartz:opengl} es una librería de gráficos de código abierto cuyo lanzamiento inicial fue en el año 1994. Define un API multilenguaje y multiplataforma para producir aplicaciones que rendericen gráficos en 2D y 3D. Esta interfaz cuenta con mas de 250 funciones para dibujar escenas tridimensionales a partir de primitivas más simples bidimensionales.
 
 Sus aplicaciones a día de hoy va desde simuladores de vuelo hasta el desarrollo de videojuegos con una creciente comunidad que impulsa este fenómeno. Además está pensado para conseguir una mayor abstracción sobre la complejidad de interactuar con el hardware de la tarjeta gráfica ofreciendo un API único y uniforme.
 
@@ -654,23 +660,12 @@ En la  Figura~\ref{fig:openglshader} tenemos un ejemplo de como a partir de prim
 Por último la tarjeta gráfica procesa cada uno de estos vértices de manera individual y aplica la transformación necesaria para proyectar estos vértices en el mundo 3D en nuestra pantalla 2D. Una vez transformados lo vértices de entrada se formarán los triángulos, líneas o puntos mencionadas anteriormente como primitivas simples.
 
 Un último paso, introducido recientemente, es el de aplicar el sombreado geométrico o {\textit{shader}}.
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm, keepaspectratio]{img/openglshader}
 	\caption{Ejemplo de Shader OpenGL}
 	\label{fig:openglshader}
 \end{figure}
-
-\section{WebVR} 
-\label{sec:webvrseccion}
-
-WebVR es una API experimental escrito en Javascript en 2006. Fue iniciado como prototipo de Canvas3D por Vladimir Vuki?evi? en Mozilla. Este API proporciona soporte para dispositivos de realidad virtual tales como Oculus Rift, HTC Vive o Google Cardboard, en un navegador de web.
-
-Sus principales objetivos son detectar de manera automática dispositivos de realidad virtual disponibles y obtener sus características principales, como la posición y orientación del dispositivo, para mostrar imágenes con una latencia aceptable.
-
-Esta tecnología tiene una primera versión finalizada en 2017 donde principales compañías como Mozilla, Google y ahora Microsoft dan soporte y mantenimiento.
-
-La API WebVR expone ciertas interfaces que permiten a las aplicaciones web incluir contenido de realidad virtual. Para ello se hace uso de WebGL, descrito en el siguiente apartado, como motor para gráficos 3D. Además permite obtener las configuraciones necesarios para la cámara y los dispositivos controladores (por ejemplo, un mando o el punto de vista).
 
 \section{WebGL} 
 \label{sec:webglseccion}
@@ -687,6 +682,17 @@ La primera versión (1.0) de WebGL está basado en OpenGL 2.0 y proporciona una AP
 WebGL 2.0 está basado en OpenGL 3.0 y garantiza disponibilidad de muchas extensiones opcionales de WebGL 1.0 y presenta nuevas APIs que facilitan el desarrollo.
 
 WebGL está integrado completamente en todos los estándares web del navegador, permitiendo la aceleración de la GPU y el procesamiento de imágenes y efectos. Esta gestión automática de memoria RAM o virtual se proporciona mediante el lenguaje JavaScript.
+
+\section{WebVR} 
+\label{sec:webvrseccion}
+
+WebVR es una API experimental escrito en Javascript en 2006. Fue iniciado como prototipo de Canvas3D por Vladimir Vukicevic en Mozilla. Este API proporciona soporte para dispositivos de realidad virtual tales como Oculus Rift, HTC Vive o Google Cardboard, en un navegador de web.
+
+Sus principales objetivos son detectar de manera automática dispositivos de realidad virtual disponibles y obtener sus características principales, como la posición y orientación del dispositivo, para mostrar imágenes con una latencia aceptable.
+
+Esta tecnología tiene una primera versión finalizada en 2017 donde principales compañías como Mozilla, Google y ahora Microsoft dan soporte y mantenimiento.
+
+La API WebVR expone ciertas interfaces que permiten a las aplicaciones web incluir contenido de realidad virtual. Para ello se hace uso de WebGL, descrito en el siguiente apartado, como motor para gráficos 3D. Además permite obtener las configuraciones necesarios para la cámara y los dispositivos controladores (por ejemplo, un mando o el punto de vista).
 
 \section{Three.js} 
 \label{sec:threejsseccion}
@@ -798,12 +804,14 @@ En esta potente librería de VR se basa este proyecto fundamentalmente.
 En este apartado se muestra el diseño e implementación de este proyecto. Se comienza describiendo la metodología utilizada y las distintas etapas por las que ha pasado el proyecto. Más adelante profundizaremos en cada una de dichas etapas, describiendo el desarrollo que se ha realizado de manera incremental para este trabajo.
 
 
-\section{Metodología Scrum} 
+\section{Metodología SCRUM} 
 \label{sec:scrum}
 
-La metodología que se ha seguido en este proyecto es la denominada metodología Scrum~\cite{blokehead:scrum}. Este procedimiento se caracteriza principalmente por ser incremental y estar enfocado al desarrollo de software ágil. A diferencia de otros métodos donde se desarrolla de manera secuencial o en cascada (requisitos, diseño, implementación, verificación y mantenimiento), la metodología Scrum permite solapar estas fases e incluso realizarlas mediante incrementos más pequeños.
+La metodología que se ha seguido en este proyecto es una simplificación de la denominada metodología SCRUM~\cite{blokehead:scrum}. Este procedimiento se caracteriza principalmente por ser incremental y estar enfocado al desarrollo de software ágil. A diferencia de otros métodos donde se desarrolla de manera secuencial o en cascada (requisitos, diseño, implementación, verificación y mantenimiento), la metodología SCRUM permite solapar estas fases e incluso realizarlas mediante incrementos más pequeños.
 
-El objetivo de Scrum es aplicar de manera regular buenas prácticas para trabajar en equipo y obtener el mejor resultado y calidad posible para el proyecto. Para esto se definen un conjunto de prácticas y roles como el de Scrum  \textit{máster} encargado del proceso asegurando su correcto uso y guiado por las distintas etapas, el \textit{product owner} el cual es el responsable de mantener el producto y asegurar la continuidad por las líneas de trabajo establecidas. Por último tenemos al equipo de desarrollo que debe ser multidisciplinar y encargado de ir cumpliendo las distintas iteraciones y tareas para sacar adelante el proyecto.
+El objetivo de SCRUM es aplicar de manera regular buenas prácticas para trabajar en equipo y obtener el mejor resultado y calidad posible para el proyecto. Para esto se definen un conjunto de prácticas y roles como el de SCRUM  \textit{máster} encargado del proceso asegurando su correcto uso y guiado por las distintas etapas, el \textit{product owner} el cual es el responsable de mantener el producto y asegurar la continuidad por las líneas de trabajo establecidas. Por último tenemos al equipo de desarrollo que debe ser multidisciplinar y encargado de ir cumpliendo las distintas iteraciones y tareas para sacar adelante el proyecto.
+
+Como se ha mencionado previamente, en este proyecto se ha seguido una simplificación de la metodología SCRUM. Se han mantenido reuniones periódicas donde el tutor desempeñaba el papel de cliente y el autor el de desarrollador.
 
 A continuación se describe brevemente cada una de las etapas o \textit{sprints} por las que ha pasado este proyecto:
 
@@ -823,7 +831,7 @@ A continuación se describe brevemente cada una de las etapas o \textit{sprints} 
 \end{itemize}
 
 \section{Iteración 0. Estudio previo.} 
-\label{sec:iteracion_0}
+\label{sec:iteracion0}
 
 En esta fase previa se comienza realizando un estudio previo de las tecnologías que vamos a utilizar en el proyecto. Debido a que se tiene un amplio conocimiento de JavaScript y HTML vamos a cumplir directamente nuestro objetivo específico de estudiar el \textit{framework} A-Frame. Para este menester, se comienza visitando la web oficial de A-Frame\footnote{\url{https://aframe.io/}} donde se puede encontrar toda la documentación\footnote{\url{https://aframe.io/docs/0.9.0/introduction/}} necesaria para comenzar a crear escenas en 3D en nuestro navegador con unos simples pasos.
 
@@ -967,14 +975,14 @@ Cuando arrancamos el proyecto con el comando \textit{start} definido en el fiche
 
 \begin{figure}
 	\centering
-	\includegraphics[width=8cm, keepaspectratio]{img/iteracion1-resultado}
+	\includegraphics[width=12cm, keepaspectratio]{img/iteracion1-resultado}
 	\caption{Iteración 1: Resultado}
 	\label{fig:iteracion1-resultado}
 \end{figure} 
 
 \clearpage
 
-\section{Iteración 2. Enriquecimiento de la librería y separación de la capa de datos.} 
+\section[Iteración 2. Visualizaciones y separación de la capa de datos]{Iteración 2. Enriquecimiento de la librería y separación de la capa de datos.}
 \label{sec:iteracion_2}
 
 En esta segunda iteración tenemos como objetivo añadir más tipos de gráficos a nuestra librería. Cada gráfico será un nuevo componente que registraremos en A-Frame como se ha mostrado en la primera iteración.
@@ -1044,38 +1052,29 @@ Para esto se han seguido los siguientes pasos:
 Cuando arrancamos el proyecto, nuevamente con el comando \textit{start} definido en el fichero \textit{package.json}, se obtiene como resultado las Figuras~\ref{fig:iteracion2-resultado} y~\ref{fig:iteracion2-resultadob}.
 \begin{figure}
 	\centering
-	\includegraphics[width=8cm, keepaspectratio]{img/iteracion2-resultado}
+	\includegraphics[width=12cm]{img/iteracion2-resultado}
 	\caption{Iteración 2: Resultado Gráfico de Barras}
 	\label{fig:iteracion2-resultado}
 \end{figure}
 \begin{figure}
 	\centering
-	\includegraphics[width=8cm, keepaspectratio]{img/iteracion2-resultadob}
+	\includegraphics[width=12cm]{img/iteracion2-resultadob}
 	\caption{Iteración 2: Resultado Gráfico de burbujas}
 	\label{fig:iteracion2-resultadob}
 \end{figure}
 \clearpage
 
-\section{Iteración 3. Refactorización y estandarización de la librería.} 
+\section[Iteración 3. Refactorización y estandarización del módulo.]{Iteración 3. Refactorización y estandarización del \\módulo.} 
 \label{sec:iteracion_3}
 
 En esta iteración, el objetivo es publicar nuestro componente en la comunidad de A-Frame. Para ello seguimos las instrucciones de A-Frame Registry\footnote{\url{https://github.com/aframevr/aframe-registry}} donde debemos seguir una serie de pasos para cumplir con las \textit{best practices}.
 
 Gracias a estas medidas tendremos nuestro componente correctamente versionado, publicado en varios repositorios de código listo para ser utilizado por terceros e incluso permitiendo la contribución de otros desarrolladores. Se creará un proyecto de cero donde integraremos nuestro antiguo componente siguiendo los siguientes pasos:
+
 \begin{itemize}
+	
 	\item[--] En primer lugar se utiliza la herramienta \textit{angle}\footnote{\url{https://github.com/ngokevin/angle}}, la cual permite crear un proyecto de cero por línea de comando (Figura~\ref{fig:iteracion3-angle}). Se genera un componente con una arquitectura genérica (Figura~\ref{fig:iteracion3-arquitectura}).	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=16cm, keepaspectratio]{img/angle}
-		\caption{Iteración 3: Inicializar proyecto con Angle}
-		\label{fig:iteracion3-angle}
-	\end{figure}
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=6cm, keepaspectratio]{img/iteracion3-arquitectura}
-		\caption{Iteración 3: Nueva Arquitectura}
-		\label{fig:iteracion3-arquitectura}
-	\end{figure}		
+		
 	\item[--] Se publica el componente en npm, el repositorio de paquetes de nodeJs, mediante el comando \textit{npm publish}. Para ello es necesario tener instalado npm en nuestro sistema y crearse una cuenta gratuita en la web oficial \footnote{\url{https://www.npmjs.com/}}
 	
 	\item[--] Se publica el componente en GitHub, un repositorio online de código. Para ello es necesario tener instalado git en nuestro sistema y crearse una cuenta gratuita en la web oficial \footnote{\url{https://github.com/}}. Una vez creado el proyecto en la web, debemos ir mediante línea de comandos donde tenemos nuestro proyecto y ejecutar \textit{git init}, \textit{git commit} y \textit{git push}.	
@@ -1112,10 +1111,24 @@ Gracias a estas medidas tendremos nuestro componente correctamente versionado, p
 
 \end{itemize}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=16cm]{img/angle}
+	\caption{Iteración 3: Inicializar proyecto con Angle}
+	\label{fig:iteracion3-angle}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=8cm]{img/iteracion3-arquitectura}
+	\caption{Iteración 3: Nueva Arquitectura}
+	\label{fig:iteracion3-arquitectura}
+\end{figure}
+
 El resultado final es un único componente, cuyo código es mucho más limpio y nos vale para generar distintos tipos de gráficos. Además, cumple con todas las recomendaciones de A-Frame. Cabe destacar que se ha eliminado el gráfico de líneas debido a que visualmente no aporta información sino confusión.
 
 
-\section{Iteración 4. Poblamiento de funcionalidad de la API. Resolución de incidencias de la comunidad.} 
+\section[Iteración 4. API y Resolución de peticiones de la comunidad.]{Iteración 4. Poblamiento de funcionalidad de la API. Resolución de peticiones de la comunidad.} 
 \label{sec:iteracion_4}
 
 En esta cuarta iteración se tiene como objetivo enriquecer el API de la librería. Para ello se aumentará el número de propiedades del esquema de nuestro componente y se adaptarán las distintas funciones para que todos los gráficos disfruten de dicha operatividad.
@@ -1206,13 +1219,13 @@ Finalmente, por cada tick de cada eje tridimensional se añade el valor correspon
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=16cm, keepaspectratio]{img/iteracion4-result}
+	\includegraphics[width=16cm]{img/iteracion4-result}
 	\caption{Iteración 4: Resultado}
 	\label{fig:iteracion4-result}
 \end{figure}
 \clearpage
 
-\section{Iteración 5. Leyenda y pop-up, consumo de otras fuentes de datos y Adaptación para dispositivos de VR.} 
+\section[Iteración 5. Leyenda, fuentes de datos y dispositivos VR.]{Iteración 5. Leyenda y pop-up, consumo de otras fuentes de datos y adaptación para dispositivos de VR.} 
 \label{sec:iteracion_5}
 
 En esta última iteración, se tiene como objetivo seguir aumentando la información proporcionada por los gráficos mediante la implementación de una leyenda y de un panel informativo o \textit{pop-up}.
@@ -1239,8 +1252,8 @@ Por último, si se cumple la condición de mostrar el \textit{pop-up} llamamos a l
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=8cm, keepaspectratio]{img/iteracion5-popup}
-	\caption{Iteración 5: Resultado Pop-up}
+	\includegraphics[width=12cm, keepaspectratio]{img/iteracion5-popup}
+	\caption{Iteración 5: Pop-up}
 	\label{fig:iteracion5-popup}
 \end{figure}
 
@@ -1265,8 +1278,8 @@ En la Figura~\ref{fig:iteracion5-legend} se observa el resultado final.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=8cm, keepaspectratio]{img/iteracion5-legend}
-	\caption{Iteración 5: Resultado Pop-up}
+	\includegraphics[width=14cm]{img/iteracion5-legend}
+	\caption{Iteración 5: Leyenda}
 	\label{fig:iteracion5-legend}
 \end{figure}
 
@@ -1354,7 +1367,7 @@ En este apartado se describe el funcionamiento de la librería. Se pondrá un ejem
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=7cm]{img/resultados-burbujas}
+	\includegraphics[width=14cm]{img/resultados-burbujas}
 	\caption{Resultados: Gráfico de burbujas}
 	\label{fig:resultados-burbujas}
 \end{figure}
@@ -1367,7 +1380,7 @@ Código para el gráfico de burbujas
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=7cm]{img/resultados-barras}
+	\includegraphics[width=14cm]{img/resultados-barras}
 	\caption{Resultados: Gráfico de barras}
 	\label{fig:resultados-barras}
 \end{figure}
@@ -1380,7 +1393,7 @@ Código para el gráfico de barras
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=7cm]{img/resultados-cilinder}
+	\includegraphics[width=14cm]{img/resultados-cilinder}
 	\caption{Resultados: Gráfico de barras cilíndricas}
 	\label{fig:resultados-cilinder}
 \end{figure}
@@ -1393,7 +1406,7 @@ Código para el gráfico de barras cilíndricas
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=6cm]{img/resultados-pie}
+	\includegraphics[width=14cm]{img/resultados-pie}
 	\caption{Resultados: Gráfico de tarta}
 	\label{fig:resultados-tarta}
 \end{figure}
@@ -1406,7 +1419,7 @@ Código para el gráfico de tarta
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=6cm]{img/resultados-doughnut}
+	\includegraphics[width=14cm]{img/resultados-doughnut}
 	\caption{Resultados: Gráfico de doughnut}
 	\label{fig:resultados-donut}
 \end{figure}
@@ -1419,7 +1432,7 @@ Código para el gráfico de doughnut
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=12cm]{img/resultados-totem}
+	\includegraphics[width=14cm]{img/resultados-totem}
 	\caption{Resultados: Totem}
 	\label{fig:resultados-totem}
 \end{figure}
@@ -1432,7 +1445,7 @@ Código para el Totem
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=12cm]{img/resultados-axis-param}
+	\includegraphics[width=14cm]{img/resultados-axis-param}
 	\caption{Resultados: Ejemplo de ejes parametrizables}
 	\label{fig:resultados-axis-param}
 \end{figure}
@@ -1445,7 +1458,7 @@ Código para el ejemplo con ejes parametrizables
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=7cm]{img/resultados-pop-up}
+	\includegraphics[width=14cm]{img/resultados-pop-up}
 	\caption{Resultados: Gráfico con Pop-up}
 	\label{fig:resultados-pop-up}
 \end{figure}
@@ -1458,7 +1471,7 @@ Código para el gráfico que muestra un pop-up
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=12cm]{img/resultados-legend}
+	\includegraphics[width=14cm]{img/resultados-legend}
 	\caption{Resultados: Gráfico con leyenda}
 	\label{fig:resultados-legend}
 \end{figure}
