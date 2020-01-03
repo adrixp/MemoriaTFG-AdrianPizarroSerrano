@@ -1365,6 +1365,8 @@ En este apartado se describe el funcionamiento de la librería. Se pondrá un ejem
 
 \subsection{Gráfico de burbujas}
 
+Este tipo de gráfico consiste en una variación de un gráfico de dispersión. En el cual, los datos representados por puntos se reemplazan por burbujas o esferas. El tamaño de dichas burbujas puede representar una dimensión adicional.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=14cm]{img/resultados-burbujas}
@@ -1372,11 +1374,19 @@ En este apartado se describe el funcionamiento de la librería. Se pondrá un ejem
 	\label{fig:resultados-burbujas}
 \end{figure}
 
-Código para el gráfico de burbujas
+Gracias a este proyecto, únicamente son necesarias las siguientes líneas de código HTML para ver el gráfico de burbujas.
+
+\lstinputlisting[language=HTML]{code/resultados-bubble-full.html}
+
+Como vemos en el código, se utiliza únicamente la última versión de la librería de A-Frame y la del componente desarrollado en este proyecto. Se construye una escena de realidad virtual con el elemento \textless a-escene\textgreater y dentro de ella se utiliza el elemento \textless a-light\textgreater para dar luminosidad a la escena y \textless a-camera\textgreater el cual indica el punto de vista inicial del usuario. Por último se añade el elemento \textless a-entity\textgreater con los atributos \textit{type} y \textit{dataPoints}. Este elemento es interpretado por el módulo desarrollado en este proyecto y genera un gráfico de tipo burbuja con la representación de los puntos descritos en el fichero \textit{dataPositive.json} en el espacio tridimensional.
+
+En adelante, y para el resto de resultados que veremos a continuación en esta memoria, nos centraremos en la siguiente línea de código. El resto de código HTML no va a cambiar, únicamente se sustituirá la siguiente línea de código por las que veremos a partir del punto 4.2.2:
 
 \lstinputlisting[language=HTML]{code/resultados-bubble.html}
 
 \subsection{Gráfico de barras}
+
+La representación clásica del gráfico de barras se utiliza para resumir un conjunto de datos mediante categorías. Se muestran los datos usando distintas barras, las cuales representan una categoría concreta. Mediante la altura se puede cuantificar la frecuencia de cada categoría. Además gracias a la representación en 3D se tiene una dimensión extra donde podemos enriquecer nuestro gráfico dotándole de mayor información.
 
 \begin{figure}[H]
 	\centering
@@ -1385,11 +1395,17 @@ Código para el gráfico de burbujas
 	\label{fig:resultados-barras}
 \end{figure}
 
-Código para el gráfico de barras
+\clearpage
+
+Como se menciona anteriormente, únicamente hay que cambiar la siguiente línea de código respecto al apartado 4.2.1. Únicamente se añade el elemento \textless a-entity\textgreater con los atributos \textit{type} y \textit{dataPoints}. Este elemento es interpretado por el módulo desarrollado en este proyecto y genera un gráfico de barras con la representación de los puntos descritos en el fichero \textit{data.json} en el espacio tridimensional. Además se añade otro atributo dispuesto por la librería el cual es la longitud de los ejes que fijamos al valor 12 mediante la propiedad \textit{axis\_length}.
 
 \lstinputlisting[language=HTML]{code/resultados-bar.html}
 
+\clearpage
+
 \subsection{Gráfico de barras cilíndricas}
+
+Al igual que el apartado anterior, la representación clásica del gráfico de cilindros se utiliza para resumir un conjunto de datos mediante categorías. Además gracias a la representación en 3D se tiene una dimensión extra donde podemos enriquecer nuestro gráfico dotándole de mayor información. La única diferencia es que la representación de las barras de manera cilíndrica.
 
 \begin{figure}[H]
 	\centering
@@ -1398,37 +1414,45 @@ Código para el gráfico de barras
 	\label{fig:resultados-cilinder}
 \end{figure}
 
-Código para el gráfico de barras cilíndricas
+Como se menciona en el apartado 4.2.1, únicamente hay que cambiar la siguiente línea de código para visualizar este gráfico. Se añade el elemento \textless a-entity\textgreater con los atributos \textit{type} y \textit{dataPoints}. Este elemento es interpretado por el módulo desarrollado en este proyecto y genera un gráfico barras de tipo cilíndrico con la representación de los puntos descritos en el fichero \textit{data.json} en el espacio tridimensional. Además se añade otro atributo dispuesto por la librería que no permite que los ejes sean negativos \textit{axis\_negative}.
 
 \lstinputlisting[language=HTML]{code/resultados-cilinder.html}
 
+\clearpage
+
 \subsection{Gráfico de tarta}
+
+El gráfico circular también conocido como "gráfico de tarta" es un tipo de visualización clásica en el mundo de la estadística utilizado para representar porcentajes y proporciones. Gracias a la dimensión extra que nos proporciona la representación en 3D tenemos una nueva dimensión donde podemos enriquecer nuestro gráfico dotándole de mayor información.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=14cm]{img/resultados-pie}
+	\includegraphics[width=12cm]{img/resultados-pie}
 	\caption{Resultados: Gráfico de tarta}
 	\label{fig:resultados-tarta}
 \end{figure}
 
-Código para el gráfico de tarta
+Como se menciona anteriormente, únicamente hay que cambiar la siguiente línea de código para visualizar este gráfico. Se añade el elemento \textless a-entity\textgreater con los atributos \textit{type} y \textit{dataPoints}. Este elemento es interpretado por el módulo desarrollado en este proyecto y genera un gráfico de tarta. Además se añade otro atributo dispuesto por la librería que determina el radio de la tarta \textit{pie\_radius}.
 
 \lstinputlisting[language=HTML]{code/resultados-pie.html}
 
 \subsection{Gráfico de doughnut}
 
+Este tipo de gráfico es similar al del apartado 4.2.4. La diferencia es simplemente visual ya que se representa de manera cilíndrica. Gracias a la dimensión extra que nos proporciona la representación en 3D tenemos una nueva dimensión donde podemos enriquecer nuestro gráfico dotándole de mayor información.
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=14cm]{img/resultados-doughnut}
+	\includegraphics[width=12cm]{img/resultados-doughnut}
 	\caption{Resultados: Gráfico de doughnut}
 	\label{fig:resultados-donut}
 \end{figure}
 
-Código para el gráfico de doughnut
+Como se menciona anteriormente, únicamente hay que cambiar la siguiente línea de código para visualizar este gráfico. Se añade el elemento \textless a-entity\textgreater con los atributos \textit{type} y \textit{dataPoints}.Además se añade un nuevo atributo \textit{pie\_doughnut} respecto al apartado anterior, que determina que sea de tipo doughnut.
 
 \lstinputlisting[language=HTML]{code/resultados-doughnut.html}
 
 \subsection{Totem}
+
+Este elemento es proporcionado de manera nativa por el módulo desarrollado en este proyecto. Su objetivo es cambiar los datos del gráfico de manera dinámica utilizando distintas fuentes de datos. Simplemente con un \textit{click} si estamos en un navegador, o con la interacción \textit{touch} si estamos en un dispositivo de realidad virtual cambiaría nuestro gráfico.
 
 \begin{figure}[H]
 	\centering
@@ -1437,11 +1461,15 @@ Código para el gráfico de doughnut
 	\label{fig:resultados-totem}
 \end{figure}
 
-Código para el Totem
+Para añadir este elemento únicamente hay que cambiar la siguiente línea de código. Se añade el elemento \textless a-entity\textgreater con los atributos \textit{type},  \textit{entity\_id\_list} y \textit{dataPoints\_list}. Es decir, una lista de identificadores de los gráficos que van a cambiar y un listado de ficheros o variables que contengan los nuevos datos a modificar dinámicamente.
 
 \lstinputlisting[language=HTML]{code/resultados-totem.html}
 
+\clearpage
+
 \subsection{Parámetros de los ejes}
+
+Como se menciona en la Iteración 4 dentro del capítulo de diseño e implementación, el módulo desarrollado en este proyecto nos ofrece una gran cantidad de parámetros para poder configurar los gráficos al gusto del usuario. Además ofrece herramientas para obtener una mayor información de los mismos. Finalmente tal y como se ve en la Figura~\ref{fig:resultados-axis-param} podemos añadir a nuestra escena N visualizaciones.
 
 \begin{figure}[H]
 	\centering
@@ -1450,24 +1478,28 @@ Código para el Totem
 	\label{fig:resultados-axis-param}
 \end{figure}
 
-Código para el ejemplo con ejes parametrizables
+Como se menciona en el punto 4.2.1, únicamente hay que añadir las siguientes líneas de código para visualizar los dos gráficos. Se añaden dos elementos \textless a-entity\textgreater con los atributos \textit{type} y \textit{dataPoints}. Además se añaden los atributos \textit{axis\_color}, \textit{axis\_length}, \textit{axis\_grid}, \textit{axis\_negative} y \textit{axis\_position}. Estos atributos permiten modificar el color y la longitud de los ejes, permitir que los ejes sean de tipo rejilla, que sean negativos así como su posición respectivamente.
 
 \lstinputlisting[language=HTML]{code/resultados-axis-param.html}
 
 \subsection{Pop up}
 
+El módulo desarrollado en este proyecto permite el uso de un panel informativo o \textit{pop up} para una mejor comprensión de los datos.
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=14cm]{img/resultados-pop-up}
+	\includegraphics[width=11cm]{img/resultados-pop-up}
 	\caption{Resultados: Gráfico con Pop-up}
 	\label{fig:resultados-pop-up}
 \end{figure}
 
-Código para el gráfico que muestra un pop-up
+Como se menciona anteriormente, únicamente hay que añadir la siguiente línea de código para visualizar el pop up. Se añade al elemento \textless a-entity\textgreater el atributo \textit{show\_popup\_info} que permite visualizar dicha ventana emergente por cada elemento del gráfico, enriqueciendo así la información mostrada por el gráfico.
 
 \lstinputlisting[language=HTML]{code/resultados-pop-up.html}
 
 \subsection{Leyenda}
+
+El módulo desarrollado en este proyecto permite el uso de una leyenda para identificar con mayor claridad los distintos elementos en un gráfico, tales como colores y su valor.
 
 \begin{figure}[H]
 	\centering
@@ -1476,17 +1508,23 @@ Código para el gráfico que muestra un pop-up
 	\label{fig:resultados-legend}
 \end{figure}
 
-Código para el gráfico que muestra una leyenda
+Como se menciona en el punto 4.2.1, únicamente hay que añadir la siguiente línea de código para visualizar la leyenda. Se añade al elemento \textless a-entity\textgreater los atributos  \textit{show\_legend\_info} que permite visualizar dicha ventana emergente, enriqueciendo así la información mostrada por el gráfico. \textit{Show\_legend\_position} y \textit{show\_legend\_rotation} se utilizan para posicionar la leyenda en el espacio tridimensional deseado por el usuario
 
 \lstinputlisting[language=HTML]{code/resultados-legend.html}
 
+\clearpage
+
 \subsection{LLamadas Ajax}
 
-Ejemplo de uso con AJAX:
+Además de la representación de datos a partir de ficheros JSON. El módulo creado en este proyecto permite la representación de datos de otras fuentes externas mediante llamadas AJAX.
+
+A continuación tenemos un ejemplo de uso. Se mantiene toda la estructura HTML que se viene utilizando hasta ahora y se deben añadir las siguientes líneas HTML y JavaScript.
 
 \lstinputlisting[language=HTML, title= Código HTML de ejemplo]{code/resultados-ajax.html}
 
 \lstinputlisting[language=JavaScript, title= Código Ajax de ejemplo]{code/resultados-ajax.js}
+
+Este apartado es muy útil ya que permite una integración con distintas bases de datos o llamadas externas mediante servidor. En el apartado líneas futuras de esta memoria, se deberá utilizar este ejemplo para poder desarrollarlo con éxito.
 
 \subsection{API}
 
@@ -1536,9 +1574,9 @@ Ejemplo de uso con AJAX:
 
 El objetivo principal, alcanzado en este proyecto, ha sido el de crear una librería para la visualización de datos en 3D en un navegador web y dispositivos de realidad virtual. Por otro lado, se ha conseguido la participación de la comunidad, la cual ha pedido nuevas funcionalidades, resolución de errores e incluso utilizado esta librería en otros proyectos.
 
-Por otra parte y de manera más específica, se ha logrado concluir con éxito varios de los objetivos previstos. Se ha conseguido proporcionar cinco tipos de visualizaciones básicas. También se ha dotado de gran versatilidad al usuario a la hora de customizar los ejes o los gráficos gracias a la gran cantidad de parámetros proporcionados.
+Por otra parte y de manera más específica, se ha logrado concluir con éxito varios de los objetivos previstos. Se ha conseguido proporcionar distintos tipos de visualizaciones básicas en tres dimensiones. También se ha dotado de gran versatilidad al usuario a la hora de configurar los ejes o gráficos gracias a la gran cantidad de parámetros proporcionados.
 
-Se ha dotado de distintas herramientas para mejorar la lectura y comprensión de los datos. Además, se ha facilitado la manera de consumir dichos datos por la librería, ya sea mediante ficheros o variables que contengan un JSON o mediante llamadas AJAX.
+Se ha dotado de distintas herramientas para mejorar la lectura, filtrado y comprensión de los datos. Además, se ha facilitado la manera de consumir dichos datos por la librería, ya sea mediante ficheros o variables que contengan un formato JSON o mediante llamadas AJAX.
 También se han realizado pruebas de rendimiento y control de calidad del código cumpliendo con  el objetivo de tener una librería escalable y fácilmente mantenible.
 Se ha dotado de una página web con ejemplos y casos de uso. Además se han proporcionado ejemplos para el uso de esta librería en dispositivos de realidad virtual.
 
@@ -1577,7 +1615,7 @@ Además de los conocimientos aplicados y adquiridos durante la carrera que se men
   
   \item Se ha aprendido el funcionamiento básico de WebGL y OpenGL. Tecnologías en las cuales se basan todas las herramientas de desarrollo 3D en el navegador.
   
-  \item Descubrir y formar parte de la comunidad desarrollo de aplicaciones en 3D.
+  \item Descubrir y formar parte de la comunidad desarrollo de aplicaciones en realidad virtual.
   
   \item Se ha aprendido el uso del \textit{framework} de A-Frame de manera exhaustiva, así como ThreeJS (librería en la que se basa A-Frame) de manera básica.
   
