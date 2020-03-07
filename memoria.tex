@@ -396,7 +396,7 @@ Es así como gracias a todos estos factores se ha podido finalizar este proyecto 
 \section{Objetivo general} % título de sección (se muestra)
 \label{sec:objetivo-general} % identificador de sección (no se muestra, es para poder referenciarla)
 
-Este proyecto consiste en crear un sistema para la visualización de datos en 3D compatible con cualquier navegador. La cual además pueda ser usada en dispositivos de realidad virtual.
+Este proyecto consiste en crear un sistema para la visualización de datos en 3D compatible con cualquier dispositivo que tenga navegador web. El cual además puede ser usado en dispositivos de realidad virtual.
 
 \section{Objetivos específicos}
 \label{sec:objetivos-especificos}
@@ -409,7 +409,7 @@ En este apartado se realiza una breve descripción de los objetivos específicos.
 	
 	\item Debe proporcionar varios tipos de visualizaciones tales como gráfico de burbujas, de tarta, de barras, de cilindros o tarta en forma de rosquilla.
 	
-	\item Se podrá colocar una o varias visualizaciones en cualquier parte del espacio tridimensional.
+	\item Se podrá colocar una o varias visualizaciones en cualquier parte del espacio tridimensional también conocido como escena. Además, mediante la escucha de eventos podrán ser actualizados todos ellos de manera simultánea y dinámica.
 	
 	\item Las visualizaciones podrán ser configurables por el usuario. Por ejemplo, se podrá modificar la posición, color, longitud y separación entre las marcas de medición de los ejes. Permitir que los ejes puedan ser negativos o estén en forma de rejilla para dos o más dimensiones. Poder configurar tamaño y color de la leyenda.	
 	
@@ -1452,7 +1452,7 @@ Como se menciona anteriormente, únicamente hay que cambiar la siguiente línea de
 
 \subsection{Totem}
 
-Este elemento es proporcionado de manera nativa por el módulo desarrollado en este proyecto. Su objetivo es cambiar los datos del gráfico de manera dinámica utilizando distintas fuentes de datos. Simplemente con un \textit{click} si estamos en un navegador, o con la interacción \textit{touch} si estamos en un dispositivo de realidad virtual cambiaría nuestro gráfico.
+Este elemento es proporcionado por el módulo desarrollado en este proyecto. Su objetivo es cambiar los datos del gráfico de manera dinámica utilizando distintas fuentes de datos. Simplemente con un \textit{click} si estamos en un navegador, o con la interacción \textit{touch} si estamos en un dispositivo de realidad virtual cambiaría nuestro gráfico.
 
 \begin{figure}[H]
 	\centering
@@ -1514,6 +1514,21 @@ Como se menciona en el punto 4.2.1, únicamente hay que añadir la siguiente línea
 
 \clearpage
 
+\subsection{Dashboards}
+
+Este módulo ofrece además la posibilidad de colocar distintas visualizaciones en una misma escena. Cada una de ellas representando los mismos o diferentes datos. Además pueden trabajar de manera simultánea, es decir, están preparados para escuchar eventos y actualizar su información de manera dinámica.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{img/dashboard}
+	\caption{Resultados: Dashboard}
+	\label{fig:dashboard}
+\end{figure}
+
+\lstinputlisting[language=HTML, title= Código HTML de ejemplo para Dashboard]{code/resultados-dashboard.html}
+
+Como se puede ver en el código, solo son necesarias estas líneas de código para representar un Dashboard, en 3 dimensiones y visionado mediante realidad virtual, que trabaje de manera dinámica y conjuntamente para mostrar los datos.
+
 \subsection{LLamadas Ajax}
 
 Además de la representación de datos a partir de ficheros JSON. El módulo creado en este proyecto permite la representación de datos de otras fuentes externas mediante llamadas AJAX.
@@ -1572,15 +1587,17 @@ Este apartado es muy útil ya que permite una integración con distintas bases de 
 \section{Consecución de objetivos}
 \label{sec:consecucion-objetivos}
 
-El objetivo principal, alcanzado en este proyecto, ha sido el de crear una librería para la visualización de datos en 3D en un navegador web y dispositivos de realidad virtual. Por otro lado, se ha conseguido la participación de la comunidad, la cual ha pedido nuevas funcionalidades, resolución de errores e incluso utilizado esta librería en otros proyectos.
+El objetivo principal, alcanzado en este proyecto, ha sido el de crear una librería para la visualización de datos en 3D en cualquier dispositivo con un navegador web y dispositivos de realidad virtual. Por otro lado, se ha conseguido la participación de la comunidad, la cual ha pedido nuevas funcionalidades, resolución de errores e incluso utilizado esta librería en otros proyectos.
 
-Por otra parte y de manera más específica, se ha logrado concluir con éxito varios de los objetivos previstos. Se ha conseguido proporcionar distintos tipos de visualizaciones básicas en tres dimensiones. También se ha dotado de gran versatilidad al usuario a la hora de configurar los ejes o gráficos gracias a la gran cantidad de parámetros proporcionados.
+Por otra parte y de manera más específica, se ha logrado concluir con éxito varios de los objetivos previstos. Se ha conseguido proporcionar distintos tipos de visualizaciones en tres dimensiones. También se ha dotado de gran versatilidad al usuario a la hora de configurar los ejes o gráficos gracias a la gran cantidad de parámetros proporcionados.
 
 Se ha dotado de distintas herramientas para mejorar la lectura, filtrado y comprensión de los datos. Además, se ha facilitado la manera de consumir dichos datos por la librería, ya sea mediante ficheros o variables que contengan un formato JSON o mediante llamadas AJAX.
 También se han realizado pruebas de rendimiento y control de calidad del código cumpliendo con  el objetivo de tener una librería escalable y fácilmente mantenible.
 Se ha dotado de una página web con ejemplos y casos de uso. Además se han proporcionado ejemplos para el uso de esta librería en dispositivos de realidad virtual.
 
-Por último y personalmente considerado como objetivo más importante. Se han aprendido conceptos y nuevas tecnologías en un campo apasionante y en pleno crecimiento. En los siguientes apartados se procede a describir los conocimientos aplicados y aquellos que se han aprendido con este proyecto.
+Se ha podido dotar a la herramienta del potencial suficiente para representar en una misma escena varios gráficos y que pudieran ser actualizados de manera dinámica mediante la escucha de eventos.
+
+Por último y personalmente considerado como objetivo más importante. Se han aprendido conceptos y nuevas tecnologías en un campo apasionante y en pleno crecimiento. En los siguientes apartados se procede a describir los conocimientos aplicados y aquellos que se han aprendido con este proyecto. Todo ello siguiendo los estándares y las \textit{best practices} propuestas por la comunidad.
 
 
 \section{Aplicación de lo aprendido}
