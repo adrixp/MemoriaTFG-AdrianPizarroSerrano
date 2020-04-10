@@ -109,3 +109,6 @@ sympy-plots-for-*.tex/
 *.xdy
 
 TFGsamples/
+
+# Intellij idle
+.idea/
